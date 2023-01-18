@@ -1,5 +1,5 @@
 export const COLORS = {
-    primary: "#d14545",
+    primary: "#D14545",
     secondary: "#4D626C",
 
     white: "#FFF",
@@ -16,9 +16,9 @@ export const SIZES = {
     base: 8,
     small: 12,
     font: 14,
-    medium: 16,
-    large: 18,
-    extraLarge: 24,
+    medium: 24,
+    large: 48,
+    extraLarge: 32,
 };
 
 export const FONTS = {
