@@ -12,7 +12,14 @@ const ProfileSection = (props: Props)  => {
 
     return (
       <View style={styles.container}>
-          <Avatar.Image size={240} source={require('../../../assets/avatar.png')} />
+          {
+              props.image?
+                  null
+                  // <Header image={`data:${logoMime};base64,${logoData}`}/>
+              :
+                  <Avatar.Image size={240} source={require('../../../assets/placeholders/avatar.png')} />
+
+          }
       </View>
     );
 }
