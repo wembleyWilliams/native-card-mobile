@@ -4,10 +4,9 @@ import create = StyleSheet.create;
 import ProfileSection from "../sections/profile-section/ProfileSection";
 import Description from "../sections/description-section/DescriptionSection";
 import SocialSection from "../sections/social-section/SocialSection";
-// import {useDispatch, useSelector} from "react-redux";
 import {State} from "../../redux/reducers/index"
 import services from "../../services";
-import {setCardDetails} from "../../redux/actions";
+import {setBusinessDetails} from "../../redux/actions";
 import {useDispatch, useSelector} from "react-redux";
 
 interface Props {
@@ -18,20 +17,30 @@ const BusinessCard = (props: Props) => {
     const [loadingComplete, setLoadingComplete] = useState(false)
     const dispatch = useDispatch();
     const description = useSelector(
-        (state: State) => state.application.business?.description
+        (state: State) => state.application.application.BusinessData?.description
+    )
+    const logo = useSelector(
+        (state: State) => state.application.application.BusinessData?.logo
+    )
+
+    const socialMediaArray = useSelector(
+        (state: State) => state.application.application.BusinessData?.socialMedia
     )
     useEffect(()=> {
         console.log("Retrieving business data")
             services
                 .getBusiness()
                 .then((res)=>{
-                    dispatch(setCardDetails(res))
-                    setLoadingComplete(true)
-                    res? console.log("Business Data retrieved successfully") : null
+                    if(res)
+                        dispatch(setBusinessDetails(res))
+                        setLoadingComplete(true)
+                        console.log("Business Data retrieved successfully");
                 })
                 .catch((err)=>{
                     console.log(err)
                 })
+
+        console.log("Retrieving user data")
     },[])
 
     return (
@@ -39,14 +48,14 @@ const BusinessCard = (props: Props) => {
         { loadingComplete ? (
 
                 <View style={styles.container}>
-                    <ProfileSection />
+                    <ProfileSection image={{data:logo?.data,mime:logo?.mime}}/>
                     <Description
-                        description={description}
+                        description={description? description : 'No Description'}
                     />
-                    <SocialSection />
+                    <SocialSection socialMedia={socialMediaArray}/>
                 </View>
 
-        ) : (<View><Text>Placeholder</Text></View>)}
+        ) : (<View><Text>APP is loading.. Placeholder</Text></View>)}
         </View>
     );
 

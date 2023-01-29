@@ -1,46 +1,13 @@
 import {ApplicationState} from "../../common/types";
+import {combineReducers} from "redux";
+import {applicationReducer} from '../reducers/applicationReducer'
+
 
 export interface State {
     application: ApplicationState
 }
 
-const initialState: ApplicationState = {
-    user: {
-        _id: '',
-        firstname: '',
-        lastname: '',
-        email: '',
-        businessId: [''],
-        password: '',
-        profilePicture: { data: '', mime: '' }
+export const rootReducer = combineReducers({
+    application: applicationReducer,
+});
 
-    },
-    business: {
-        _id: '',
-        name: '',
-        description: '',
-        contact: '',
-        address: '',
-        pointOfContact: '',
-        email: '',
-        socialMedia: [{
-            profileName: '',
-            profileURL: '',
-        }]
-    }
-}
-
-export const applicationReducer = (state = initialState, action: any) => {
-    switch (action.type) {
-        case "SET_CARD_DETAILS":
-            const payloadCardDetails = action.payload
-            return {
-                ...state,
-                cardDetails: payloadCardDetails
-            };
-        default:
-            return state;
-    }
-}
-
-export default applicationReducer;

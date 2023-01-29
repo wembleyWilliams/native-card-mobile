@@ -1,11 +1,16 @@
 import React from "react"
-import {View, StyleSheet, Text} from "react-native";
-import {FONTS, SIZES, COLORS, SHADOWS, MARGINS, CARD_HEIGHT} from "../../../constants/theme";
+import {View, StyleSheet, Text, Alert, Button, TouchableOpacity} from "react-native";
+import {FONTS, SIZES, COLORS, SHADOWS, MARGINS, CARD_HEIGHT, PADDING} from "../../../constants/theme";
 import create = StyleSheet.create;
 import Card from "../../common/Card";
 import {IconButton} from "react-native-paper";
 
-const SocialBar = () => {
+interface Props {
+    text: string,
+    handle: string
+}
+
+const SocialBar = (props: Props) => {
 
     return (
         <>
@@ -16,8 +21,17 @@ const SocialBar = () => {
                         size={25}
                         onPress={()=>{console.log('working button...')}}
                     />
-                    <Text style={styles.linkText}>Link</Text>
-                    <Text style={styles.handle}>@goodgraphicsja</Text>
+                    {/*<Button*/}
+                    {/*    title={`${props.text}`}*/}
+                    {/*    onPress={()=> console.log('simple press')}/>*/}
+
+                    <Text style={styles.handle}>{props.handle}</Text>
+                    <TouchableOpacity
+                        style={styles.linkButton}
+                        onPress={()=> console.log('simple press')}
+                    >
+                        <Text style={styles.linkButtonText}>Twitter</Text>
+                    </TouchableOpacity>
                 </View>
             </View>
         </>
@@ -40,11 +54,18 @@ const styles = StyleSheet.create({
     },
     handle: {
         color: '#FFF'
-        // textAlign: 'right'
     },
-    linkText: {
-        color: '#FFF'
-        // textAlign: "auto"
+    linkButtonText: {
+        color: '#FFF',
+        fontWeight:'bold',
+        margin:"auto"
+    },
+    linkButton : {
+        height: '60%',
+        backgroundColor: COLORS.primary,
+        borderRadius: 50,
+        alignContent: "center",
+        paddingHorizontal: PADDING.button
     }
 })
 

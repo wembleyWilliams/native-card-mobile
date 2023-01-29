@@ -24,6 +24,5 @@ export interface UserData {
 }
 
 export interface ApplicationState {
-    user: UserData,
-    business: BusinessData
+    application: { UserData: {}, BusinessData: any }
 }

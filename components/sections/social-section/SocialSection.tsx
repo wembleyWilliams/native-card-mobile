@@ -6,9 +6,14 @@ import Card from "../../common/Card";
 import SocialBar from "./SocialBar";
 import {List} from "react-native-paper";
 import {FlatGrid} from "react-native-super-grid";
+import socialBar from "./SocialBar";
 
-const SocialSection = () => {
+interface Props {
+    socialMedia: any
+}
 
+const SocialSection = (props: Props) => {
+console.log(props.socialMedia)
     return (
         <Card
             width={100}
@@ -18,9 +23,13 @@ const SocialSection = () => {
             <View style={styles.container}>
                 <FlatGrid
                     maxItemsPerRow={1}
-                    data={['1','2','3','4','5']} renderItem={()=>
-                    <SocialBar />
-                } />
+                    data={props.socialMedia}
+                    renderItem={({ item })=> {
+                        return <SocialBar
+                            handle={item.profileName}
+                            text={item.profileURL}
+                        />
+                    } } />
 
             </View>
 

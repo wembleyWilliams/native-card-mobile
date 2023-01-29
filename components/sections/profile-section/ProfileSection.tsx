@@ -1,11 +1,14 @@
-import React from "react"
-import {View, Text, StyleSheet, TouchableOpacity} from "react-native";
+import React, {useState} from "react"
+import {View, Text, StyleSheet, TouchableOpacity, Image} from "react-native";
 import { Avatar } from 'react-native-paper';
 import AvatarPlaceholder  from '../../common/index';
 import create = StyleSheet.create;
 
 interface Props {
-    image?: any;
+    image?: {
+        data: string,
+        mime: string
+    }
 }
 
 const ProfileSection = (props: Props)  => {
@@ -14,11 +17,9 @@ const ProfileSection = (props: Props)  => {
       <View style={styles.container}>
           {
               props.image?
-                  null
-                  // <Header image={`data:${logoMime};base64,${logoData}`}/>
+                  <Avatar.Image size={240} source={{uri: `data:${props.image?.mime};base64,${props.image?.data}`}}/>
               :
                   <Avatar.Image size={240} source={require('../../../assets/placeholders/avatar.png')} />
-
           }
       </View>
     );
