@@ -8,6 +8,8 @@ import {State} from "../../redux/reducers/index"
 import services from "../../services";
 import {setBusinessDetails} from "../../redux/actions";
 import {useDispatch, useSelector} from "react-redux";
+import AnimatedLoader from "react-native-animated-loader";
+import {FONTS, SIZES} from "../../constants/theme";
 
 interface Props {
 
@@ -55,13 +57,39 @@ const BusinessCard = (props: Props) => {
                     <SocialSection socialMedia={socialMediaArray}/>
                 </View>
 
-        ) : (<View><Text>APP is loading.. Placeholder</Text></View>)}
+        ) : (
+            <View style={styles.container}>
+                <AnimatedLoader
+                    source={require("../../common/loader/card-loading-animation.json")}
+                    visible={!loadingComplete}
+                    // visible={true}
+                    overlayColor="rgba(255,255,255,0)"
+                    animationStyle={styles.lottie}
+                    speed={1.5}
+                    loop={true}
+                >
+                    <Text style={styles.loadingText}>Pulling up your records master</Text>
+                </AnimatedLoader>
+            </View>
+
+        )}
         </View>
     );
 
 }
 
 const styles = StyleSheet.create({
+    lottie:{
+        width: 400,
+        height: 400,
+    },
+    loadingText: {
+        width: 300,
+        color: 'white',
+        fontWeight: 'bold',
+        fontSize: SIZES.font,
+        textAlign: "center"
+    },
     wrapper: {
         width: '100%',
         flex: 1,
