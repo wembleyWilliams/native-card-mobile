@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const url = "http://localhost:7020"
+const url = "http://164.90.225.233:7020"
 // const url = "34.16.136.1:7020"
 const services = {
     getUser: async () => {
