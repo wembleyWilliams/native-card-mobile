@@ -7,15 +7,19 @@ import {DefaultTheme} from "@react-navigation/native";
 import {useFonts} from 'expo-font';
 import create = StyleSheet.create;
 import { Provider as PaperProvider } from "react-native-paper";
+import { Provider as ReduxProvider } from "react-redux"
 import {COLORS} from "./constants/theme";
+import {store} from "./redux/store";
 
 
 export default function App() {
   return (
       <PaperProvider>
-        <View style={styles.container}>
-          <BusinessCard/>
-        </View>
+          <ReduxProvider store={store}>
+              <View style={styles.container}>
+                  <BusinessCard/>
+              </View>
+          </ReduxProvider>
       </PaperProvider>
 
   );

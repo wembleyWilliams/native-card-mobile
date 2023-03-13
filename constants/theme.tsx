@@ -21,6 +21,10 @@ export const SIZES = {
     extraLarge: 32,
 };
 
+export const PADDING = {
+    button: 20
+}
+
 export const FONTS = {
     bold: "InterBold",
     semiBold: "InterSemiBold",

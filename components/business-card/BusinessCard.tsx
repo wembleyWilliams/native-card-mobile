@@ -1,50 +1,180 @@
-import React from "react"
+import React, {useEffect, useState} from "react"
 import {View, Text, StyleSheet, TouchableOpacity} from "react-native";
 import create = StyleSheet.create;
 import ProfileSection from "../sections/profile-section/ProfileSection";
 import Description from "../sections/description-section/DescriptionSection";
 import SocialSection from "../sections/social-section/SocialSection";
+import ErrorPage from "../../pages/404NotFound";
+import {State} from "../../redux/reducers/index"
+import services from "../../services";
+import {setBusinessDetails} from "../../redux/actions";
+import {useDispatch, useSelector} from "react-redux";
+import AnimatedLoader from "react-native-animated-loader";
+import {COLORS, FONTS, PADDING, SIZES} from "../../constants/theme";
+import saveContact from "../../utils/saveContact";
+import {Dimensions} from 'react-native';
 
-interface Props {
+const BusinessCard = ( ) => {
+    const [loadingComplete, setLoadingComplete] = useState(false)
+    const [errorPage, setErrorPage] = useState(false)
+    const dispatch = useDispatch();
 
-}
+    const windowWidth = Dimensions.get('window').width;
+    const windowHeight = Dimensions.get('window').height;
 
-const BusinessCard = (props: Props) => {
+    const description = useSelector(
+        (state: State) => state.application.application.BusinessData?.description
+    )
+    const logo = useSelector(
+        (state: State) => state.application.application.BusinessData?.logo
+    )
+
+    const socialMediaArray = useSelector(
+        (state: State) => state.application.application.BusinessData?.socialMedia
+    )
+
+    const contact = useSelector(
+        (state: State) => state.application.application.BusinessData?.contact
+    )
+
+    const styles = StyleSheet.create({
+        lottie:{
+            width: 400,
+            height: 400,
+        },
+        loadingText: {
+            width: 300,
+            color: 'white',
+            fontWeight: 'bold',
+            fontSize: SIZES.font,
+            textAlign: "center"
+        },
+        wrapper: {
+            width: windowWidth,
+            height: windowHeight,
+            flex: 1,
+            backgroundColor: 'transparent',
+            alignItems: 'center',
+            justifyContent: 'center',
+        },
+        container: {
+            position: "absolute",
+            height: windowHeight - (windowHeight*0.2),
+            width: windowWidth - (windowWidth*0.2),
+            alignItems: 'center',
+            justifyContent: 'center',
+        },
+        linkButtonText: {
+            color: '#FFF',
+            fontWeight:'bold',
+            margin:"auto"
+        },
+        linkButton : {
+            height: 'auto',
+            backgroundColor: COLORS.primary,
+            borderRadius: 50,
+            alignContent: "center",
+            paddingHorizontal: PADDING.button
+        }
+    });
+
+    useEffect(()=> {
+        console.log("Retrieving business data")
+            services
+                .getBusiness()
+                .then((res)=>{
+                    if(res){
+                        dispatch(setBusinessDetails(res))
+                        setLoadingComplete(true)
+                        console.log("Business Data retrieved successfully");
+                    }
+                    else if(!res){
+                        setLoadingComplete(false)
+                        setErrorPage(true)
+                        console.log('No network data retrieved')
+                    }
+                })
+                .catch((err)=>{
+                    console.log(err)
+                })
+
+        console.log("Retrieving user data")
+    },[])
 
     return (
         <View style={styles.wrapper}>
-            <View style={styles.container}>
-                <ProfileSection />
-                <Description
-                    description={
-                        "Lorem ipsum dolor sit amet," +
-                        "consectetur adipiscing elit." +
-                        "Aenean rhoncus nulla at dolor" +
-                        "volutpat, id suscipit arcu molestie. Integer eget leo eget" +
-                        "purus iaculis placerat sed sed libero. Maecen"
-                        }
-                />
-                <SocialSection />
-            </View>
+        { loadingComplete ? (
+            <>
+                <View style={styles.container}>
+                    <ProfileSection image={{data: logo?.data, mime: logo?.mime}}/>
+                    <Description
+                        description={description ? description : 'No Description'}/>
+                    <SocialSection socialMedia={socialMediaArray}/>
+
+                    {/*TODO: replace with actual SAVE CONTACT interface*/}
+                    <TouchableOpacity
+                        style={styles.linkButton}
+                        onPress={() => {
+                            console.log('SAVED!!');
+                            saveContact(
+                                {
+                                    addresses: [{
+                                        city: contact.addresses?.city,
+                                        country: contact.addresses?.country,
+                                        isoCountryCode: contact.addresses?.isoCountryCode,
+                                        label: contact.addresses?.label,
+                                        postalCode: contact.addresses?.postalCode,
+                                        region: contact.addresses?.region,
+                                        street: contact.addresses?.street
+                                    }],
+                                    company: contact.company,
+                                    contactType: contact.contactType,
+                                    emails: [{
+                                        email: contact.emails.email,
+                                        label: contact.emails.label
+                                    }],
+                                    lastname: contact.lastname,
+                                    phoneNumbers: [{
+                                        countryCode: contact.phoneNumbers,
+                                        digits: contact.digits,
+                                        label: contact.label, number: ""
+                                    }],
+                                    firstname: contact.firstname
+                                }
+                            ).then(r => console.log(r));
+                        }}
+                    >
+                        <Text style={styles.linkButtonText}>SAVE CONTACT</Text>
+                    </TouchableOpacity>
+                </View>
+
+
+            </>
+
+        ) : (
+            !errorPage? (
+                <View style={styles.container}>
+                    <AnimatedLoader
+                        source={require("../../common/loader/card-loading-animation.json")}
+                        visible={!loadingComplete}
+                        overlayColor="rgba(255,255,255,0)"
+                        animationStyle={styles.lottie}
+                        speed={1.5}
+                        loop={true}
+                    >
+                        <Text style={styles.loadingText}>Pulling up your records master</Text>
+                    </AnimatedLoader>
+                </View>
+            ):(
+                <ErrorPage />
+            )
+
+        )}
         </View>
     );
 
 }
 
-const styles = StyleSheet.create({
-    wrapper: {
-        width: '100%',
-        flex: 1,
-        backgroundColor: 'transparent',
-        alignItems: 'center',
-        justifyContent: 'center',
-    },
-    container: {
-        width: '90%',
-        height: '88%',
-        alignItems: 'center',
-        justifyContent: 'center'
-    }
-});
+
 
 export default BusinessCard;
