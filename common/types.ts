@@ -3,7 +3,8 @@ export interface BusinessData {
     logo?: { data: string, mime: string },
     name: string,
     description: string,
-    contact: string,
+    //TODO: contact needs to be concurrent with IOS|Android Contact
+    contact: Contact,
     address: string,
     pointOfContact: string,
     email: string,
@@ -24,5 +25,31 @@ export interface UserData {
 }
 
 export interface ApplicationState {
-    application: { UserData: {}, BusinessData: any }
+    application: { UserData: any, BusinessData: any }
+}
+
+export interface Contact {
+    firstname: string;
+    lastname: string;
+    company?: string;
+    phoneNumbers: [{
+        countryCode: string,
+        digits: string,
+        label: string,
+        number: string
+    }];
+    emails?: [{
+        email: string,
+        label: string
+    }];
+    addresses?: [{
+        city: string,
+        country: string,
+        isoCountryCode: string,
+        label: string,
+        postalCode: string,
+        region: string,
+        street: string
+    }];
+    contactType?: string;
 }

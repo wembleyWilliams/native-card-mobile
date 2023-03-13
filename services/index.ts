@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const url = "http://localhost:7020"
-
+// const url = "34.16.136.1:7020"
 const services = {
     getUser: async () => {
       //local
@@ -11,6 +11,7 @@ const services = {
           })
           .catch((err) => {
               console.log(err)
+              return null
           })
     },
     getBusiness: async () => {
@@ -22,6 +23,7 @@ const services = {
             })
             .catch((err) => {
                 console.log(err)
+                return null
             })
 
         //Hosted

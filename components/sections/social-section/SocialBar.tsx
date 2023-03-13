@@ -4,10 +4,11 @@ import {FONTS, SIZES, COLORS, SHADOWS, MARGINS, CARD_HEIGHT, PADDING} from "../.
 import create = StyleSheet.create;
 import Card from "../../common/Card";
 import {IconButton} from "react-native-paper";
+import * as WebBrowser from 'expo-web-browser';
 
 interface Props {
-    text: string,
-    handle: string
+    profileUrl: string,
+    profileName: string
 }
 
 const SocialBar = (props: Props) => {
@@ -25,10 +26,10 @@ const SocialBar = (props: Props) => {
                     {/*    title={`${props.text}`}*/}
                     {/*    onPress={()=> console.log('simple press')}/>*/}
 
-                    <Text style={styles.handle}>{props.handle}</Text>
+                        <Text style={styles.handle}>{props.profileName}</Text>
                     <TouchableOpacity
                         style={styles.linkButton}
-                        onPress={()=> console.log('simple press')}
+                        onPress={()=> WebBrowser.openBrowserAsync(props.profileUrl)}
                     >
                         <Text style={styles.linkButtonText}>Twitter</Text>
                     </TouchableOpacity>

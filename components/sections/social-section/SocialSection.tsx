@@ -26,8 +26,8 @@ console.log(props.socialMedia)
                     data={props.socialMedia}
                     renderItem={({ item })=> {
                         return <SocialBar
-                            handle={item.profileName}
-                            text={item.profileURL}
+                            profileName={item.profileName}
+                            profileUrl={item.profileURL}
                         />
                     } } />
 
