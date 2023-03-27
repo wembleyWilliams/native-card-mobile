@@ -118,27 +118,12 @@ const BusinessCard = ( ) => {
                             console.log('SAVED!!');
                             saveContact(
                                 {
-                                    addresses: [{
-                                        city: contact.addresses?.city,
-                                        country: contact.addresses?.country,
-                                        isoCountryCode: contact.addresses?.isoCountryCode,
-                                        label: contact.addresses?.label,
-                                        postalCode: contact.addresses?.postalCode,
-                                        region: contact.addresses?.region,
-                                        street: contact.addresses?.street
-                                    }],
+                                    addresses: contact?.addresses,
                                     company: contact.company,
                                     contactType: contact.contactType,
-                                    emails: [{
-                                        email: contact.emails.email,
-                                        label: contact.emails.label
-                                    }],
+                                    emails: contact?.emails,
                                     lastname: contact.lastname,
-                                    phoneNumbers: [{
-                                        countryCode: contact.phoneNumbers,
-                                        digits: contact.digits,
-                                        label: contact.label, number: ""
-                                    }],
+                                    phoneNumbers: contact?.phoneNumbers,
                                     firstname: contact.firstname
                                 }
                             ).then(r => console.log(r));

@@ -6,8 +6,8 @@ import create = StyleSheet.create;
 
 interface Props {
     image?: {
-        data: string,
-        mime: string
+        data: string | undefined,
+        mime: string | undefined
     }
 }
 

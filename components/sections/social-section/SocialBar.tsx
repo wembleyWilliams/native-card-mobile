@@ -3,35 +3,36 @@ import {View, StyleSheet, Text, Alert, Button, TouchableOpacity} from "react-nat
 import {FONTS, SIZES, COLORS, SHADOWS, MARGINS, CARD_HEIGHT, PADDING} from "../../../constants/theme";
 import create = StyleSheet.create;
 import Card from "../../common/Card";
-import {IconButton} from "react-native-paper";
+import {IconButton, } from "react-native-paper";
 import * as WebBrowser from 'expo-web-browser';
+import IconLoader from "../../../common/icon-loader";
+import iconLoader from "../../../common/icon-loader";
+
 
 interface Props {
-    profileUrl: string,
-    profileName: string
+    profileURL?: string,
+    profileName?: string
 }
 
 const SocialBar = (props: Props) => {
-
     return (
         <>
             <View style={styles.wrapper}>
                 <View style={styles.container}>
                     <IconButton
-                        icon={require('../../../assets/icons/Twitter.png')}
+                        icon={iconLoader(props.profileURL as string)}
                         size={25}
-                        onPress={()=>{console.log('working button...')}}
+                        // iconColor={"#FFF"}
+                        containerColor={"#FFF"}
+                        disabled={true}
                     />
-                    {/*<Button*/}
-                    {/*    title={`${props.text}`}*/}
-                    {/*    onPress={()=> console.log('simple press')}/>*/}
 
-                        <Text style={styles.handle}>{props.profileName}</Text>
+                    <Text style={styles.handle}>{props.profileName}</Text>
                     <TouchableOpacity
                         style={styles.linkButton}
-                        onPress={()=> WebBrowser.openBrowserAsync(props.profileUrl)}
+                        onPress={()=> WebBrowser.openBrowserAsync(props.profileURL as string)}
                     >
-                        <Text style={styles.linkButtonText}>Twitter</Text>
+                        <Text style={styles.linkButtonText}>Visit</Text>
                     </TouchableOpacity>
                 </View>
             </View>
@@ -59,14 +60,14 @@ const styles = StyleSheet.create({
     linkButtonText: {
         color: '#FFF',
         fontWeight:'bold',
-        margin:"auto"
     },
     linkButton : {
-        height: '60%',
+        // height: '60%',
         backgroundColor: COLORS.primary,
-        borderRadius: 50,
+        borderRadius: 10,
         alignContent: "center",
-        paddingHorizontal: PADDING.button
+        paddingHorizontal: PADDING.button,
+        paddingVertical: PADDING.button
     }
 })
 
