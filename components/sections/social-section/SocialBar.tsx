@@ -5,7 +5,6 @@ import create = StyleSheet.create;
 import Card from "../../common/Card";
 import {IconButton, } from "react-native-paper";
 import * as WebBrowser from 'expo-web-browser';
-import IconLoader from "../../../common/icon-loader";
 import iconLoader from "../../../common/icon-loader";
 
 
@@ -22,7 +21,7 @@ const SocialBar = (props: Props) => {
                     <IconButton
                         icon={iconLoader(props.profileURL as string)}
                         size={25}
-                        // iconColor={"#FFF"}
+                        iconColor={"#FFF"}
                         containerColor={"#FFF"}
                         disabled={true}
                     />

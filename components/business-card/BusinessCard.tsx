@@ -1,6 +1,5 @@
 import React, {useEffect, useState} from "react"
 import {View, Text, StyleSheet, TouchableOpacity} from "react-native";
-import create = StyleSheet.create;
 import ProfileSection from "../sections/profile-section/ProfileSection";
 import Description from "../sections/description-section/DescriptionSection";
 import SocialSection from "../sections/social-section/SocialSection";
@@ -13,12 +12,14 @@ import AnimatedLoader from "react-native-animated-loader";
 import {COLORS, FONTS, PADDING, SIZES} from "../../constants/theme";
 import saveContact from "../../utils/saveContact";
 import {Dimensions} from 'react-native';
+import SaveContactModal from "../common/SaveContactModal";
 
 const BusinessCard = ( ) => {
     const [loadingComplete, setLoadingComplete] = useState(false)
     const [errorPage, setErrorPage] = useState(false)
-    const dispatch = useDispatch();
+    const [isOpenSaveContactModal, setIsOpenSaveContactModal] = useState(false)
 
+    const dispatch = useDispatch();
     const windowWidth = Dimensions.get('window').width;
     const windowHeight = Dimensions.get('window').height;
 
@@ -78,6 +79,14 @@ const BusinessCard = ( ) => {
         }
     });
 
+    const openSaveContactModal = () => {
+        setIsOpenSaveContactModal(true)
+    }
+
+    const closeSaveContactModal = () => {
+        setIsOpenSaveContactModal(false)
+    }
+
     useEffect(()=> {
         console.log("Retrieving business data")
             services
@@ -105,6 +114,11 @@ const BusinessCard = ( ) => {
         <View style={styles.wrapper}>
         { loadingComplete ? (
             <>
+                <SaveContactModal
+                    open={isOpenSaveContactModal}
+                    contact={contact}
+                    handleClose={closeSaveContactModal}/>
+
                 <View style={styles.container}>
                     <ProfileSection image={{data: logo?.data, mime: logo?.mime}}/>
                     <Description
@@ -115,18 +129,7 @@ const BusinessCard = ( ) => {
                     <TouchableOpacity
                         style={styles.linkButton}
                         onPress={() => {
-                            console.log('SAVED!!');
-                            saveContact(
-                                {
-                                    addresses: contact?.addresses,
-                                    company: contact.company,
-                                    contactType: contact.contactType,
-                                    emails: contact?.emails,
-                                    lastname: contact.lastname,
-                                    phoneNumbers: contact?.phoneNumbers,
-                                    firstname: contact.firstname
-                                }
-                            ).then(r => console.log(r));
+                            setIsOpenSaveContactModal(true)
                         }}
                     >
                         <Text style={styles.linkButtonText}>SAVE CONTACT</Text>

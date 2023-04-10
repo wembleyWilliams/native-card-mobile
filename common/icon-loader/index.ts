@@ -12,6 +12,9 @@ const iconLoader = (url: string) => {
      else if (url.search('instagram') > -1) {
         return require('../../assets/icons/Instagram.png')
     }
+     else if (url.search('facebook') > -1) {
+         return require('../../assets/icons/Facebook.png')
+    }
     return null
 }
 

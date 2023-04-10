@@ -1,7 +1,7 @@
 import * as Contacts from 'expo-contacts';
 import {Contact} from '../common/types'
 
-const saveContact = async (contactToSave?: Contact) => {
+const saveContact = async (contactToSave?: { emails: {}[]; addresses: {}[]; firstname: string; company: string; contactType: string; phoneNumbers: {}[]; lastname: string }) => {
 
     //Works with IOS
     const {status} = await Contacts.requestPermissionsAsync();
