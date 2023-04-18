@@ -142,16 +142,17 @@ const BusinessCard = ( ) => {
         ) : (
             !errorPage? (
                 <View style={styles.container}>
-                    <AnimatedLoader
-                        source={require("../../common/loader/card-loading-animation.json")}
-                        visible={!loadingComplete}
-                        overlayColor="rgba(255,255,255,0)"
-                        animationStyle={styles.lottie}
-                        speed={1.5}
-                        loop={true}
-                    >
-                        <Text style={styles.loadingText}>Pulling up your records master</Text>
-                    </AnimatedLoader>
+                    {/*TODO: Replace loading screen with react-native-web compatible screen*/}
+                    {/*<AnimatedLoader*/}
+                    {/*    source={require("../../common/loader/card-loading-animation.json")}*/}
+                    {/*    visible={!loadingComplete}*/}
+                    {/*    overlayColor="rgba(255,255,255,0)"*/}
+                    {/*    animationStyle={styles.lottie}*/}
+                    {/*    speed={1.5}*/}
+                    {/*    loop={true}*/}
+                    {/*>*/}
+                    {/*    <Text style={styles.loadingText}>Pulling up your records master</Text>*/}
+                    {/*</AnimatedLoader>*/}
                 </View>
             ):(
                 <ErrorPage />

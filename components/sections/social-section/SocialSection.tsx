@@ -19,6 +19,7 @@ const SocialSection = (props: Props) => {
     return (
         <Card
             width={100}
+            minWidth={'312px'}
             color={'white'}
             padding={-1}
         >
@@ -40,7 +41,7 @@ const SocialSection = (props: Props) => {
 const styles = StyleSheet.create({
     container: {
         overflow: "scroll",
-        width: '100%',
+        // width: '80%',
     },
 });
 
