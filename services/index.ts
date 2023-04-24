@@ -1,6 +1,6 @@
 import axios from 'axios';
-
-const url = "http://164.90.225.233:7020"
+const url = "https://ebusinesscardservices.com"
+// const url = "https://164.90.225.233:7020"
 // const url = "http://localhost:7020"
 const services = {
     // getUser: async () => {
