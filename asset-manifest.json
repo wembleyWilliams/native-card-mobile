@@ -1,7 +1,7 @@
 {
   "files": {
-    "app.js": "/native-card-mobile/static/js/app.f0da63e5.chunk.js",
-    "app.js.map": "/native-card-mobile/static/js/app.f0da63e5.chunk.js.map",
+    "app.js": "/native-card-mobile/static/js/app.9af40e59.chunk.js",
+    "app.js.map": "/native-card-mobile/static/js/app.9af40e59.chunk.js.map",
     "runtime~app.js": "/native-card-mobile/static/js/runtime~app.5f7edd13.js",
     "runtime~app.js.map": "/native-card-mobile/static/js/runtime~app.5f7edd13.js.map",
     "static/js/2.c9d26ecf.chunk.js": "/native-card-mobile/static/js/2.c9d26ecf.chunk.js",
@@ -23,6 +23,6 @@
   "entrypoints": [
     "static/js/runtime~app.5f7edd13.js",
     "static/js/2.c9d26ecf.chunk.js",
-    "static/js/app.f0da63e5.chunk.js"
+    "static/js/app.9af40e59.chunk.js"
   ]
 }
