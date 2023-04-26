@@ -1,6 +1,5 @@
 import {useSelector} from "react-redux";
 import {State} from "../../redux/reducers";
-import {Icon} from "react-native-paper/lib/typescript/components/Avatar/Avatar";
 import {Avatar} from "react-native-paper";
 import {View} from "react-native";
 
@@ -15,7 +14,7 @@ const iconLoader = (url: string) => {
      else if (url.search('facebook') > -1) {
          return require('../../assets/icons/Facebook.png')
     }
-    return null
+    return require('../../assets/icons/Facebook.png')
 }
 
 export default iconLoader

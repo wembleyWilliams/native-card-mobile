@@ -31,7 +31,6 @@ useEffect(()=>{
     setCompany(props.contact?.company as string)
     setEmail(props.contact?.emails as any)
     setAddress(props.contact?.addresses as any)
-    // console.log(props.contact?.addresses as any)
     setPhoneNumbers(props.contact?.phoneNumbers as any)
     setContactType(props.contact?.contactType as string)
 },[])

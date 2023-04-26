@@ -43,15 +43,13 @@ const styles = StyleSheet.create({
     wrapper: {
         backgroundColor: '#2c2c2c',
         borderRadius: 60,
-        // padding: 2,
-        // width: '100%'
     },
-
     container: {
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'space-around',
-        // width: '90%'
+        width: '100%',
+        borderRadius: 60,
     },
     handle: {
         color: '#FFF'
@@ -61,7 +59,6 @@ const styles = StyleSheet.create({
         fontWeight:'bold',
     },
     linkButton : {
-        // height: '60%',
         backgroundColor: COLORS.primary,
         borderRadius: 10,
         alignContent: "center",

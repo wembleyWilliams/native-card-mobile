@@ -1,5 +1,5 @@
 import React from "react"
-import {View, Text, StyleSheet, TouchableOpacity, ListView} from "react-native";
+import {View, Text, StyleSheet, TouchableOpacity, ListView, Dimensions} from "react-native";
 import {FONTS, SIZES, COLORS, SHADOWS, MARGINS, CARD_HEIGHT} from "../../../constants/theme";
 import create = StyleSheet.create;
 import Card from "../../common/Card";
@@ -16,15 +16,19 @@ interface Props {
 }
 
 const SocialSection = (props: Props) => {
+
     return (
         <Card
-            width={100}
             minWidth={'312px'}
             color={'white'}
             padding={-1}
         >
             <View style={styles.container}>
                 <FlatGrid
+                    contentContainerStyle={{
+                        width: 312,
+                        marginVertical: 'auto',
+                }}
                     maxItemsPerRow={1}
                     data={props.socialMedia}
                     renderItem={({ item })=> {
@@ -41,7 +45,6 @@ const SocialSection = (props: Props) => {
 const styles = StyleSheet.create({
     container: {
         overflow: "scroll",
-        // width: '80%',
     },
 });
 
