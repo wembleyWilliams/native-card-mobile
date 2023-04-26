@@ -1,11 +1,11 @@
 {
   "files": {
-    "app.js": "/native-card-mobile/static/js/app.9af40e59.chunk.js",
-    "app.js.map": "/native-card-mobile/static/js/app.9af40e59.chunk.js.map",
+    "app.js": "/native-card-mobile/static/js/app.6a6537d0.chunk.js",
+    "app.js.map": "/native-card-mobile/static/js/app.6a6537d0.chunk.js.map",
     "runtime~app.js": "/native-card-mobile/static/js/runtime~app.5f7edd13.js",
     "runtime~app.js.map": "/native-card-mobile/static/js/runtime~app.5f7edd13.js.map",
-    "static/js/2.c9d26ecf.chunk.js": "/native-card-mobile/static/js/2.c9d26ecf.chunk.js",
-    "static/js/2.c9d26ecf.chunk.js.map": "/native-card-mobile/static/js/2.c9d26ecf.chunk.js.map",
+    "static/js/2.4f094b06.chunk.js": "/native-card-mobile/static/js/2.4f094b06.chunk.js",
+    "static/js/2.4f094b06.chunk.js.map": "/native-card-mobile/static/js/2.4f094b06.chunk.js.map",
     "fonts/MaterialCommunityIcons.ttf": "/native-card-mobile/./fonts/MaterialCommunityIcons.ttf",
     "favicon-16.png": "/native-card-mobile/favicon-16.png",
     "favicon-32.png": "/native-card-mobile/favicon-32.png",
@@ -13,7 +13,7 @@
     "index.html": "/native-card-mobile/index.html",
     "manifest.json": "/native-card-mobile/manifest.json",
     "serve.json": "/native-card-mobile/serve.json",
-    "static/js/2.c9d26ecf.chunk.js.LICENSE.txt": "/native-card-mobile/static/js/2.c9d26ecf.chunk.js.LICENSE.txt",
+    "static/js/2.4f094b06.chunk.js.LICENSE.txt": "/native-card-mobile/static/js/2.4f094b06.chunk.js.LICENSE.txt",
     "static/media/Facebook.png": "/native-card-mobile/static/media/Facebook.329072c7.png",
     "static/media/Instagram.png": "/native-card-mobile/static/media/Instagram.80affaca.png",
     "static/media/Twitter.png": "/native-card-mobile/static/media/Twitter.bccdd347.png",
@@ -22,7 +22,7 @@
   },
   "entrypoints": [
     "static/js/runtime~app.5f7edd13.js",
-    "static/js/2.c9d26ecf.chunk.js",
-    "static/js/app.9af40e59.chunk.js"
+    "static/js/2.4f094b06.chunk.js",
+    "static/js/app.6a6537d0.chunk.js"
   ]
 }
