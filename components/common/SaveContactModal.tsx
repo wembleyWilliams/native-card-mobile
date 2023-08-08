@@ -45,11 +45,12 @@ useEffect(()=>{
                 <View style={styles.wrapper}>
                     <View style={styles.container}>
                         <View style={styles.header}>
-                            <IconButton style={styles.headerCloseIcon}
-                                        icon="close"
-                                        size={24}
-                                        onPress={props.handleClose}
-                                />
+                            <Text style={styles.headerText}>SAVE CONTACT</Text>
+                            {/*<IconButton style={styles.headerCloseIcon}*/}
+                            {/*            icon="close"*/}
+                            {/*            size={24}*/}
+                            {/*            onPress={props.handleClose}*/}
+                            {/*    />*/}
                         </View>
                         <View style={styles.body}>
                             <TextInput
@@ -134,8 +135,8 @@ useEffect(()=>{
                                             contactType: contactType,
                                             emails: emails,
                                             lastname: lastname,
+                                            firstname: firstname,
                                             phoneNumbers: phoneNumbers,
-                                            firstname: firstname
                                         })
                                         .then(r => console.log(r))
                                         .finally(props.handleClose)
@@ -161,20 +162,26 @@ const styles = StyleSheet.create({
         justifyContent: 'center'
     },
     formButton:{
-        paddingTop: 40
+        paddingTop: 40,
+        marginBottom: 40
     },
     headerCloseIcon: {
-        flex: 2,
-        margin: 'auto',
-        marginHorizontal: '85%',
-        marginVertical: 2,
+        // flex: 1,
+        // margin: 'auto',
+        // marginHorizontal: '20%',
+        // marginVertical: 2,
+    },
+    headerText:{
+        fontSize: 36,
+        padding: 30
     },
     header: {
-        fontSize: 24,
-        height: 40,
-        flexDirection: 'row',
-        justifyContent:'flex-end',
-        alignItems:'flex-end',
+        // height: 40,
+        // flexDirection: 'row',
+        // justifyContent:'flex-end',
+        // alignItems:'flex-end',
+        // marginHorizontal:'40%',
+        alignItems:'center',
         margin: 'auto',
     },
     textInput:{
@@ -183,7 +190,7 @@ const styles = StyleSheet.create({
         backgroundColor:'transparent',
     },
     body: {
-        paddingTop: 20,
+        // paddingTop: 20,
         margin: 'auto',
         flexDirection: 'column'
     },
@@ -199,13 +206,13 @@ const styles = StyleSheet.create({
     container: {
         height: windowHeight*0.8,
         borderRadius: 25,
-        backgroundColor: 'ghostwhite',
-        padding: 35
+        backgroundColor: 'ghostwhite'
     },
     wrapper: {
-        marginVertical:'50%',
+        height: windowHeight,
         padding: 35,
-        backgroundColor: "transparent",
+        backgroundColor: "rgba(0, 0, 0, 0.2)",
+        backdropFilter: "blur(5px)"
     }
 })
 

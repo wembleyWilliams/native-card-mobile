@@ -53,6 +53,7 @@ const BusinessCard = ( ) => {
         wrapper: {
             width: windowWidth,
             height: windowHeight,
+            margin:'auto',
             flex: 1,
             backgroundColor: 'transparent',
             alignItems: 'center',
@@ -61,9 +62,11 @@ const BusinessCard = ( ) => {
         container: {
             position: "absolute",
             height: windowHeight - (windowHeight*0.2),
-            width: windowWidth - (windowWidth*0.2),
+            width: windowWidth>320?windowWidth - (windowWidth*0.2): 320,
+            margin: 'auto',
             alignItems: 'center',
-            justifyContent: 'center',
+            justifyContent: 'space-around',
+
         },
         linkButtonText: {
             color: '#FFF',
@@ -76,6 +79,9 @@ const BusinessCard = ( ) => {
             borderRadius: 50,
             alignContent: "center",
             paddingHorizontal: PADDING.button
+        },
+        item: {
+            // marginTop: -16
         }
     });
 
@@ -114,26 +120,34 @@ const BusinessCard = ( ) => {
         <View style={styles.wrapper}>
         { loadingComplete ? (
             <>
-                <SaveContactModal
-                    open={isOpenSaveContactModal}
-                    contact={contact}
-                    handleClose={closeSaveContactModal}/>
+                {/*<SaveContactModal*/}
+                {/*    // open={isOpenSaveContactModal}*/}
+                {/*    open={true}*/}
+                {/*    contact={contact}*/}
+                {/*    handleClose={closeSaveContactModal}/>*/}
 
                 <View style={styles.container}>
-                    <ProfileSection image={{data: logo?.data, mime: logo?.mime}}/>
-                    <Description
-                        description={description ? description : 'No Description'}/>
-                    <SocialSection socialMedia={socialMediaArray}/>
+                    <View style={[styles.item,{zIndex:0,marginTop:40}]}>
+                        <ProfileSection image={{data: logo?.data, mime: logo?.mime}}/>
+                    </View>
+                    <View style={[styles.item,{zIndex:2,marginTop:-60}]}>
+                        <Description
+                            description={description ? description : 'No Description'}/>
+                    </View>
+                    <View style={[styles.item,{zIndex:1,marginTop:-100,marginBottom:20}]}>
+                        <SocialSection socialMedia={socialMediaArray}/>
+                    </View>
 
                     {/*TODO: replace with actual SAVE CONTACT interface*/}
-                    <TouchableOpacity
-                        style={styles.linkButton}
-                        onPress={() => {
-                            setIsOpenSaveContactModal(true)
-                        }}
-                    >
-                        <Text style={styles.linkButtonText}>SAVE CONTACT</Text>
-                    </TouchableOpacity>
+                    {/*<TouchableOpacity*/}
+                    {/*    style={styles.linkButton}*/}
+                    {/*    onPress={() => {*/}
+                    {/*        // setIsOpenSaveContactModal(true)*/}
+                    {/*        saveContact().then()*/}
+                    {/*    }}*/}
+                    {/*>*/}
+                    {/*    <Text style={styles.linkButtonText}>SAVE CONTACT</Text>*/}
+                    {/*</TouchableOpacity>*/}
                 </View>
 
 

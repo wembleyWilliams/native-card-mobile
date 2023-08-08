@@ -1,6 +1,15 @@
 import React from "react"
 import {View, Text, StyleSheet, TouchableOpacity, ListView, Dimensions} from "react-native";
-import {FONTS, SIZES, COLORS, SHADOWS, MARGINS, CARD_HEIGHT} from "../../../constants/theme";
+import {
+    FONTS,
+    SIZES,
+    COLORS,
+    SHADOWS,
+    MARGINS,
+    CARD_HEIGHT,
+    CARD_MIN_WIDTH,
+    CARD_MAX_WIDTH
+} from "../../../constants/theme";
 import create = StyleSheet.create;
 import Card from "../../common/Card";
 import SocialBar from "./SocialBar";
@@ -19,24 +28,27 @@ const SocialSection = (props: Props) => {
 
     return (
         <Card
-            minWidth={'312px'}
+            // minWidth={CARD_MIN_WIDTH.toString()}
+            // maxWidth={CARD_MAX_WIDTH.toString()}
             color={'white'}
-            padding={-1}
         >
-            <View style={styles.container}>
-                <FlatGrid
-                    contentContainerStyle={{
-                        width: 312,
-                        marginVertical: 'auto',
-                }}
-                    maxItemsPerRow={1}
-                    data={props.socialMedia}
-                    renderItem={({ item })=> {
+            <View style={styles.wrapper}>
+                <View style={styles.container}>
+                    <FlatGrid
+                        contentContainerStyle={{
+                            // width: 312,
+                            marginVertical: 'auto',
+                            overflow:'scroll'
+                        }}
+                        maxItemsPerRow={1}
+                        data={props.socialMedia}
+                        renderItem={({ item })=> {
                             return <SocialBar
                                 profileName={item.profileName}
                                 profileURL={item.profileURL}
                             />
-                    } } />
+                        } } />
+                </View>
             </View>
         </Card>
     )
@@ -44,8 +56,12 @@ const SocialSection = (props: Props) => {
 
 const styles = StyleSheet.create({
     container: {
-        overflow: "scroll",
+        width: 313,
+        height: '100%'
     },
+    wrapper: {
+        overflow: 'hidden',
+    }
 });
 
 export default SocialSection

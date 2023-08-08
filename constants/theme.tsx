@@ -8,6 +8,10 @@ export const COLORS = {
 
 export const CARD_HEIGHT = 200
 
+export const CARD_MIN_WIDTH = 312
+
+export const CARD_MAX_WIDTH = 400
+
 export const MARGINS = {
     text: 25,
 }

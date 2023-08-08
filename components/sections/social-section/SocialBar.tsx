@@ -20,7 +20,7 @@ const SocialBar = (props: Props) => {
                 <View style={styles.container}>
                     <IconButton
                         icon={iconLoader(props.profileURL as string)}
-                        size={25}
+                        size={15}
                         iconColor={"#FFF"}
                         containerColor={"#FFF"}
                         disabled={true}
@@ -43,12 +43,13 @@ const styles = StyleSheet.create({
     wrapper: {
         backgroundColor: '#2c2c2c',
         borderRadius: 60,
+        overflow: "hidden"
     },
     container: {
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'space-around',
-        width: '100%',
+        // width: '100%',
         borderRadius: 60,
     },
     handle: {
@@ -59,6 +60,7 @@ const styles = StyleSheet.create({
         fontWeight:'bold',
     },
     linkButton : {
+        overflow:'hidden',
         backgroundColor: COLORS.primary,
         borderRadius: 10,
         alignContent: "center",
