@@ -8,16 +8,15 @@ import {State} from "../../redux/reducers/index"
 import services from "../../services";
 import {setBusinessDetails} from "../../redux/actions";
 import {useDispatch, useSelector} from "react-redux";
-import AnimatedLoader from "react-native-animated-loader";
 import {COLORS, FONTS, PADDING, SIZES} from "../../constants/theme";
-import saveContact from "../../utils/saveContact";
 import {Dimensions} from 'react-native';
-import SaveContactModal from "../common/SaveContactModal";
+import LottieView from "react-native-web-lottie";
 
 const BusinessCard = ( ) => {
     const [loadingComplete, setLoadingComplete] = useState(false)
     const [errorPage, setErrorPage] = useState(false)
     const [isOpenSaveContactModal, setIsOpenSaveContactModal] = useState(false)
+    let animRef = null;
 
     const dispatch = useDispatch();
     const windowWidth = Dimensions.get('window').width;
@@ -62,7 +61,7 @@ const BusinessCard = ( ) => {
         container: {
             position: "absolute",
             height: windowHeight - (windowHeight*0.2),
-            width: windowWidth>320?windowWidth - (windowWidth*0.2): 320,
+            width: windowWidth > 320? windowWidth - (windowWidth*0.2): 320,
             margin: 'auto',
             alignItems: 'center',
             justifyContent: 'space-around',
@@ -116,16 +115,14 @@ const BusinessCard = ( ) => {
         console.log("Retrieving user data")
     },[])
 
+    useEffect(()=>{
+        // @ts-ignore
+        animRef.play();
+    },[])
     return (
         <View style={styles.wrapper}>
         { loadingComplete ? (
             <>
-                {/*<SaveContactModal*/}
-                {/*    // open={isOpenSaveContactModal}*/}
-                {/*    open={true}*/}
-                {/*    contact={contact}*/}
-                {/*    handleClose={closeSaveContactModal}/>*/}
-
                 <View style={styles.container}>
                     <View style={[styles.item,{zIndex:0,marginTop:40}]}>
                         <ProfileSection image={{data: logo?.data, mime: logo?.mime}}/>
@@ -137,36 +134,22 @@ const BusinessCard = ( ) => {
                     <View style={[styles.item,{zIndex:1,marginTop:-100,marginBottom:20}]}>
                         <SocialSection socialMedia={socialMediaArray}/>
                     </View>
-
-                    {/*TODO: replace with actual SAVE CONTACT interface*/}
-                    {/*<TouchableOpacity*/}
-                    {/*    style={styles.linkButton}*/}
-                    {/*    onPress={() => {*/}
-                    {/*        // setIsOpenSaveContactModal(true)*/}
-                    {/*        saveContact().then()*/}
-                    {/*    }}*/}
-                    {/*>*/}
-                    {/*    <Text style={styles.linkButtonText}>SAVE CONTACT</Text>*/}
-                    {/*</TouchableOpacity>*/}
                 </View>
-
-
             </>
 
         ) : (
             !errorPage? (
                 <View style={styles.container}>
-                    {/*TODO: Replace loading screen with react-native-web compatible screen*/}
-                    {/*<AnimatedLoader*/}
-                    {/*    source={require("../../common/loader/card-loading-animation.json")}*/}
-                    {/*    visible={!loadingComplete}*/}
-                    {/*    overlayColor="rgba(255,255,255,0)"*/}
-                    {/*    animationStyle={styles.lottie}*/}
-                    {/*    speed={1.5}*/}
-                    {/*    loop={true}*/}
-                    {/*>*/}
-                    {/*    <Text style={styles.loadingText}>Pulling up your records master</Text>*/}
-                    {/*</AnimatedLoader>*/}
+                    <LottieView
+                        ref={(ref) => {
+                        animRef = ref;
+                        }}
+                        source={require("../../common/loader/card-loading-animation.json")}
+                        autoPlay={false}
+                        loop={true}
+                        speed={1.5}
+                    />
+                    <Text style={styles.loadingText}>Pulling up your records master</Text>
                 </View>
             ):(
                 <ErrorPage />
