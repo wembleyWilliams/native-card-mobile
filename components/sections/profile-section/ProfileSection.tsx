@@ -17,9 +17,9 @@ const ProfileSection = (props: Props)  => {
       <View style={styles.container}>
           {
               props.image?
-                  <Avatar.Image size={200} source={{uri: `data:${props.image?.mime};base64,${props.image?.data}`}}/>
+                  <Avatar.Image size={300} source={{uri: `data:${props.image?.mime};base64,${props.image?.data}`}}/>
               :
-                  <Avatar.Image size={200} source={require('../../../assets/placeholders/avatar.png')} />
+                  <Avatar.Image size={300} source={require('../../../assets/placeholders/avatar.png')} />
           }
       </View>
     );
@@ -28,11 +28,14 @@ const ProfileSection = (props: Props)  => {
 const styles = StyleSheet.create({
     container: {
         maxHeight: 200,
-        maxWidth:200,
+        maxWidth: 200,
         alignItems: 'center',
         justifyContent: 'center',
         borderRadius: 180,
-        borderWidth: 1
+        borderWidth: 0,
+        borderColor: 'none',
+        backgroundSize: 'cover',
+        backgroundColor: "transparent"
     },
 });
 
