@@ -9,7 +9,9 @@ interface CardProps {
     width?: number,
     color?: any,
     padding?: number,
-
+    minWidth?: string,
+    maxWidth?: string,
+    margin?: string,
     children?: any;
 }
 
@@ -17,15 +19,17 @@ interface CardProps {
 const BaseCard = (props: CardProps) => {
     const styles = StyleSheet.create({
         container: {
+            overflow:'hidden',
             marginHorizontal: 'auto',
-            minWidth: '100%',
+            minWidth: props.minWidth?props.minWidth:'100%',
+            maxWidth: props.maxWidth?props.maxWidth:'100%',
             height: props.height?props.height: CARD_HEIGHT,
             backgroundColor: props.color? props.color :COLORS.primary ,
             alignItems: 'center',
             justifyContent: 'center',
             borderRadius: 30,
             borderColor: 'red',
-            margin: MARGINS.text,
+            margin: props.margin?props.margin:MARGINS.text,
             padding: props.padding?props.padding : 20
         },
     });

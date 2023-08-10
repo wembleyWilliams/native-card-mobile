@@ -2,6 +2,8 @@ import React from 'react'
 import {View, Text, StyleSheet} from 'react-native'
 import create = StyleSheet.create;
 
+
+//TODO: Deprecate
 interface SocialProps {
 
 }

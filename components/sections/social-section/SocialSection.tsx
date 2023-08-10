@@ -1,6 +1,15 @@
 import React from "react"
-import {View, Text, StyleSheet, TouchableOpacity, ListView} from "react-native";
-import {FONTS, SIZES, COLORS, SHADOWS, MARGINS, CARD_HEIGHT} from "../../../constants/theme";
+import {View, Text, StyleSheet, TouchableOpacity, ListView, Dimensions} from "react-native";
+import {
+    FONTS,
+    SIZES,
+    COLORS,
+    SHADOWS,
+    MARGINS,
+    CARD_HEIGHT,
+    CARD_MIN_WIDTH,
+    CARD_MAX_WIDTH
+} from "../../../constants/theme";
 import create = StyleSheet.create;
 import Card from "../../common/Card";
 import SocialBar from "./SocialBar";
@@ -9,41 +18,50 @@ import {FlatGrid} from "react-native-super-grid";
 import socialBar from "./SocialBar";
 
 interface Props {
-    socialMedia: any
+    socialMedia: [{
+        profileName?: string,
+        profileURL?: string
+    }]
 }
 
 const SocialSection = (props: Props) => {
-console.log(props.socialMedia)
+
     return (
         <Card
-            width={100}
+            // minWidth={CARD_MIN_WIDTH.toString()}
+            // maxWidth={CARD_MAX_WIDTH.toString()}
             color={'white'}
-            padding={-1}
         >
-            <View style={styles.container}>
-                <FlatGrid
-                    maxItemsPerRow={1}
-                    data={props.socialMedia}
-                    renderItem={({ item })=> {
-                        return <SocialBar
-                            profileName={item.profileName}
-                            profileUrl={item.profileURL}
-                        />
-                    } } />
-
+            <View style={styles.wrapper}>
+                <View style={styles.container}>
+                    <FlatGrid
+                        contentContainerStyle={{
+                            // width: 312,
+                            marginVertical: 'auto',
+                            overflow:'scroll'
+                        }}
+                        maxItemsPerRow={1}
+                        data={props.socialMedia}
+                        renderItem={({ item })=> {
+                            return <SocialBar
+                                profileName={item.profileName}
+                                profileURL={item.profileURL}
+                            />
+                        } } />
+                </View>
             </View>
-
         </Card>
     )
 }
 
 const styles = StyleSheet.create({
     container: {
-        // flex: 1,
-        // flexDirection: "column",
-        overflow: "scroll",
-        width: '100%',
+        width: 313,
+        height: '100%'
     },
+    wrapper: {
+        overflow: 'hidden',
+    }
 });
 
 export default SocialSection

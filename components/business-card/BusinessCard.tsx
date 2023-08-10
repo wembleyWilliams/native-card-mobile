@@ -1,6 +1,5 @@
 import React, {useEffect, useState} from "react"
 import {View, Text, StyleSheet, TouchableOpacity} from "react-native";
-import create = StyleSheet.create;
 import ProfileSection from "../sections/profile-section/ProfileSection";
 import Description from "../sections/description-section/DescriptionSection";
 import SocialSection from "../sections/social-section/SocialSection";
@@ -9,16 +8,17 @@ import {State} from "../../redux/reducers/index"
 import services from "../../services";
 import {setBusinessDetails} from "../../redux/actions";
 import {useDispatch, useSelector} from "react-redux";
-import AnimatedLoader from "react-native-animated-loader";
 import {COLORS, FONTS, PADDING, SIZES} from "../../constants/theme";
-import saveContact from "../../utils/saveContact";
 import {Dimensions} from 'react-native';
+import LottieView from "react-native-web-lottie";
 
 const BusinessCard = ( ) => {
     const [loadingComplete, setLoadingComplete] = useState(false)
     const [errorPage, setErrorPage] = useState(false)
-    const dispatch = useDispatch();
+    const [isOpenSaveContactModal, setIsOpenSaveContactModal] = useState(false)
+    let animRef = null;
 
+    const dispatch = useDispatch();
     const windowWidth = Dimensions.get('window').width;
     const windowHeight = Dimensions.get('window').height;
 
@@ -52,6 +52,7 @@ const BusinessCard = ( ) => {
         wrapper: {
             width: windowWidth,
             height: windowHeight,
+            margin:'auto',
             flex: 1,
             backgroundColor: 'transparent',
             alignItems: 'center',
@@ -60,9 +61,11 @@ const BusinessCard = ( ) => {
         container: {
             position: "absolute",
             height: windowHeight - (windowHeight*0.2),
-            width: windowWidth - (windowWidth*0.2),
+            width: windowWidth > 320? windowWidth - (windowWidth*0.2): 320,
+            margin: 'auto',
             alignItems: 'center',
-            justifyContent: 'center',
+            justifyContent: 'space-around',
+
         },
         linkButtonText: {
             color: '#FFF',
@@ -75,8 +78,19 @@ const BusinessCard = ( ) => {
             borderRadius: 50,
             alignContent: "center",
             paddingHorizontal: PADDING.button
+        },
+        item: {
+            // marginTop: -16
         }
     });
+
+    const openSaveContactModal = () => {
+        setIsOpenSaveContactModal(true)
+    }
+
+    const closeSaveContactModal = () => {
+        setIsOpenSaveContactModal(false)
+    }
 
     useEffect(()=> {
         console.log("Retrieving business data")
@@ -101,69 +115,41 @@ const BusinessCard = ( ) => {
         console.log("Retrieving user data")
     },[])
 
+    useEffect(()=>{
+        // @ts-ignore
+        animRef.play();
+    },[])
     return (
         <View style={styles.wrapper}>
         { loadingComplete ? (
             <>
                 <View style={styles.container}>
-                    <ProfileSection image={{data: logo?.data, mime: logo?.mime}}/>
-                    <Description
-                        description={description ? description : 'No Description'}/>
-                    <SocialSection socialMedia={socialMediaArray}/>
-
-                    {/*TODO: replace with actual SAVE CONTACT interface*/}
-                    <TouchableOpacity
-                        style={styles.linkButton}
-                        onPress={() => {
-                            console.log('SAVED!!');
-                            saveContact(
-                                {
-                                    addresses: [{
-                                        city: contact.addresses?.city,
-                                        country: contact.addresses?.country,
-                                        isoCountryCode: contact.addresses?.isoCountryCode,
-                                        label: contact.addresses?.label,
-                                        postalCode: contact.addresses?.postalCode,
-                                        region: contact.addresses?.region,
-                                        street: contact.addresses?.street
-                                    }],
-                                    company: contact.company,
-                                    contactType: contact.contactType,
-                                    emails: [{
-                                        email: contact.emails.email,
-                                        label: contact.emails.label
-                                    }],
-                                    lastname: contact.lastname,
-                                    phoneNumbers: [{
-                                        countryCode: contact.phoneNumbers,
-                                        digits: contact.digits,
-                                        label: contact.label, number: ""
-                                    }],
-                                    firstname: contact.firstname
-                                }
-                            ).then(r => console.log(r));
-                        }}
-                    >
-                        <Text style={styles.linkButtonText}>SAVE CONTACT</Text>
-                    </TouchableOpacity>
+                    <View style={[styles.item,{zIndex:0,marginTop:40}]}>
+                        <ProfileSection image={{data: logo?.data, mime: logo?.mime}}/>
+                    </View>
+                    <View style={[styles.item,{zIndex:2,marginTop:-60}]}>
+                        <Description
+                            description={description ? description : 'No Description'}/>
+                    </View>
+                    <View style={[styles.item,{zIndex:1,marginTop:-100,marginBottom:20}]}>
+                        <SocialSection socialMedia={socialMediaArray}/>
+                    </View>
                 </View>
-
-
             </>
 
         ) : (
             !errorPage? (
                 <View style={styles.container}>
-                    <AnimatedLoader
+                    <LottieView
+                        ref={(ref) => {
+                        animRef = ref;
+                        }}
                         source={require("../../common/loader/card-loading-animation.json")}
-                        visible={!loadingComplete}
-                        overlayColor="rgba(255,255,255,0)"
-                        animationStyle={styles.lottie}
-                        speed={1.5}
+                        autoPlay={false}
                         loop={true}
-                    >
-                        <Text style={styles.loadingText}>Pulling up your records master</Text>
-                    </AnimatedLoader>
+                        speed={1.5}
+                    />
+                    <Text style={styles.loadingText}>Pulling up your records master</Text>
                 </View>
             ):(
                 <ErrorPage />

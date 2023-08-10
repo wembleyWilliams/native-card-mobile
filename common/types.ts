@@ -1,6 +1,6 @@
 export interface BusinessData {
     _id: string,
-    logo?: { data: string, mime: string },
+    logo?: { data?: string | undefined, mime?: string | undefined },
     name: string,
     description: string,
     //TODO: contact needs to be concurrent with IOS|Android Contact
@@ -25,7 +25,7 @@ export interface UserData {
 }
 
 export interface ApplicationState {
-    application: { UserData: any, BusinessData: any }
+    application: { UserData: UserData, BusinessData: BusinessData }
 }
 
 export interface Contact {
