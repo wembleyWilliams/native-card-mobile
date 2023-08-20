@@ -11,8 +11,11 @@ import {useDispatch, useSelector} from "react-redux";
 import {COLORS, FONTS, PADDING, SIZES} from "../../constants/theme";
 import {Dimensions} from 'react-native';
 import LottieView from "react-native-web-lottie";
+import {useParams} from "react-router-dom";
 
-const BusinessCard = ( ) => {
+
+const BusinessCard = () => {
+    let {cardId} = useParams()
     const [loadingComplete, setLoadingComplete] = useState(false)
     const [errorPage, setErrorPage] = useState(false)
     const [isOpenSaveContactModal, setIsOpenSaveContactModal] = useState(false)
@@ -46,8 +49,9 @@ const BusinessCard = ( ) => {
             width: 300,
             color: 'white',
             fontWeight: 'bold',
-            fontSize: SIZES.font,
-            textAlign: "center"
+            fontSize: SIZES.medium,
+            textAlign: "center",
+
         },
         wrapper: {
             width: windowWidth,
@@ -79,23 +83,15 @@ const BusinessCard = ( ) => {
             alignContent: "center",
             paddingHorizontal: PADDING.button
         },
-        item: {
+        loadingAnim: {
             // marginTop: -16
         }
     });
 
-    const openSaveContactModal = () => {
-        setIsOpenSaveContactModal(true)
-    }
-
-    const closeSaveContactModal = () => {
-        setIsOpenSaveContactModal(false)
-    }
-
     useEffect(()=> {
         console.log("Retrieving business data")
             services
-                .getBusiness()
+                .getBusiness(cardId)
                 .then((res)=>{
                     if(res){
                         dispatch(setBusinessDetails(res))
@@ -124,23 +120,23 @@ const BusinessCard = ( ) => {
         { loadingComplete ? (
             <>
                 <View style={styles.container}>
-                    <View style={[styles.item,{zIndex:0,marginTop:40}]}>
+                    <View style={[{zIndex:0,marginTop:40}]}>
                         <ProfileSection image={{data: logo?.data, mime: logo?.mime}}/>
                     </View>
-                    <View style={[styles.item,{zIndex:2,marginTop:-60}]}>
+                    <View style={[{zIndex:2,marginTop:-60}]}>
                         <Description
                             description={description ? description : 'No Description'}/>
                     </View>
-                    <View style={[styles.item,{zIndex:1,marginTop:-100,marginBottom:20}]}>
+                    <View style={[{zIndex:1,marginTop:-100,marginBottom:20}]}>
                         <SocialSection socialMedia={socialMediaArray}/>
                     </View>
                 </View>
             </>
-
         ) : (
             !errorPage? (
                 <View style={styles.container}>
                     <LottieView
+                        style={[styles.loadingAnim,{ zIndex:1}]}
                         ref={(ref) => {
                         animRef = ref;
                         }}
@@ -149,7 +145,7 @@ const BusinessCard = ( ) => {
                         loop={true}
                         speed={1.5}
                     />
-                    <Text style={styles.loadingText}>Pulling up your records master</Text>
+                    <Text style={[styles.loadingText,{zIndex:2, marginTop:-300}]}>Fetching your data</Text>
                 </View>
             ):(
                 <ErrorPage />

@@ -12,14 +12,11 @@ const services = {
     //           return null
     //       })
     // },
-    getBusiness: async () => {
+    getBusiness: async (cardId?: string) => {
 
-        // let params = new URLSearchParams(document.location.search.substring(1));
-        // let businessId = params.get("businessId");
-
-        // if (!businessId) {
+        if (!cardId) {
             //Local - For Testing only
-            return axios.get(`${url}/business/63d1f602022d42b7cc4aa558`)
+            return axios.get(`${url}/business/64df2423698eb6a0b844a31f`)
                 .then((res) => {
                     return res.data;
                 })
@@ -27,17 +24,17 @@ const services = {
                     console.log(err)
                     return null
                 })
-        // } else {
-        //     //Hosted
-        //     return axios.get(`${url}/business/${businessId}`)
-        //         .then((res) => {
-        //             return res.data;
-        //         })
-        //         .catch((err) => {
-        //             console.log(err)
-        //             return null
-        //         })
-        // }
+        } else {
+            // Hosted
+            return axios.get(`${url}/business/${cardId}`)
+                .then((res) => {
+                    return res.data;
+                })
+                .catch((err) => {
+                    console.log(err)
+                    return null
+                })
+        }
     }
 }
 

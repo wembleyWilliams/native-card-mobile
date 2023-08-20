@@ -15,8 +15,8 @@ const DescriptionSection = (props: Props) => {
     return (
         <Card
             color={COLORS.secondary}
-            minWidth={CARD_MIN_WIDTH.toString()}
-            maxWidth={CARD_MAX_WIDTH.toString()}
+            // minWidth={CARD_MIN_WIDTH.toString()}
+            // maxWidth={CARD_MAX_WIDTH.toString()}
         >
             <View style={styles.wrapper}>
                 <Text style={styles.title}>

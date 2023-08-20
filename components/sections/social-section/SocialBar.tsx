@@ -19,6 +19,7 @@ const SocialBar = (props: Props) => {
             <View style={styles.wrapper}>
                 <View style={styles.container}>
                     <IconButton
+                        style={styles.icon}
                         icon={iconLoader(props.profileURL as string)}
                         size={15}
                         iconColor={"#FFF"}
@@ -48,12 +49,17 @@ const styles = StyleSheet.create({
     container: {
         flexDirection: 'row',
         alignItems: 'center',
-        justifyContent: 'space-around',
-        // width: '100%',
+        justifyContent: 'space-between',
         borderRadius: 60,
     },
+    icon: {
+        maxWidth: 32
+    },
     handle: {
-        color: '#FFF'
+        color: '#FFF',
+        textWrap:'none',
+        textOverflow: "ellipsis",
+        maxWidth: 190
     },
     linkButtonText: {
         color: '#FFF',
@@ -65,7 +71,8 @@ const styles = StyleSheet.create({
         borderRadius: 10,
         alignContent: "center",
         paddingHorizontal: PADDING.button,
-        paddingVertical: PADDING.button
+        paddingVertical: PADDING.button,
+        maxWidth: 75
     }
 })
 

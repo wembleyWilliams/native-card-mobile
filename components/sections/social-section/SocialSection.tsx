@@ -1,5 +1,5 @@
 import React from "react"
-import {View, Text, StyleSheet, TouchableOpacity, ListView, Dimensions} from "react-native";
+import {View, Text, StyleSheet, TouchableOpacity, ListView, Dimensions, ScrollView} from "react-native";
 import {
     FONTS,
     SIZES,
@@ -32,24 +32,27 @@ const SocialSection = (props: Props) => {
             // maxWidth={CARD_MAX_WIDTH.toString()}
             color={'white'}
         >
-            <View style={styles.wrapper}>
-                <View style={styles.container}>
-                    <FlatGrid
-                        contentContainerStyle={{
-                            // width: 312,
-                            marginVertical: 'auto',
-                            overflow:'scroll'
-                        }}
-                        maxItemsPerRow={1}
-                        data={props.socialMedia}
-                        renderItem={({ item })=> {
-                            return <SocialBar
-                                profileName={item.profileName}
-                                profileURL={item.profileURL}
-                            />
-                        } } />
+            <ScrollView showsVerticalScrollIndicator={false} style={{height:'120%'}}>
+                <View style={styles.wrapper}>
+                    <View style={styles.container}>
+                        <FlatGrid
+                            contentContainerStyle={{
+                                // width: 312,
+                                marginVertical: 'auto',
+                                overflow:'scroll'
+                            }}
+                            maxItemsPerRow={1}
+                            data={props.socialMedia}
+                            renderItem={({ item })=> {
+                                return <SocialBar
+                                    profileName={item.profileName}
+                                    profileURL={item.profileURL}
+                                />
+                            } } />
+                    </View>
                 </View>
-            </View>
+            </ScrollView>
+
         </Card>
     )
 }
