@@ -26,7 +26,8 @@
     "react-native-super-grid": "^5.0.0",
     "react-native-web": "~0.18.9",
     "react-native-web-lottie": "^1.4.4",
-    "react-router-dom": "^6.15.0"
+    "react-router-dom": "^6.15.0",
+    "react-scripts": "^5.0.1"
   },
   "devDependencies": {
     "@babel/core": "^7.12.9",

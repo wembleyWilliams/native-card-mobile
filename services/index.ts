@@ -1,5 +1,6 @@
 import axios from 'axios';
-const url = "https://ebusinesscardservices.com"
+// const url = "https://ebusinesscardservices.com"
+const url = "http://localhost:7020"
 const services = {
     // getUser: async () => {
     //   //local
@@ -16,7 +17,7 @@ const services = {
 
         if (!cardId) {
             //Local - For Testing only
-            return axios.get(`${url}/business/64df2423698eb6a0b844a31f`)
+            return axios.get(`${url}/business/6691e4a5acd809745e822caa`)
                 .then((res) => {
                     return res.data;
                 })

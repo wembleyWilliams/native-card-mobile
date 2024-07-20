@@ -28,6 +28,7 @@ const BusinessCard = () => {
     const description = useSelector(
         (state: State) => state.application.application.BusinessData?.description
     )
+
     const logo = useSelector(
         (state: State) => state.application.application.BusinessData?.logo
     )
