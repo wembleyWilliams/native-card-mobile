@@ -1,0 +1,12 @@
+services:
+  app:
+    #image: gg-marketing-tool-backend-app
+    build: .
+    ports:
+      - "19000:19000"
+    volumes:
+      - .:/usr/src/app
+      - /usr/src/app/node_modules
+    environment:
+      NODE_ENV: development
+    command: npm run start

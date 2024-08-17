@@ -1,6 +1,6 @@
 import axios from 'axios';
-// const url = "https://ebusinesscardservices.com"
-const url = "http://localhost:7020"
+const url = "https://www.agoodbusinesscard.icu/api"
+// const url = "http://localhost:7020"
 const services = {
     // getUser: async () => {
     //   //local
