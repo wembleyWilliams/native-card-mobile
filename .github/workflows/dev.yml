@@ -20,7 +20,9 @@ jobs:
 
     - name: Copy files to DigitalOcean Droplet
       run: |
-        rsync -avz --partial --delete -e "ssh -o StrictHostKeyChecking=no -o ConnectTimeout=500 -o ServerAliveInterval=60 -o ServerAliveCountMax=120" ./ kratos@${{ secrets.DROPLET_IP }}:~/native-card-mobile
+        rsync -avz --delete -e "ssh -o StrictHostKeyChecking=yes -o ServerAliveInterval=60 -o ServerAliveCountMax=120" ./ kratos@${{ secrets.DROPLET_IP }}:~/native-card-mobile
+       
+    #rsync -avz --partial --delete -e "ssh -o StrictHostKeyChecking=no -o ConnectTimeout=500 -o ServerAliveInterval=60 -o ServerAliveCountMax=120" ./ kratos@${{ secrets.DROPLET_IP }}:~/native-card-mobile
      
     - name: Run npm build on DigitalOcean Droplet
       run: |
