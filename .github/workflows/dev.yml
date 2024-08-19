@@ -24,17 +24,17 @@ jobs:
        
     #rsync -avz --partial --delete -e "ssh -o StrictHostKeyChecking=no -o ConnectTimeout=500 -o ServerAliveInterval=60 -o ServerAliveCountMax=120" ./ kratos@${{ secrets.DROPLET_IP }}:~/native-card-mobile
      
-    - name: Run npm build on DigitalOcean Droplet
-      run: |
-        ssh -o StrictHostKeyChecking=no kratos@${{ secrets.DROPLET_IP }} << 'EOF'
-          export NVM_DIR="$HOME/.nvm"
-          [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
-          [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
-          nvm use 17.9.1
-          cd ~/native-card-mobile
-          npm install
-          npm run build
-        EOF
+     #name: Run npm build on DigitalOcean Droplet
+      #run: |
+        #ssh -o StrictHostKeyChecking=no kratos@${{ secrets.DROPLET_IP }} << 'EOF'
+          #export NVM_DIR="$HOME/.nvm"
+          #[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+          #[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
+          #nvm use 17.9.1
+          #cd ~/native-card-mobile
+          #npm install
+          #npm run build
+        #EOF
 
     - name: SSH into DigitalOcean Droplet and deploy docker
       run: |
