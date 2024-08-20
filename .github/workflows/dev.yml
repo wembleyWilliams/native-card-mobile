@@ -31,6 +31,7 @@ jobs:
           [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
           [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
           nvm use 18.17.0
+          npm config set fetch-retry-maxtimeout 120000
           cd ~/native-card-mobile
           npm install
           npm run build
