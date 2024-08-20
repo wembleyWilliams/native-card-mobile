@@ -20,15 +20,15 @@ RUN npm i --unsafe-perm --allow-root -g expo-cli@6.0.0
 
 # install dependencies first, in a different location for easier app bind mounting for local development
 # due to default /opt permissions we have to create the dir with root and change perms
-RUN mkdir /opt/react_native_app
-WORKDIR /opt/react_native_app
-ENV PATH /opt/react_native_app/.bin:$PATH
+RUN mkdir /usr/src/app
+WORKDIR /usr/src/app
+ENV PATH /usr/src/.bin:$PATH
 COPY ./package*.json ./
 RUN npm install
 RUN npm install typescript@latest
 
 # copy in our source code last, as it changes the most
-WORKDIR /opt/react_native_app/app
+#WORKDIR /usr/src/app
 # for development, we bind mount volumes; comment out for production
 COPY ./ .
 
