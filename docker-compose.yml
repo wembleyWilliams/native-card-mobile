@@ -4,10 +4,14 @@ services:
     build: .
     ports:
       - "19006:19006"
+      - "19001:19001"
+      - "19002:19002"
+      - "19000:19000"
     volumes:
       - .:/usr/src/app
       - /usr/src/app/node_modules
     environment:
       NODE_ENV: development
+    #working_dir: /usr/src/app
     entrypoint: ["npm", "run"]
     command: ["web"]
