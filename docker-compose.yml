@@ -1,5 +1,5 @@
 services:
-  app:
+  card-mobile-app:
     #image: gg-marketing-tool-backend-app
     build: .
     ports:
@@ -12,6 +12,5 @@ services:
       - /usr/src/app/node_modules
     environment:
       NODE_ENV: development
-    #working_dir: /usr/src/app
     entrypoint: ["npm", "run"]
     command: ["web"]
