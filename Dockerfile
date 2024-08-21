@@ -25,7 +25,7 @@ WORKDIR /usr/src/app
 ENV PATH /usr/src/.bin:$PATH
 COPY ./package*.json ./
 RUN npm install
-RUN npm install typescript@latest
+RUN npm install typescript@4.6.3
 
 # copy in our source code last, as it changes the most
 #WORKDIR /usr/src/app
