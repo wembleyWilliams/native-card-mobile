@@ -1,4 +1,4 @@
-name: Release to {{ github.ref }}
+name: Release to github.ref
 
 on:
   push:
@@ -8,28 +8,6 @@ on:
       - staging
 
 jobs:
-  release:
-    runs-on: ubuntu-latest
-    permissions:
-      contents: write
-
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
-
-      - name: Set up Node.js
-        uses: actions/setup-node@v3
-        with:
-          node-version: '20.8.1' # or your preferred version
-
-      - name: Install dependencies
-        run: npm install
-
-      - name: Run semantic-release
-        env:
-          GH_TOKEN: ${{ secrets.GH_TOKEN }}
-        run: npm run semantic-release
-
   # Additional job for development environment
   development:
     if: github.ref == 'refs/heads/dev'
