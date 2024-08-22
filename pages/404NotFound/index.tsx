@@ -20,8 +20,7 @@ const PageNotFoundView = () => {
                     style={styles.image}
                     source={require('../../assets/placeholders/cards.png')}/>
                 <Text style={styles.textBody}>
-                    An error has occurred and the business card cannot be loaded
-                    at this time, sorry for the inconvenience
+                    An error has occurred sorry for the inconvenience
                 </Text>
             </View>
         </View>
