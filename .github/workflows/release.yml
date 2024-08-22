@@ -1,4 +1,4 @@
-name: Release to github.ref
+name: Deployment Release with Semantic Versioning
 
 on:
   push:
