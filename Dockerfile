@@ -13,8 +13,9 @@ EXPOSE $PORT 19001 19002
 # install global packages
 ENV NPM_CONFIG_PREFIX=/home/node/.npm-global
 ENV PATH /home/node/.npm-global/bin:$PATH
-RUN npm install --unsafe-perm --allow-root -g npm@9.x expo-cli@latest
-RUN npm i --unsafe-perm --allow-root -g expo-cli@6.0.0
+RUN npm install --unsafe-perm --allow-root -g npm@10.8.2
+RUN npm install --unsafe-perm --allow-root -g expo@49
+#RUN npm i --unsafe-perm --allow-root -g expo-cli@6.0.0
 
 #RUN npm i --unsafe-perm --allow-root -g npm@latest expo-cli@latest
 
@@ -23,9 +24,9 @@ RUN npm i --unsafe-perm --allow-root -g expo-cli@6.0.0
 RUN mkdir /usr/src/app
 WORKDIR /usr/src/app
 ENV PATH /usr/src/.bin:$PATH
-COPY ./package*.json ./
-RUN npm install
-RUN npm install typescript@4.6.3
+COPY ./package.json ./
+RUN npm install --force --legacy-peer-deps
+#RUN npm install typescript@4.6.3
 
 # copy in our source code last, as it changes the most
 #WORKDIR /usr/src/app
