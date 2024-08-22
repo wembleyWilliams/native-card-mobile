@@ -42,18 +42,18 @@ jobs:
       - name: Build Docker image
         run: |
           VERSION=$(cat version.txt)
-          docker build -t wembleywilliams/card:${{VERSION}} .
+          docker build -t wembleywilliams/card:${VERSION} .
 
       - name: Push Docker image to Docker Hub
         run: |
           VERSION=$(cat version.txt)
-          docker push wembleywilliams/card:${{VERSION}}
+          docker push wembleywilliams/card:${VERSION}
 
       - name: SSH into DigitalOcean Droplet and deploy docker
         run: |
           ssh -o StrictHostKeyChecking=no -o ConnectTimeout=500 -o ServerAliveInterval=60 -o ServerAliveCountMax=120 kratos@${{ secrets.DROPLET_IP }} << 'EOF'
             cd ~/native-card-mobile
             docker compose down
-            docker pull wembleywilliams/card:${{ VERSION }}
+            docker pull wembleywilliams/card:${VERSION}
             docker compose up --build -d
           EOF
