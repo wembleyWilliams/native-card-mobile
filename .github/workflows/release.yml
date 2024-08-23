@@ -46,6 +46,10 @@ jobs:
 
       - name: Push Docker image to Docker Hub
         run: docker push wembleywilliams/card:${{env.RELEASE_VERSION}}
+      - name: Set up SSH
+        uses: webfactory/ssh-agent@v0.7.0
+        with:
+          ssh-private-key: ${{ secrets.DROPLET_SSH_KEY }}
 
       - name: SSH into DigitalOcean Droplet and deploy docker
         run: |
