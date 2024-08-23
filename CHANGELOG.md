@@ -1,3 +1,10 @@
+## [0.1.4](https://github.com/wembleyWilliams/native-card-mobile/compare/v0.1.3...v0.1.4) (2024-08-23)
+
+
+### Bug Fixes
+
+* updated versioning ([0eaf9f0](https://github.com/wembleyWilliams/native-card-mobile/commit/0eaf9f02d7e881c9d1bf6dcd2ccea37f68439f97))
+
 ## [0.1.3](https://github.com/wembleyWilliams/native-card-mobile/compare/v0.1.2...v0.1.3) (2024-08-23)
 
 
