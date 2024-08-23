@@ -57,5 +57,5 @@ jobs:
             cd ~/native-card-mobile
             docker compose down
             docker pull wembleywilliams/card:${{env.RELEASE_VERSION}}
-            docker compose up --build -d
+            docker compose up -d
           EOF
