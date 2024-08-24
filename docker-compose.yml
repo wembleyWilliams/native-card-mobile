@@ -1,7 +1,6 @@
 services:
   card-mobile-app:
-    #image: gg-marketing-tool-backend-app
-    build: .
+    image: card:latest
     ports:
       - "19006:19006"
       - "19001:19001"
