@@ -14,13 +14,14 @@ interface Props {
 }
 
 const SocialBar = (props: Props) => {
+    console.log(props)
     return (
         <>
             <View style={styles.wrapper}>
                 <View style={styles.container}>
                     <IconButton
                         style={styles.icon}
-                        icon={iconLoader(props.profileURL as string)}
+                        icon={():any=> {console.log(props.profileURL as string); iconLoader(props.profileURL as string)}}
                         size={15}
                         iconColor={"#FFF"}
                         containerColor={"#FFF"}

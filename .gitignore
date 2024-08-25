@@ -12,3 +12,8 @@ npm-debug.*
 
 # macOS
 .DS_Store
+
+.env*
+.flaskenv*
+!.env.project
+!.env.vault
