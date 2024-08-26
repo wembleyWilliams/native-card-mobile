@@ -34,7 +34,7 @@ const BusinessCard = () => {
     )
 
     const socialMediaArray = useSelector(
-        (state: State) => state.application.application.BusinessData?.socialMedia
+        (state: State) => state.application.application.BusinessData?.businessHandles
     )
 
     const contact = useSelector(

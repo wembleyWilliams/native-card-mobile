@@ -14,6 +14,7 @@
   "homepage": "http://wembleyWilliams.github.io/native-card-mobile",
   "dependencies": {
     "@expo/webpack-config": "^19.0.0",
+    "dotenv-vault": "^1.26.2",
     "expo": "^49.0.23",
     "expo-contacts": "~12.2.0",
     "expo-status-bar": "~1.6.0",
@@ -43,6 +44,7 @@
     "axios": "^1.2.3",
     "expo-web-browser": "~12.3.2",
     "react-native-animated-loader": "^1.0.0",
+    "react-native-dotenv": "^3.4.11",
     "react-native-paper": "^5.1.2",
     "react-native-safe-area-context": "4.6.3",
     "react-native-vector-icons": "^9.2.0",

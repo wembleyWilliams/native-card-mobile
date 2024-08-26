@@ -1,6 +1,6 @@
 import axios from 'axios';
-const url = "https://www.agoodbusinesscard.icu/api"
-// const url = "http://localhost:7020"
+import { REACT_APP_API } from '@env';
+
 const services = {
     // getUser: async () => {
     //   //local
@@ -17,7 +17,7 @@ const services = {
 
         if (!cardId) {
             //Local - For Testing only
-            return axios.get(`${url}/business/6691e4a5acd809745e822caa`)
+            return axios.get(`${REACT_APP_API}/business/6691e4a5acd809745e822caa`)
                 .then((res) => {
                     return res.data;
                 })
@@ -27,7 +27,7 @@ const services = {
                 })
         } else {
             // Hosted
-            return axios.get(`${url}/business/${cardId}`)
+            return axios.get(`${REACT_APP_API}/business/${cardId}`)
                 .then((res) => {
                     return res.data;
                 })

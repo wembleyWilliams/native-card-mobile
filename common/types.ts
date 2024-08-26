@@ -8,7 +8,8 @@ export interface BusinessData {
     address: string,
     pointOfContact: string,
     email: string,
-    socialMedia: [{
+    businessHandles: [{
+        socialMedia: string,
         profileName: string,
         profileURL: string,
     }]

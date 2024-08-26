@@ -11,7 +11,7 @@ jobs:
   # Development job with semantic-release and Docker deployment
   development:
     if: github.ref == 'refs/heads/dev'
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-20.04
     environment: development
     permissions:
       contents: write

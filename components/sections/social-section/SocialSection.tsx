@@ -20,7 +20,7 @@ import socialBar from "./SocialBar";
 interface Props {
     socialMedia: [{
         profileName?: string,
-        profileURL?: string
+        profileUrL?: string
     }]
 }
 
@@ -46,7 +46,7 @@ const SocialSection = (props: Props) => {
                             renderItem={({ item })=> {
                                 return <SocialBar
                                     profileName={item.profileName}
-                                    profileURL={item.profileURL}
+                                    profileURL={item.profileUrL}
                                 />
                             } } />
                     </View>
