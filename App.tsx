@@ -1,6 +1,12 @@
 import {StatusBar} from 'expo-status-bar';
 import {StyleSheet, Text, View} from 'react-native';
 import BusinessCard from "./components/business-card/BusinessCard";
+import { library } from '@fortawesome/fontawesome-svg-core';
+import { fab } from '@fortawesome/free-brands-svg-icons';
+
+// Add all brand icons to the library
+library.add(fab);
+
 import {createStackNavigator} from "@react-navigation/stack";
 import {NavigationContainer} from "@react-navigation/native";
 import {DefaultTheme} from "@react-navigation/native";

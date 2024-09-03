@@ -1,13 +1,21 @@
 export interface BusinessData {
+    industry: string;
+    phone: string;
     _id: string,
     logo?: { data?: string | undefined, mime?: string | undefined },
     name: string,
     description: string,
     //TODO: contact needs to be concurrent with IOS|Android Contact
     contact: Contact,
-    address: string,
+    address: {
+        street: string,
+        city: string,
+        state: string,
+        postalCode?: string,
+        country: string
+    },
     pointOfContact: string,
-    email: string,
+    contactEmail: string,
     businessHandles: [{
         socialMedia: string,
         profileName: string,

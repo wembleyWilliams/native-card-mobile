@@ -1,4 +1,5 @@
 import axios from 'axios';
+// @ts-ignore
 import { REACT_APP_API } from '@env';
 
 const services = {
