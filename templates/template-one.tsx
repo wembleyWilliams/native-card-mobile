@@ -2,17 +2,103 @@ import React from 'react';
 import {Dimensions, StyleSheet, View, Text, ScrollView, TouchableOpacity} from "react-native";
 import {Avatar, IconButton} from "react-native-paper";
 import {COLORS, SIZES} from "../constants/theme";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faMapMarkerAlt, faShareAlt } from '@fortawesome/free-solid-svg-icons'; // Import Share icon
-import { BusinessData } from "../common/types";
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
+import {faMapMarkerAlt, faShareAlt} from '@fortawesome/free-solid-svg-icons'; // Import Share icon
+import {BusinessData} from "../common/types";
 import iconLoader from "../common/icon-loader";
 import Button from "../components/common/Button";
 import * as WebBrowser from "expo-web-browser";
+import services from "../services";
 
 const windowWidth = Dimensions.get('window').width;
 
 const TemplateOne = (businessData: BusinessData) => {
+    const sampleVCard = {
+        uid: "123456",
+        birthday: "1980-10-15",
+        cellPhone: "+1234567890",
+        pagerPhone: "+0987654321",
+        email: "john.doe@example.com",
+        workEmail: "john.work@example.com",
+        firstName: "John",
+        formattedName: "John Doe",
+        gender: "male",
+        homeAddress: {
+            label: "Home",
+            street: "123 Main St",
+            city: "Hometown",
+            stateProvince: "CA",
+            postalCode: "90210",
+            countryRegion: "USA"
+        },
+        homePhone: "+1122334455",
+        homeFax: "+5566778899",
+        lastName: "Doe",
+        logo: {
+            url: "https://example.com/logo.png",
+            mediaType: "image/png",
+            base64: false
+        },
+        middleName: "E",
+        namePrefix: "Mr.",
+        nameSuffix: "Jr.",
+        nickname: "Johnny",
+        note: "Test note for vCard",
+        organization: "ACME Corporation",
+        photo: {
+            url: "https://example.com/photo.jpg",
+            mediaType: "image/jpeg",
+            base64: false
+        },
+        role: "Software Engineer",
+        socialUrls: {
+            facebook: "https://facebook.com/johndoe",
+            linkedIn: "https://linkedin.com/in/johndoe",
+            twitter: "https://twitter.com/johndoe",
+            flickr: "https://flickr.com/photos/johndoe"
+        },
+        source: "https://source.example.com",
+        title: "Lead Developer",
+        url: "https://johndoe.com",
+        workUrl: "https://johndoe.work",
+        workAddress: {
+            label: "Work",
+            street: "456 Corporate Blvd",
+            city: "Metropolis",
+            stateProvince: "NY",
+            postalCode: "10001",
+            countryRegion: "USA"
+        },
+        workPhone: "+12123334444",
+        workFax: "+12123335555",
+        version: "3.0"
+    };
 
+
+    const handleClick = () => {
+
+        services
+            .getContactCard(sampleVCard)
+            .then((res) => {
+                const vcfData = res.data;
+                const blob = new Blob([vcfData], { type: 'text/vcard' });
+                const url = URL.createObjectURL(blob);
+
+                // Create a temporary anchor element to download the file
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = 'contact.vcf';
+                document.body.appendChild(a);
+                a.click();
+                document.body.removeChild(a);
+                URL.revokeObjectURL(url); // Clean up the URL object
+
+                console.log('VCF file downloaded');
+            })
+            .catch((err) => {
+                console.log(err)
+            })
+    }
     const styles = StyleSheet.create({
         wrapper: {
             flex: 1,
@@ -116,11 +202,11 @@ const TemplateOne = (businessData: BusinessData) => {
             textAlign: "left"
         },
         // New styles for "Get Contact" button
-        shareButtonWrapper:{
+        shareButtonWrapper: {
             paddingRight: 20,
             paddingLeft: 20,
             alignItems: 'center',
-            width:'100%',
+            width: '100%',
             flexDirection: 'row',
             justifyContent: 'space-between'
         },
@@ -170,7 +256,7 @@ const TemplateOne = (businessData: BusinessData) => {
                         <Text style={styles.contactText}>{businessData.phone}</Text>
                         <Text style={styles.contactText}>{businessData.contactEmail}</Text>
                         <View style={styles.addressTextContainer}>
-                            <FontAwesomeIcon icon={faMapMarkerAlt} size="1x" color="#fff" />
+                            <FontAwesomeIcon icon={faMapMarkerAlt} size="1x" color="#fff"/>
                             <Text style={styles.addressText}>
                                 {businessData.address.city}, {businessData.address.state}, {businessData.address.country}, {businessData.address.postalCode}
                             </Text>
@@ -180,15 +266,20 @@ const TemplateOne = (businessData: BusinessData) => {
 
                 {/* Other sections */}
                 <View style={[styles.section, styles.sectionBorder]}>
-                    <View style={[styles.section, { paddingBottom: 20 }]}>
+                    <View style={[styles.section, {paddingBottom: 20}]}>
 
 
                         {/* New Share button */}
                         <View style={styles.shareButtonWrapper}>
-                            <Text style={{ fontSize: SIZES.medium, fontWeight: 'bold', textAlign: 'center' }}>{businessData.name}</Text>
+                            <Text style={{
+                                fontSize: SIZES.medium,
+                                fontWeight: 'bold',
+                                textAlign: 'center'
+                            }}>{businessData.name}</Text>
                             <View style={styles.shareButtonContainer}>
-                                <TouchableOpacity style={styles.shareButtonIcon}>
-                                    <FontAwesomeIcon icon={faShareAlt} size={"1x"} color="#fff" />
+                                <TouchableOpacity style={styles.shareButtonIcon}
+                                                  onPress={handleClick}>
+                                    <FontAwesomeIcon icon={faShareAlt} size={"1x"} color="#fff"/>
                                 </TouchableOpacity>
                                 <Text style={styles.shareButtonText}>Save Contact</Text>
                             </View>
@@ -196,8 +287,8 @@ const TemplateOne = (businessData: BusinessData) => {
 
                     </View>
                     <View style={styles.sectionTitle}>
-                        <Text style={{ color: '#FFF', fontWeight: 'bold' }}>About US</Text>
-                        <Text style={{ color: '#FFF' }}>Influencer</Text>
+                        <Text style={{color: '#FFF', fontWeight: 'bold'}}>About US</Text>
+                        <Text style={{color: '#FFF'}}>Influencer</Text>
                     </View>
                     <Text style={styles.sectionText}>
                         {businessData.description}
@@ -206,8 +297,8 @@ const TemplateOne = (businessData: BusinessData) => {
 
                 <View style={styles.section}>
                     <View style={styles.sectionTitle}>
-                        <Text style={{ color: '#FFF', fontWeight: 'bold' }}>Platforms</Text>
-                        <Text style={{ color: '#FFF' }}>Links</Text>
+                        <Text style={{color: '#FFF', fontWeight: 'bold'}}>Platforms</Text>
+                        <Text style={{color: '#FFF'}}>Links</Text>
                     </View>
                     <View style={styles.socialContainer}>
                         {businessData.businessHandles.map((item, index) => (
@@ -235,7 +326,7 @@ const TemplateOne = (businessData: BusinessData) => {
 
                                 <Button
                                     onClick={() => WebBrowser.openBrowserAsync(item.profileUrL as string)}
-                                    buttonColor={'#F5F7FA'} text={'Visit'} textColor={'#7E848C'} />
+                                    buttonColor={'#F5F7FA'} text={'Visit'} textColor={'#7E848C'}/>
                             </View>
                         ))}
                     </View>

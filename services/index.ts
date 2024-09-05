@@ -3,6 +3,17 @@ import axios from 'axios';
 import { REACT_APP_API } from '@env';
 
 const services = {
+    getContactCard: async (contactCardData: any) => {
+      return axios.post(`http://localhost:8080/business/contact-card`, contactCardData)
+          .then((res)=>{
+              console.log(res.data)
+              return res.data
+          })
+          .catch((err) => {
+              console.log(err)
+              return null
+          })
+    },
     // getUser: async () => {
     //   //local
     //   return axios.get(`${url}/user/63d1f602022d42b7cc4aa558`)

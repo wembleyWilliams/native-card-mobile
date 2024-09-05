@@ -9,12 +9,100 @@ import {Avatar, IconButton} from "react-native-paper";
 import * as WebBrowser from "expo-web-browser";
 import Button from "../components/common/Button";
 import iconLoader from "../common/icon-loader";
+import services from "../services";
 
 
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
 
 const TemplateTwo = (businessData: BusinessData) => {
+
+    const sampleVCard = {
+        uid: "123456",
+        birthday: "1980-10-15",
+        cellPhone: "+1234567890",
+        pagerPhone: "+0987654321",
+        email: "john.doe@example.com",
+        workEmail: "john.work@example.com",
+        firstName: "John",
+        formattedName: "John Doe",
+        gender: "male",
+        homeAddress: {
+            label: "Home",
+            street: "123 Main St",
+            city: "Hometown",
+            stateProvince: "CA",
+            postalCode: "90210",
+            countryRegion: "USA"
+        },
+        homePhone: "+1122334455",
+        homeFax: "+5566778899",
+        lastName: "Doe",
+        logo: {
+            url: "https://example.com/logo.png",
+            mediaType: "image/png",
+            base64: false
+        },
+        middleName: "E",
+        namePrefix: "Mr.",
+        nameSuffix: "Jr.",
+        nickname: "Johnny",
+        note: "Test note for vCard",
+        organization: "ACME Corporation",
+        photo: {
+            url: "https://example.com/photo.jpg",
+            mediaType: "image/jpeg",
+            base64: false
+        },
+        role: "Software Engineer",
+        socialUrls: {
+            facebook: "https://facebook.com/johndoe",
+            linkedIn: "https://linkedin.com/in/johndoe",
+            twitter: "https://twitter.com/johndoe",
+            flickr: "https://flickr.com/photos/johndoe"
+        },
+        source: "https://source.example.com",
+        title: "Lead Developer",
+        url: "https://johndoe.com",
+        workUrl: "https://johndoe.work",
+        workAddress: {
+            label: "Work",
+            street: "456 Corporate Blvd",
+            city: "Metropolis",
+            stateProvince: "NY",
+            postalCode: "10001",
+            countryRegion: "USA"
+        },
+        workPhone: "+12123334444",
+        workFax: "+12123335555",
+        version: "3.0"
+    };
+
+
+    const handleClick = () => {
+
+        services
+            .getContactCard(sampleVCard)
+            .then((res) => {
+                const vcfData = res.data;
+                const blob = new Blob([vcfData], { type: 'text/vcard' });
+                const url = URL.createObjectURL(blob);
+
+                // Create a temporary anchor element to download the file
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = 'contact.vcf';
+                document.body.appendChild(a);
+                a.click();
+                document.body.removeChild(a);
+                URL.revokeObjectURL(url); // Clean up the URL object
+
+                console.log('VCF file downloaded');
+            })
+            .catch((err) => {
+                console.log(err)
+            })
+    }
 
     const styles = StyleSheet.create({
         wrapper: {
@@ -134,6 +222,7 @@ const TemplateTwo = (businessData: BusinessData) => {
                         </Text>
                     </View>
                     <Button
+                        onClick={()=>handleClick()}
                         buttonColor={'#F5F7FA'} text={'Add to Contacts'} textColor={'#7E848C'}/>
                 </View>
 
