@@ -3,7 +3,7 @@ import {Dimensions, StyleSheet, View, Text, ScrollView, TouchableOpacity} from "
 import {Avatar, IconButton} from "react-native-paper";
 import {COLORS, SIZES} from "../constants/theme";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faMapMarkerAlt } from '@fortawesome/free-solid-svg-icons';
+import { faMapMarkerAlt, faShareAlt } from '@fortawesome/free-solid-svg-icons'; // Import Share icon
 import { BusinessData } from "../common/types";
 import iconLoader from "../common/icon-loader";
 import Button from "../components/common/Button";
@@ -28,7 +28,6 @@ const TemplateOne = (businessData: BusinessData) => {
             alignItems: 'center',
             padding: 10,
             justifyContent: 'space-between',
-
         },
         profileSection: {
             paddingTop: 20,
@@ -37,7 +36,6 @@ const TemplateOne = (businessData: BusinessData) => {
             borderBottomColor: COLORS.secondary,
             borderBottomEndRadius: 7,
             borderBottomStartRadius: 7,
-
             flexDirection: 'row',
             justifyContent: 'flex-start',
             alignItems: 'center',
@@ -45,7 +43,6 @@ const TemplateOne = (businessData: BusinessData) => {
         },
         avatarContainer: {
             marginRight: 20,
-            // border: "4px solid blue",
             borderWidth: 4,
             borderColor: COLORS.secondary,
             borderRadius: 60
@@ -75,33 +72,10 @@ const TemplateOne = (businessData: BusinessData) => {
         contactText: {
             marginBottom: 5,
         },
-        saveContactButton: {
-            position: 'absolute',
-            bottom: 10, // 10px from the bottom of the screen
-            width: windowWidth * 0.8, // Adjust width for comfortable visibility
-            backgroundColor: COLORS.secondary,
-            paddingVertical: 10, // Reduced padding for a more compact look
-            paddingHorizontal: 20,
-            borderRadius: 20, // Increased border radius for a more modern look
-            alignItems: 'center',
-            justifyContent: 'center',
-            shadowColor: '#000',
-            shadowOffset: { width: 0, height: 2 },
-            shadowOpacity: 0.1,
-            shadowRadius: 5,
-            elevation: 3,
-        },
-        saveContactButtonText: {
-            color: '#fff',
-            textTransform: 'uppercase',
-            fontSize: SIZES.small, // Slightly smaller font size for a sleek appearance
-            fontWeight: 'bold',
-        },
-        section : {
+        section: {
             paddingTop: 15,
             paddingBottom: 15,
-            width: "100%"
-            // paddingBottom: 30,
+            width: "100%",
         },
         sectionBorder: {
             borderBottomWidth: 3,
@@ -116,34 +90,62 @@ const TemplateOne = (businessData: BusinessData) => {
             marginTop: 10,
             textTransform: 'uppercase',
             flexDirection: 'row',
-            flexShrink:1,
+            flexShrink: 1,
             fontSize: SIZES.small,
             fontWeight: 'bold',
             backgroundColor: COLORS.secondary,
             borderRadius: 20,
-
             padding: 14,
-            justifyContent: 'space-between'
+            justifyContent: 'space-between',
         },
         icon: {},
         socialContainer: {
             width: "100%",
             justifyContent: 'space-around',
-            paddingVertical: 5,  // Reduced vertical padding
-            paddingHorizontal: 10, // Added padding for better spacing
+            paddingVertical: 5,
+            paddingHorizontal: 10,
         },
         item: {
             flexDirection: 'row',
             justifyContent: 'space-between',
             alignItems: 'center',
-            // paddingVertical: 5,  // Adjusted vertical padding
-            // marginBottom: 5, // Reduced the gap between items
         },
         text: {
             fontSize: 16,
             color: '#4A4A4A',
             textAlign: "left"
         },
+        // New styles for "Get Contact" button
+        shareButtonWrapper:{
+            paddingRight: 20,
+            paddingLeft: 20,
+            alignItems: 'center',
+            width:'100%',
+            flexDirection: 'row',
+            justifyContent: 'space-between'
+        },
+        shareButtonContainer: {
+            flexDirection: 'row',
+            alignItems: 'center',
+            justifyContent: 'center',
+            gap: 8,
+            marginTop: 10,
+        },
+        shareButtonIcon: {
+            backgroundColor: COLORS.secondary,
+            padding: 10,
+            borderRadius: 50, // Makes the button round
+            alignItems: 'center',
+            justifyContent: 'center',
+        },
+        shareButtonText: {
+            color: COLORS.secondary,
+            textAlign: 'center',
+            marginTop: 5,
+            fontSize: SIZES.small,
+            fontWeight: 'bold',
+            textTransform: 'uppercase',
+        }
     });
 
     return (
@@ -175,22 +177,37 @@ const TemplateOne = (businessData: BusinessData) => {
                         </View>
                     </View>
                 </View>
-                <View style={[styles.section,styles.sectionBorder]}>
-                    <View style={[styles.section,{paddingBottom:20}]}>
-                        <Text style={{fontSize: SIZES.medium,fontWeight:'bold', textAlign: 'center'}}>{businessData.name}</Text>
+
+                {/* Other sections */}
+                <View style={[styles.section, styles.sectionBorder]}>
+                    <View style={[styles.section, { paddingBottom: 20 }]}>
+
+
+                        {/* New Share button */}
+                        <View style={styles.shareButtonWrapper}>
+                            <Text style={{ fontSize: SIZES.medium, fontWeight: 'bold', textAlign: 'center' }}>{businessData.name}</Text>
+                            <View style={styles.shareButtonContainer}>
+                                <TouchableOpacity style={styles.shareButtonIcon}>
+                                    <FontAwesomeIcon icon={faShareAlt} size={"1x"} color="#fff" />
+                                </TouchableOpacity>
+                                <Text style={styles.shareButtonText}>Save Contact</Text>
+                            </View>
+                        </View>
+
                     </View>
                     <View style={styles.sectionTitle}>
-                        <Text style={{color: '#FFF', fontWeight: 'bold'}}>About US</Text>
-                        <Text style={{color: '#FFF'}}>Influencer</Text>
+                        <Text style={{ color: '#FFF', fontWeight: 'bold' }}>About US</Text>
+                        <Text style={{ color: '#FFF' }}>Influencer</Text>
                     </View>
                     <Text style={styles.sectionText}>
                         {businessData.description}
                     </Text>
                 </View>
+
                 <View style={styles.section}>
                     <View style={styles.sectionTitle}>
-                        <Text style={{color: '#FFF', fontWeight: 'bold'}}>Platforms</Text>
-                        <Text style={{color: '#FFF'}}>Links</Text>
+                        <Text style={{ color: '#FFF', fontWeight: 'bold' }}>Platforms</Text>
+                        <Text style={{ color: '#FFF' }}>Links</Text>
                     </View>
                     <View style={styles.socialContainer}>
                         {businessData.businessHandles.map((item, index) => (
@@ -217,17 +234,13 @@ const TemplateOne = (businessData: BusinessData) => {
                                 </View>
 
                                 <Button
-                                    onClick={() => WebBrowser.openBrowserAsync(item.profileURL as string)}
-                                    buttonColor={'#F5F7FA'} text={'Visit'} textColor={'#7E848C'}/>
+                                    onClick={() => WebBrowser.openBrowserAsync(item.profileUrL as string)}
+                                    buttonColor={'#F5F7FA'} text={'Visit'} textColor={'#7E848C'} />
                             </View>
                         ))}
                     </View>
-
                 </View>
             </ScrollView>
-            <TouchableOpacity style={styles.saveContactButton}>
-                <Text style={styles.saveContactButtonText}>Save Contact</Text>
-            </TouchableOpacity>
         </View>
     );
 };

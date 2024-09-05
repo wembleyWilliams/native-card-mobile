@@ -19,7 +19,7 @@ export interface BusinessData {
     businessHandles: [{
         socialMedia: string,
         profileName: string,
-        profileURL: string,
+        profileUrL: string,
     }]
 }
 
