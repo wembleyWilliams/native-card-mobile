@@ -161,7 +161,7 @@ const TemplateOne = (businessData: BusinessData) => {
                         ) : (
                             <Avatar.Image
                                 size={100}
-                                source={require('../../../assets/placeholders/avatar.png')}
+                                source={require('../assets/placeholders/avatar.png')}
                             />
                         )}
                     </View>

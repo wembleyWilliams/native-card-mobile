@@ -176,7 +176,7 @@ const TemplateTwo = (businessData: BusinessData) => {
                                 </View>
 
                                 <Button
-                                    onClick={() => WebBrowser.openBrowserAsync(item.profileURL as string)}
+                                    onClick={() => WebBrowser.openBrowserAsync(item.profileUrL as string)}
                                     buttonColor={'#F5F7FA'} text={'Visit'} textColor={'#7E848C'}/>
                             </View>
                         ))}

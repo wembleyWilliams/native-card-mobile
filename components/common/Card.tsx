@@ -9,9 +9,9 @@ interface CardProps {
     width?: number,
     color?: any,
     padding?: number,
-    minWidth?: string,
-    maxWidth?: string,
-    margin?: string,
+    minWidth?: any,
+    maxWidth?: any,
+    margin?: any,
     children?: any;
 }
 
