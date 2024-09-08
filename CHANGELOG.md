@@ -1,3 +1,10 @@
+# [0.2.0](https://github.com/wembleyWilliams/native-card-mobile/compare/v0.1.4...v0.2.0) (2024-09-08)
+
+
+### Features
+
+* Implemented the ability to save a contact directly to the phone using a VCard ([f09a7cd](https://github.com/wembleyWilliams/native-card-mobile/commit/f09a7cd6e9fff2ab9a341463725b2ed0846dde2a))
+
 ## [0.1.4](https://github.com/wembleyWilliams/native-card-mobile/compare/v0.1.3...v0.1.4) (2024-08-23)
 
 
