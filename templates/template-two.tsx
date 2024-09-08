@@ -84,24 +84,28 @@ const TemplateTwo = (businessData: BusinessData) => {
         services
             .getContactCard(sampleVCard)
             .then((res) => {
-                const vcfData = res.data;
+                const vcfData = res;
+
+                // Create a Blob object for the vCard data
                 const blob = new Blob([vcfData], { type: 'text/vcard' });
                 const url = URL.createObjectURL(blob);
 
-                // Create a temporary anchor element to download the file
+                // Trigger the download in a mobile-friendly way
                 const a = document.createElement('a');
                 a.href = url;
                 a.download = 'contact.vcf';
+                a.style.display = 'none'; // Hide the anchor element
                 document.body.appendChild(a);
-                a.click();
+                a.click(); // Trigger the download
                 document.body.removeChild(a);
-                URL.revokeObjectURL(url); // Clean up the URL object
+
+                URL.revokeObjectURL(url); // Clean up
 
                 console.log('VCF file downloaded');
             })
             .catch((err) => {
-                console.log(err)
-            })
+                console.log('Error downloading VCF file:', err);
+            });
     }
 
     const styles = StyleSheet.create({

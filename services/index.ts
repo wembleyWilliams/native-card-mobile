@@ -6,7 +6,6 @@ const services = {
     getContactCard: async (contactCardData: any) => {
       return axios.post(`${ REACT_APP_API }/business/contact-card`, contactCardData)
           .then((res)=>{
-              console.log(res.data)
               return res.data
           })
           .catch((err) => {
