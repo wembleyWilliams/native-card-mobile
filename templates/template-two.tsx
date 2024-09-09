@@ -1,9 +1,7 @@
 import React from 'react';
 import {BusinessData} from "../common/types";
-import {Dimensions, StyleSheet, View, Text, TouchableOpacity, ScrollView} from "react-native";
-import ProfileSection from "../components/sections/profile-section/ProfileSection";
-import Description from "../components/sections/description-section/DescriptionSection";
-import SocialSection from "../components/sections/social-section/SocialSection";
+import {Dimensions, StyleSheet, View, Text, ScrollView} from "react-native";
+
 import {COLORS, FONTS, PADDING, SIZES} from "../constants/theme";
 import {Avatar, IconButton} from "react-native-paper";
 import * as WebBrowser from "expo-web-browser";
@@ -11,9 +9,9 @@ import Button from "../components/common/Button";
 import iconLoader from "../common/icon-loader";
 import services from "../services";
 
-
-const windowWidth = Dimensions.get('window').width;
-const windowHeight = Dimensions.get('window').height;
+//
+// const windowWidth = Dimensions.get('window').width;
+// const windowHeight = Dimensions.get('window').height;
 
 const TemplateTwo = (businessData: BusinessData) => {
 
@@ -84,10 +82,9 @@ const TemplateTwo = (businessData: BusinessData) => {
         services
             .getContactCard(sampleVCard)
             .then((res) => {
-                const vcfData = res;
-
+                // const vcfData = res;
                 // Create a Blob object for the vCard data
-                const blob = new Blob([vcfData], { type: 'text/vcard' });
+                const blob = new Blob([res], { type: 'text/vcard' });
                 const url = URL.createObjectURL(blob);
 
                 // Trigger the download in a mobile-friendly way
