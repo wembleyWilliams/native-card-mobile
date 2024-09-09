@@ -1,3 +1,11 @@
+## [0.2.2](https://github.com/wembleyWilliams/native-card-mobile/compare/v0.2.1...v0.2.2) (2024-09-09)
+
+
+### Bug Fixes
+
+* Update web script to --host lan to fit proper expo format. ([f83b266](https://github.com/wembleyWilliams/native-card-mobile/commit/f83b2665f6952e5d5973ddb4fcee0ea4f2b1cf51))
+* Update web script to --host lan to fit proper expo format. ([36fbc6d](https://github.com/wembleyWilliams/native-card-mobile/commit/36fbc6dafcd18dcea35b98a03b9391cd10c3bf6b))
+
 ## [0.2.1](https://github.com/wembleyWilliams/native-card-mobile/compare/v0.2.0...v0.2.1) (2024-09-09)
 
 
