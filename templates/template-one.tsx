@@ -69,7 +69,7 @@ const TemplateOne = (businessData: BusinessData) => {
             postalCode: "10001",
             countryRegion: "USA"
         },
-        workPhone: "+12123334444",
+        workPhone: "+12823334444",
         workFax: "+12123335555",
         version: "3.0"
     };
