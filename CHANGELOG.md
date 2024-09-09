@@ -1,3 +1,10 @@
+## [0.2.3](https://github.com/wembleyWilliams/native-card-mobile/compare/v0.2.2...v0.2.3) (2024-09-09)
+
+
+### Bug Fixes
+
+* Re-uploading minor import sanitization done. ([222039d](https://github.com/wembleyWilliams/native-card-mobile/commit/222039d49b0c0d8d76ccaae55284d1a6c5545f76))
+
 ## [0.2.2](https://github.com/wembleyWilliams/native-card-mobile/compare/v0.2.1...v0.2.2) (2024-09-09)
 
 
