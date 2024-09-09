@@ -1,3 +1,10 @@
+## [0.2.1](https://github.com/wembleyWilliams/native-card-mobile/compare/v0.2.0...v0.2.1) (2024-09-09)
+
+
+### Bug Fixes
+
+* Update web script to allow running on localhost ([9ca2fef](https://github.com/wembleyWilliams/native-card-mobile/commit/9ca2fef471002699dcfa93cf9cc31bc90b0da264))
+
 # [0.2.0](https://github.com/wembleyWilliams/native-card-mobile/compare/v0.1.4...v0.2.0) (2024-09-08)
 
 
