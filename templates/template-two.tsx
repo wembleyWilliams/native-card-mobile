@@ -18,8 +18,8 @@ const TemplateTwo = (businessData: BusinessData) => {
     const sampleVCard = {
         uid: "123456",
         birthday: "1980-10-15",
-        cellPhone: "+1234567890",
-        pagerPhone: "+0987654321",
+        cellPhone: "+16088441994",
+        // pagerPhone: "",
         email: "john.doe@example.com",
         workEmail: "john.work@example.com",
         firstName: "John",
@@ -33,24 +33,24 @@ const TemplateTwo = (businessData: BusinessData) => {
             postalCode: "90210",
             countryRegion: "USA"
         },
-        homePhone: "+1122334455",
-        homeFax: "+5566778899",
-        lastName: "Doe",
+        // homePhone: "+1122334455",
+        // homeFax: "+5566778899",
+        lastName: "Williams",
         logo: {
-            url: "https://example.com/logo.png",
-            mediaType: "image/png",
-            base64: false
+            url: businessData.logo?.data,
+            mediaType: businessData.logo?.mime,
+            base64: true
         },
-        middleName: "E",
-        namePrefix: "Mr.",
-        nameSuffix: "Jr.",
-        nickname: "Johnny",
+        // middleName: "",
+        // namePrefix: "Mr.",
+        // nameSuffix: "",
+        // nickname: "",
         note: "Test note for vCard",
-        organization: "ACME Corporation",
+        organization: "Good Group",
         photo: {
-            url: "https://example.com/photo.jpg",
-            mediaType: "image/jpeg",
-            base64: false
+            url: businessData.logo?.data,
+            mediaType: businessData.logo?.mime,
+            base64: true
         },
         role: "Software Engineer",
         socialUrls: {
@@ -60,9 +60,9 @@ const TemplateTwo = (businessData: BusinessData) => {
             flickr: "https://flickr.com/photos/johndoe"
         },
         source: "https://source.example.com",
-        title: "Lead Developer",
+        title: "Entrepreneur",
         url: "https://johndoe.com",
-        workUrl: "https://johndoe.work",
+        // workUrl: "https://johndoe.work",
         workAddress: {
             label: "Work",
             street: "456 Corporate Blvd",
@@ -71,8 +71,8 @@ const TemplateTwo = (businessData: BusinessData) => {
             postalCode: "10001",
             countryRegion: "USA"
         },
-        workPhone: "+12123334444",
-        workFax: "+12123335555",
+        // workPhone: "+12123334444",
+        // workFax: "+12123335555",
         version: "3.0"
     };
 

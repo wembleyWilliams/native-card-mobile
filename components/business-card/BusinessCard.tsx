@@ -82,18 +82,21 @@ const BusinessCard = () => {
 
         },
         wrapper: {
+            display: "flex",
             width: windowWidth,
             height: windowHeight,
             margin: 'auto',
-            flex: 1,
             backgroundColor: 'transparent',
             alignItems: 'center',
             justifyContent: 'center',
         },
-        container: {
-            position: "absolute",
+        container:{
+            height: "100%",
+            maxWidth: 428,
+            margin: 0,
+        },
+        loadingAnimationContainer: {
             height: windowHeight - (windowHeight * 0.2),
-            width: windowWidth > 320 ? windowWidth - (windowWidth * 0.2) : 320,
             margin: 'auto',
             alignItems: 'center',
             justifyContent: 'space-around',
@@ -205,6 +208,7 @@ const BusinessCard = () => {
 
     return (
         <View style={styles.wrapper}>
+            <View style={styles.container}>
             {loadingComplete ? (
                 <>
                     {template?
@@ -239,7 +243,8 @@ const BusinessCard = () => {
                 </>
             ) : (
                 !errorPage ? (
-                    <View style={styles.container}>
+
+                    <View style={styles.loadingAnimationContainer}>
                         <LottieView
                             style={[styles.loadingAnim, {zIndex: 1}]}
                             ref={(ref: any) => {
@@ -250,13 +255,14 @@ const BusinessCard = () => {
                             loop={true}
                             speed={1.5}
                         />
-                        <Text style={[styles.loadingText, {zIndex: 2, marginTop: -300}]}>Fetching your data</Text>
+                        {/*<Text style={[styles.loadingText, {zIndex: 2, marginTop: -300}]}>Fetching your data</Text>*/}
                     </View>
                 ) : (
                     <ErrorPage/>
                 )
 
             )}
+            </View>
         </View>
     );
 
