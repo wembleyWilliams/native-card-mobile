@@ -1,3 +1,10 @@
+## [0.2.4](https://github.com/wembleyWilliams/native-card-mobile/compare/v0.2.3...v0.2.4) (2024-09-12)
+
+
+### Bug Fixes
+
+* max-width limited to 428px, loading text removed and background color changed to white. ([73211b9](https://github.com/wembleyWilliams/native-card-mobile/commit/73211b9c203d02569f1c9050545dec2cd1f80c31))
+
 ## [0.2.3](https://github.com/wembleyWilliams/native-card-mobile/compare/v0.2.2...v0.2.3) (2024-09-09)
 
 
