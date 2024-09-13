@@ -33,5 +33,8 @@ RUN npm install --force --legacy-peer-deps
 # for development, we bind mount volumes; comment out for production
 COPY ./ .
 
+# Run the expo export:web script as part of the build
+RUN npm run predeploy  # This runs the "predeploy" script from package.json
+
 ENTRYPOINT ["npm", "run"]
 CMD ["web"]
