@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.js": "/native-card-mobile/static/js/main.e6af5a22.js",
-    "static/js/374.7eb8967c.js": "/native-card-mobile/static/js/374.7eb8967c.js",
+    "main.js": "/native-card-mobile/static/js/main.d06f96c6.js",
+    "static/js/581.1d2ba0a9.js": "/native-card-mobile/static/js/581.1d2ba0a9.js",
     "static/media/MaterialCommunityIcons.ttf": "/native-card-mobile/static/media/MaterialCommunityIcons.5d42b4e60858731e7b65.ttf",
     "static/media/avatar.png": "/native-card-mobile/static/media/avatar.2070048140bfe9e6de30.png",
     "favicon.ico": "/native-card-mobile/favicon.ico",
@@ -11,11 +11,11 @@
     "favicon-16.png": "/native-card-mobile/favicon-16.png",
     "manifest.json": "/native-card-mobile/manifest.json",
     "serve.json": "/native-card-mobile/serve.json",
-    "main.e6af5a22.js.map": "/native-card-mobile/static/js/main.e6af5a22.js.map",
-    "374.7eb8967c.js.map": "/native-card-mobile/static/js/374.7eb8967c.js.map"
+    "main.d06f96c6.js.map": "/native-card-mobile/static/js/main.d06f96c6.js.map",
+    "581.1d2ba0a9.js.map": "/native-card-mobile/static/js/581.1d2ba0a9.js.map"
   },
   "entrypoints": [
-    "static/js/374.7eb8967c.js",
-    "static/js/main.e6af5a22.js"
+    "static/js/581.1d2ba0a9.js",
+    "static/js/main.d06f96c6.js"
   ]
 }

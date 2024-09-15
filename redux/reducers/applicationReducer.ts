@@ -9,24 +9,61 @@ const initialState: ApplicationState = {
             email: '',
             businessId: [''],
             password: '',
-            profilePicture: { data: '', mime: '' }
+            profilePicture: {data: '', mime: ''}
         },
         BusinessData: {
+            industry: '',
+            phone: '',
             _id: '',
+            logo: {
+                data: '',
+                mime: '',
+            },
             name: '',
             description: '',
-            contact: '',
-            address: '',
+            contact: {
+                firstname: '',
+                lastname: '',
+                company: '',
+                phoneNumbers: [{
+                    countryCode: '',
+                    digits: '',
+                    label: '',
+                    number: ''
+                }],
+                emails: [{
+                    email: '',
+                    label: ''
+                }],
+                addresses: [{
+                    city: '',
+                    country: '',
+                    isoCountryCode: '',
+                    label: '',
+                    postalCode: '',
+                    region: '',
+                    street: ''
+                }],
+                contactType: ''
+            },
+            address: {
+                street: '',
+                city: '',
+                state: '',
+                postalCode: '',
+                country: ''
+            },
             pointOfContact: '',
-            email: '',
-            socialMedia: [{
+            contactEmail: '',
+            businessHandles: [{
+                socialMedia: '',
                 profileName: '',
-                profileURL: '',
+                profileUrL: ''
             }]
         }
     }
-
 }
+
 
 export const applicationReducer = (state = initialState, action: any) => {
     switch (action.type) {
