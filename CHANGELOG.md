@@ -5,6 +5,13 @@
 
 * Added the predeploy script to dockerfile to ensure the web-build folder is populated ([8331faa](https://github.com/wembleyWilliams/native-card-mobile/commit/8331faae819b9808caafb11c882a06490b2fbd06))
 
+## [0.2.5](https://github.com/wembleyWilliams/native-card-mobile/compare/v0.2.4...v0.2.5) (2024-09-15)
+
+
+### Bug Fixes
+
+* Added the predeploy script to dockerfile to ensure the web-build folder is populated ([8331faa](https://github.com/wembleyWilliams/native-card-mobile/commit/8331faae819b9808caafb11c882a06490b2fbd06))
+
 ## [0.2.5](https://github.com/wembleyWilliams/native-card-mobile/compare/v0.2.4...v0.2.5) (2024-09-14)
 
 
