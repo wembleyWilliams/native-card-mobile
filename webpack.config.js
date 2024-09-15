@@ -6,7 +6,6 @@ module.exports = async function (env, argv) {
     config.resolve.alias['react-native'] = 'react-native-web';
     config.resolve.alias['react-native-maps'] = 'react-native-web-maps';
     config.target = 'web';
-    config.mode = 'development';
 
     config.output = {
         path: path.resolve(__dirname, 'web-build'),
