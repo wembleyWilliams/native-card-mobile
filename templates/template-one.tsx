@@ -52,10 +52,10 @@ const TemplateOne = (businessData: BusinessData) => {
         },
         role: "Software Engineer",
         socialUrls: {
-            facebook: "https://facebook.com/johndoe",
-            linkedIn: "https://linkedin.com/in/johndoe",
-            twitter: "https://twitter.com/johndoe",
-            flickr: "https://flickr.com/photos/johndoe"
+            // facebook: "https://facebook.com/johndoe",
+            // linkedIn: "https://linkedin.com/in/johndoe",
+            // twitter: "https://twitter.com/johndoe",
+            flickr: 'https://flickr.com/photos/johndoe'
         },
         source: "https://source.example.com",
         title: "Entrepreneur",
