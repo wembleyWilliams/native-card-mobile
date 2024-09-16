@@ -1,5 +1,5 @@
 import React from 'react';
-import {Dimensions, StyleSheet, View, Text, ScrollView, TouchableOpacity} from "react-native";
+import {Dimensions, ScrollView, StyleSheet, Text, TouchableOpacity, View} from "react-native";
 import {Avatar, IconButton} from "react-native-paper";
 import {COLORS, SIZES} from "../constants/theme";
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
@@ -13,92 +13,68 @@ import services from "../services";
 const windowWidth = Dimensions.get('window').width;
 
 const TemplateOne = (businessData: BusinessData) => {
-    const sampleVCard = {
-        uid: "123456",
-        birthday: "1980-10-15",
-        cellPhone: "+16088441994",
-        // pagerPhone: "",
-        email: "john.doe@example.com",
-        workEmail: "john.work@example.com",
-        firstName: "John",
-        formattedName: "John Doe",
-        gender: "male",
-        homeAddress: {
-            label: "Home",
-            street: "123 Main St",
-            city: "Hometown",
-            stateProvince: "CA",
-            postalCode: "90210",
-            countryRegion: "USA"
-        },
-        // homePhone: "+1122334455",
-        // homeFax: "+5566778899",
-        lastName: "Williams",
-        logo: {
-            url: businessData.logo?.data,
-            mediaType: businessData.logo?.mime,
-            base64: true
-        },
-        // middleName: "",
-        // namePrefix: "Mr.",
-        // nameSuffix: "",
-        // nickname: "",
-        note: "Test note for vCard",
-        organization: "Good Group",
-        photo: {
-            url: businessData.logo?.data,
-            mediaType: businessData.logo?.mime,
-            base64: true
-        },
-        role: "Software Engineer",
-        socialUrls: {
-            // facebook: "https://facebook.com/johndoe",
-            // linkedIn: "https://linkedin.com/in/johndoe",
-            // twitter: "https://twitter.com/johndoe",
-            flickr: 'https://flickr.com/photos/johndoe'
-        },
-        source: "https://source.example.com",
-        title: "Entrepreneur",
-        url: "https://johndoe.com",
-        // workUrl: "https://johndoe.work",
-        workAddress: {
-            label: "Work",
-            street: "456 Corporate Blvd",
-            city: "Metropolis",
-            stateProvince: "NY",
-            postalCode: "10001",
-            countryRegion: "USA"
-        },
-        // workPhone: "+12123334444",
-        // workFax: "+12123335555",
-        version: "3.0"
-    };
+    // const sampleVCard = {
+    //     uid: "123456",
+    //     birthday: "1980-10-15",
+    //     cellPhone: "+16088441994",
+    //     // pagerPhone: "",
+    //     email: "john.doe@example.com",
+    //     workEmail: "john.work@example.com",
+    //     firstName: "John",
+    //     formattedName: "John Doe",
+    //     gender: "male",
+    //     homeAddress: {
+    //         label: "Home",
+    //         street: "123 Main St",
+    //         city: "Hometown",
+    //         stateProvince: "CA",
+    //         postalCode: "90210",
+    //         countryRegion: "USA"
+    //     },
+    //     // homePhone: "+1122334455",
+    //     // homeFax: "+5566778899",
+    //     lastName: "Williams",
+    //     logo: {
+    //         url: businessData.logo?.data,
+    //         mediaType: businessData.logo?.mime,
+    //         base64: true
+    //     },
+    //     // middleName: "",
+    //     // namePrefix: "Mr.",
+    //     // nameSuffix: "",
+    //     // nickname: "",
+    //     note: "Test note for vCard",
+    //     organization: "Good Group",
+    //     photo: {
+    //         url: businessData.logo?.data,
+    //         mediaType: businessData.logo?.mime,
+    //         base64: true
+    //     },
+    //     role: "Software Engineer",
+    //     socialUrls: {
+    //         // facebook: "https://facebook.com/johndoe",
+    //         // linkedIn: "https://linkedin.com/in/johndoe",
+    //         // twitter: "https://twitter.com/johndoe",
+    //         flickr: 'https://flickr.com/photos/johndoe'
+    //     },
+    //     source: "https://source.example.com",
+    //     title: "Entrepreneur",
+    //     url: "https://johndoe.com",
+    //     // workUrl: "https://johndoe.work",
+    //     workAddress: {
+    //         label: "Work",
+    //         street: "456 Corporate Blvd",
+    //         city: "Metropolis",
+    //         stateProvince: "NY",
+    //         postalCode: "10001",
+    //         countryRegion: "USA"
+    //     },
+    //     // workPhone: "+12123334444",
+    //     // workFax: "+12123335555",
+    //     version: "3.0"
+    // };
     const handleClick = () => {
-
-        services.getContactCard(sampleVCard)
-            .then((res) => {
-                const vcfData = res;
-
-                // Create a Blob object for the vCard data
-                const blob = new Blob([vcfData], { type: 'text/vcard' });
-                const url = URL.createObjectURL(blob);
-
-                // Trigger the download in a mobile-friendly way
-                const a = document.createElement('a');
-                a.href = url;
-                a.download = 'contact.vcf';
-                a.style.display = 'none'; // Hide the anchor element
-                document.body.appendChild(a);
-                a.click(); // Trigger the download
-                document.body.removeChild(a);
-
-                URL.revokeObjectURL(url); // Clean up
-
-                console.log('VCF file downloaded');
-            })
-            .catch((err) => {
-                console.log('Error downloading VCF file:', err);
-            });
+        services.generateVCard(businessData._id)
     }
     const styles = StyleSheet.create({
         wrapper: {

@@ -62,3 +62,64 @@ export interface Contact {
     }];
     contactType?: string;
 }
+
+export interface VCardData {
+    uid: string;
+    birthday: string;
+    cellPhone: string;
+    pagerPhone?: string;
+    email: string;
+    workEmail: string;
+    firstName: string;
+    formattedName: string;
+    gender: string;
+    homeAddress: {
+        label: string;
+        street: string;
+        city: string;
+        stateProvince: string;
+        postalCode: string;
+        countryRegion: string;
+    };
+    homePhone?: string;
+    homeFax?: string;
+    lastName: string;
+    logo: {
+        url?: string;
+        mediaType?: string;
+        base64: boolean;
+    };
+    middleName?: string;
+    namePrefix?: string;
+    nameSuffix?: string;
+    nickname?: string;
+    note: string;
+    organization: string;
+    photo: {
+        url?: string;
+        mediaType?: string;
+        base64: boolean;
+    };
+    role: string;
+    socialUrls: {
+        facebook?: string;
+        linkedIn?: string;
+        twitter?: string;
+        flickr?: string;
+    };
+    source: string;
+    title: string;
+    url: string;
+    workUrl?: string;
+    workAddress: {
+        label: string;
+        street: string;
+        city: string;
+        stateProvince: string;
+        postalCode: string;
+        countryRegion: string;
+    };
+    workPhone?: string;
+    workFax?: string;
+    version: string;
+}
