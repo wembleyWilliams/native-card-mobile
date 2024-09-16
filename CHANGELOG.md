@@ -1,3 +1,17 @@
+# [0.3.0](https://github.com/wembleyWilliams/native-card-mobile/compare/v0.2.4...v0.3.0) (2024-09-16)
+
+
+### Bug Fixes
+
+* Added the predeploy script to dockerfile to ensure the web-build folder is populated ([8331faa](https://github.com/wembleyWilliams/native-card-mobile/commit/8331faae819b9808caafb11c882a06490b2fbd06))
+* social URLs changed to include only one link in this section ([7d0c74e](https://github.com/wembleyWilliams/native-card-mobile/commit/7d0c74efb6ec65b23b27c41c6893619f4fc645b2))
+* Updated semantic release package.json ([6b75ac1](https://github.com/wembleyWilliams/native-card-mobile/commit/6b75ac1644c8da0022819334003a0e4f82e9fbac))
+
+
+### Features
+
+* Updated generateVcard methods to contact and generater the server for a given Vcard, the card is then downloaded ([adc0716](https://github.com/wembleyWilliams/native-card-mobile/commit/adc071673082a2027ed6cfa98dc1e0b69b6ea995))
+
 ## [0.2.5](https://github.com/wembleyWilliams/native-card-mobile/compare/v0.2.4...v0.2.5) (2024-09-15)
 
 
