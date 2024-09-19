@@ -73,8 +73,13 @@ const TemplateOne = (businessData: BusinessData) => {
     //     // workFax: "+12123335555",
     //     version: "3.0"
     // };
-    const handleClick = () => {
-        services.generateVCard(businessData._id)
+    const handleClick = async () => {
+
+        await services.generateVCard(businessData._id)
+            .then((res)=>{
+                console.log(res)
+                console.log('VCard Returned')
+            })
     }
     const styles = StyleSheet.create({
         wrapper: {

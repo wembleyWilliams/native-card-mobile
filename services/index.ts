@@ -3,7 +3,7 @@ import axios from 'axios';
 import {REACT_APP_API} from '@env';
 
 const services = {
-    generateVCard: async (cardId: string) =>{
+    generateVCard: async (cardId: string) => {
 
         // const vCard: VCardData = {
         //     uid: data.uid,
@@ -66,7 +66,7 @@ const services = {
         //     version: data.version,
         // };
 
-        services.getContactCard(cardId)
+        await services.getContactCard(cardId)
             .then((res) => {
                 // Create a Blob object for the vCard data
                 const blob = new Blob([res], { type: 'text/vcard' });
@@ -83,14 +83,14 @@ const services = {
 
                 URL.revokeObjectURL(url); // Clean up
 
-                console.log('VCF file downloaded');
+                return res
             })
             .catch((err) => {
                 console.log('Error downloading VCF file:', err);
             });
     },
-    getContactCard: async (cardId: any) => {
-      return axios.get(`${ REACT_APP_API }/business/contact-card/${cardId}`)
+    getContactCard: async (ownerId: any) => {
+      return axios.post(`${ REACT_APP_API }/util/vcard/download`,{ownerId:ownerId})
           .then((res)=>{
               return res.data
           })

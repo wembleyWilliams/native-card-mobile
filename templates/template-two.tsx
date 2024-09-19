@@ -7,6 +7,7 @@ import {Avatar, IconButton} from "react-native-paper";
 import * as WebBrowser from "expo-web-browser";
 import Button from "../components/common/Button";
 import iconLoader from "../common/icon-loader";
+import services from "../services";
 
 //
 // const windowWidth = Dimensions.get('window').width;
@@ -76,9 +77,13 @@ const TemplateTwo = (businessData: BusinessData) => {
     // };
 
 
-    const handleClick = () => {
+    const handleClick = async () => {
 
-
+        await services.generateVCard(businessData._id)
+            .then((res)=>{
+                console.log(res)
+                console.log('VCard Returned')
+            })
     }
 
     const styles = StyleSheet.create({

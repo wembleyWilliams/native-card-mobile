@@ -31,6 +31,8 @@ export interface UserData {
     businessId?: string[],
     password: string,
     profilePicture?: { data: string, mime: string }
+    createdAt: string,
+    updatedAt: string
 }
 
 export interface ApplicationState {
