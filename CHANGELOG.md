@@ -1,3 +1,10 @@
+## [0.4.1](https://github.com/wembleyWilliams/native-card-mobile/compare/v0.4.0...v0.4.1) (2024-09-21)
+
+
+### Bug Fixes
+
+* Optimized Dockerfile to address CI running problems with "not Found" dependencies ([d8e6022](https://github.com/wembleyWilliams/native-card-mobile/commit/d8e6022c45a080864c02e1170234f88f8fa0c40b))
+
 # [0.4.0](https://github.com/wembleyWilliams/native-card-mobile/compare/v0.3.0...v0.4.0) (2024-09-21)
 
 
