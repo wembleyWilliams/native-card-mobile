@@ -1,28 +1,18 @@
 {
   "files": {
-    "app.js": "/native-card-mobile/static/js/app.38f9bb51.chunk.js",
-    "app.js.map": "/native-card-mobile/static/js/app.38f9bb51.chunk.js.map",
-    "runtime~app.js": "/native-card-mobile/static/js/runtime~app.5f7edd13.js",
-    "runtime~app.js.map": "/native-card-mobile/static/js/runtime~app.5f7edd13.js.map",
-    "static/js/2.cce84926.chunk.js": "/native-card-mobile/static/js/2.cce84926.chunk.js",
-    "static/js/2.cce84926.chunk.js.map": "/native-card-mobile/static/js/2.cce84926.chunk.js.map",
-    "fonts/MaterialCommunityIcons.ttf": "/native-card-mobile/./fonts/MaterialCommunityIcons.ttf",
-    "favicon-16.png": "/native-card-mobile/favicon-16.png",
-    "favicon-32.png": "/native-card-mobile/favicon-32.png",
+    "main.js": "/native-card-mobile/bundle.js",
+    "MaterialCommunityIcons.ttf": "/native-card-mobile/5d42b4e60858731e7b65.ttf",
+    "avatar.png": "/native-card-mobile/2070048140bfe9e6de30.png",
     "favicon.ico": "/native-card-mobile/favicon.ico",
+    "cards.png": "/native-card-mobile/05701ed9fa690394c08f.png",
     "index.html": "/native-card-mobile/index.html",
+    "favicon-32.png": "/native-card-mobile/favicon-32.png",
+    "favicon-16.png": "/native-card-mobile/favicon-16.png",
     "manifest.json": "/native-card-mobile/manifest.json",
     "serve.json": "/native-card-mobile/serve.json",
-    "static/js/2.cce84926.chunk.js.LICENSE.txt": "/native-card-mobile/static/js/2.cce84926.chunk.js.LICENSE.txt",
-    "static/media/Facebook.png": "/native-card-mobile/static/media/Facebook.329072c7.png",
-    "static/media/Instagram.png": "/native-card-mobile/static/media/Instagram.80affaca.png",
-    "static/media/Twitter.png": "/native-card-mobile/static/media/Twitter.bccdd347.png",
-    "static/media/avatar.png": "/native-card-mobile/static/media/avatar.20700481.png",
-    "static/media/cards.png": "/native-card-mobile/static/media/cards.05701ed9.png"
+    "bundle.js.map": "/native-card-mobile/bundle.js.map"
   },
   "entrypoints": [
-    "static/js/runtime~app.5f7edd13.js",
-    "static/js/2.cce84926.chunk.js",
-    "static/js/app.38f9bb51.chunk.js"
+    "bundle.js"
   ]
 }
