@@ -9,7 +9,9 @@ const initialState: ApplicationState = {
             email: '',
             businessId: [''],
             password: '',
-            profilePicture: {data: '', mime: ''}
+            profilePicture: {data: '', mime: ''},
+            createdAt: '',
+            updatedAt:''
         },
         BusinessData: {
             industry: '',
