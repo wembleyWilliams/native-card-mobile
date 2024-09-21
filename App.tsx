@@ -1,28 +1,17 @@
-import {StatusBar} from 'expo-status-bar';
-import {StyleSheet, Text, View} from 'react-native';
+import {StyleSheet, View} from 'react-native';
 import BusinessCard from "./components/business-card/BusinessCard";
-import { library } from '@fortawesome/fontawesome-svg-core';
-import { fab } from '@fortawesome/free-brands-svg-icons';
+import {library} from '@fortawesome/fontawesome-svg-core';
+import {fab} from '@fortawesome/free-brands-svg-icons';
+import {Provider as PaperProvider} from "react-native-paper";
+import {Provider as ReduxProvider} from "react-redux"
+import {store} from "./redux/store";
+
+
+import {BrowserRouter as Router, Route, Routes,} from "react-router-dom";
 
 // Add all brand icons to the library
 library.add(fab);
 
-import {createStackNavigator} from "@react-navigation/stack";
-import {NavigationContainer} from "@react-navigation/native";
-import {DefaultTheme} from "@react-navigation/native";
-import {useFonts} from 'expo-font';
-import create = StyleSheet.create;
-import {Provider as PaperProvider} from "react-native-paper";
-import {Provider as ReduxProvider} from "react-redux"
-import {COLORS} from "./constants/theme";
-import {store} from "./redux/store";
-
-
-import {
-    BrowserRouter as Router,
-    Routes,
-    Route, useParams,
-} from "react-router-dom";
 
 export default function App() {
     return (

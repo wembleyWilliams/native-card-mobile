@@ -1,6 +1,5 @@
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {faQuestionCircle} from '@fortawesome/free-solid-svg-icons';
-import {icon} from "@fortawesome/fontawesome-svg-core"; // Default icon
 
 const iconLoader = (platformName: string) => {
     const lowerCasePlatformName = platformName.toLowerCase();

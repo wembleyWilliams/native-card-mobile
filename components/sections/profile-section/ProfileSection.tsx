@@ -1,8 +1,6 @@
-import React, {useState} from "react"
-import {View, Text, StyleSheet, TouchableOpacity, Image} from "react-native";
+import React from "react"
+import {StyleSheet, View} from "react-native";
 import {Avatar} from 'react-native-paper';
-import AvatarPlaceholder from '../../common/index';
-import create = StyleSheet.create;
 import Card from "../../common/Card";
 
 interface Props {

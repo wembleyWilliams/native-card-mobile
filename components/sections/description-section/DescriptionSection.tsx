@@ -1,18 +1,7 @@
 import React from "react"
-import {View, Text, StyleSheet, TouchableOpacity} from "react-native";
-import {
-    FONTS,
-    SIZES,
-    COLORS,
-    SHADOWS,
-    MARGINS,
-    CARD_HEIGHT,
-    CARD_MAX_WIDTH,
-    CARD_MIN_WIDTH
-} from "../../../constants/theme";
-import create = StyleSheet.create;
+import {Dimensions, StyleSheet, Text, View} from "react-native";
+import {CARD_MIN_WIDTH, COLORS, SIZES} from "../../../constants/theme";
 import Card from "../../common/Card";
-import {Dimensions} from 'react-native';
 
 interface Props {
     description?: string

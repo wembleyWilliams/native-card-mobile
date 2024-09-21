@@ -1,9 +1,7 @@
 import React from "react"
-import {View, StyleSheet, Text, Alert, Button, TouchableOpacity} from "react-native";
-import {FONTS, SIZES, COLORS, SHADOWS, MARGINS, CARD_HEIGHT, PADDING} from "../../../constants/theme";
-import create = StyleSheet.create;
-import Card from "../../common/Card";
-import {IconButton, } from "react-native-paper";
+import {StyleSheet, Text, TouchableOpacity, View} from "react-native";
+import {COLORS, PADDING} from "../../../constants/theme";
+import {IconButton,} from "react-native-paper";
 import * as WebBrowser from 'expo-web-browser';
 import iconLoader from "../../../common/icon-loader";
 

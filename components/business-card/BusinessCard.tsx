@@ -1,21 +1,17 @@
 import React, {useEffect, useState} from "react"
-import {View, Text, StyleSheet, TouchableOpacity} from "react-native";
-import ProfileSection from "../sections/profile-section/ProfileSection";
-import Description from "../sections/description-section/DescriptionSection";
-import SocialSection from "../sections/social-section/SocialSection";
+import {Dimensions, StyleSheet, TouchableOpacity, View} from "react-native";
 import ErrorPage from "../../pages/404NotFound";
 import {State} from "../../redux/reducers/index"
 import services from "../../services";
 import {setBusinessDetails} from "../../redux/actions";
 import {useDispatch, useSelector} from "react-redux";
-import {COLORS, FONTS, PADDING, SIZES} from "../../constants/theme";
-import {Dimensions} from 'react-native';
+import {COLORS, SIZES} from "../../constants/theme";
 import LottieView from "react-native-web-lottie";
 import {useParams} from "react-router-dom";
 import TemplateOne from "../../templates/template-one";
 import TemplateTwo from "../../templates/template-two";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import { faSyncAlt } from "@fortawesome/free-solid-svg-icons";
+import {faSyncAlt} from "@fortawesome/free-solid-svg-icons";
 
 //TODO: Upgrade logs to a better indusrty standard log system, winston maybe?
 const BusinessCard = () => {

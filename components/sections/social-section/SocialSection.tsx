@@ -1,21 +1,8 @@
 import React from "react"
-import {View, Text, StyleSheet, TouchableOpacity, Dimensions, ScrollView} from "react-native";
-import {
-    FONTS,
-    SIZES,
-    COLORS,
-    SHADOWS,
-    MARGINS,
-    CARD_HEIGHT,
-    CARD_MIN_WIDTH,
-    CARD_MAX_WIDTH
-} from "../../../constants/theme";
-import create = StyleSheet.create;
+import {ScrollView, StyleSheet, View} from "react-native";
 import Card from "../../common/Card";
 import SocialBar from "./SocialBar";
-import {List} from "react-native-paper";
 import {FlatGrid} from "react-native-super-grid";
-import socialBar from "./SocialBar";
 
 interface Props {
     socialMedia: [{

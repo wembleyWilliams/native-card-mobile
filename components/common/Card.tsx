@@ -1,6 +1,5 @@
 import React from 'react';
-import {View, Text, StyleSheet} from "react-native";
-import create = StyleSheet.create;
+import {StyleSheet} from "react-native";
 import {CARD_HEIGHT, COLORS, MARGINS} from "../../constants/theme";
 import {Card} from "react-native-paper";
 

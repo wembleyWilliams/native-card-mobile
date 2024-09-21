@@ -1,11 +1,9 @@
 import * as React from "react"
 import {useEffect, useState} from "react"
-import {View, StyleSheet, Modal, Dimensions, Text, TouchableOpacity} from "react-native"
+import {Dimensions, Modal, StyleSheet, Text, View} from "react-native"
 import {Contact} from "../../common/types";
-import {Button, IconButton, MD2Colors, TextInput} from 'react-native-paper';
-import {COLORS} from "../../constants/theme";
+import {Button, TextInput} from 'react-native-paper';
 import saveContact from "../../utils/saveContact";
-import {all} from "axios";
 
 interface Props {
     open: any;
