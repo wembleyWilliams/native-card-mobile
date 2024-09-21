@@ -1,3 +1,17 @@
+# [0.4.0](https://github.com/wembleyWilliams/native-card-mobile/compare/v0.3.0...v0.4.0) (2024-09-21)
+
+
+### Bug Fixes
+
+* force new release ([2258c1d](https://github.com/wembleyWilliams/native-card-mobile/commit/2258c1dece134ced0bb83e30cfdf63ed280e0280))
+* Optimized imports ([9e87a8b](https://github.com/wembleyWilliams/native-card-mobile/commit/9e87a8b6686a307e9d323d4c6fd9a741db0fbd7f))
+* Optimized imports ([5cfd0bb](https://github.com/wembleyWilliams/native-card-mobile/commit/5cfd0bb5aa2504b478df27914352e17ae7d4e010))
+
+
+### Features
+
+* force new release ([4e74cb8](https://github.com/wembleyWilliams/native-card-mobile/commit/4e74cb82fe312e08d6ac06716f2663dea5bf33be))
+
 # [0.3.0](https://github.com/wembleyWilliams/native-card-mobile/compare/v0.2.4...v0.3.0) (2024-09-16)
 
 
