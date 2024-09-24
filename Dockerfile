@@ -13,7 +13,8 @@ EXPOSE $PORT 19001 19002
 # install global packages
 ENV NPM_CONFIG_PREFIX=/home/node/.npm-global
 ENV PATH /home/node/.npm-global/bin:$PATH
-RUN npm install --unsafe-perm --allow-root -g npm@10.8.2
+RUN npm install -g npm@10.8.3
+    #npm install --unsafe-perm --allow-root -g npm@10.8.2
 #RUN npm install --unsafe-perm --allow-root -g expo@49
 #RUN npm i --unsafe-perm --allow-root -g expo-cli@6.0.0
 
@@ -34,7 +35,7 @@ RUN npm install
 COPY ./ .
 
 # Run the expo export:web script as part of the build
-RUN npm run predeploy  # This runs the "predeploy" script from package.json
-
-ENTRYPOINT ["npm", "run"]
-CMD ["web"]
+#RUN npm run predeploy  # This runs the "predeploy" script from package.json
+#
+#ENTRYPOINT ["npm", "run"]
+#CMD ["web"]
