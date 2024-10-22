@@ -13,7 +13,7 @@ import TemplateTwo from "../../templates/template-two";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faSyncAlt} from "@fortawesome/free-solid-svg-icons";
 
-//TODO: Upgrade logs to a better indusrty standard log system, winston maybe?
+//TODO: Upgrade logs to a better industry standard log system, winston maybe?
 const BusinessCard = () => {
     let {cardId} = useParams()
     const [loadingComplete, setLoadingComplete] = useState(false)
@@ -211,11 +211,11 @@ const BusinessCard = () => {
                         (
                             <>
                                 {renderTemplate()}
-                                <View style={styles.buttonContainer}>
-                                    <TouchableOpacity style={styles.button} onPress={toggleTemplate}>
-                                        <FontAwesomeIcon icon={faSyncAlt} style={styles.buttonIcon} />
-                                    </TouchableOpacity>
-                                </View>
+                                {/*<View style={styles.buttonContainer}>*/}
+                                {/*    <TouchableOpacity style={styles.button} onPress={toggleTemplate}>*/}
+                                {/*        <FontAwesomeIcon icon={faSyncAlt} style={styles.buttonIcon} />*/}
+                                {/*    </TouchableOpacity>*/}
+                                {/*</View>*/}
                             </>
 
                         )
