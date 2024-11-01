@@ -1,9 +1,9 @@
 import React, {useEffect, useState} from "react"
 import {Dimensions, StyleSheet, TouchableOpacity, View} from "react-native";
 import ErrorPage from "../../pages/404NotFound";
-import {State} from "../../redux/reducers/index"
+import {State} from "../../redux/reducers"
 import services from "../../services";
-import {setBusinessDetails} from "../../redux/actions";
+import {setCardDetails} from "../../redux/actions";
 import {useDispatch, useSelector} from "react-redux";
 import {COLORS, SIZES} from "../../constants/theme";
 import LottieView from "react-native-web-lottie";
@@ -15,7 +15,7 @@ import {faSyncAlt} from "@fortawesome/free-solid-svg-icons";
 
 //TODO: Upgrade logs to a better industry standard log system, winston maybe?
 const BusinessCard = () => {
-    let {cardId} = useParams()
+    const {userId} = useParams();
     const [loadingComplete, setLoadingComplete] = useState(false)
     const [errorPage, setErrorPage] = useState(false)
     const [isOpenSaveContactModal, setIsOpenSaveContactModal] = useState(false)
@@ -27,41 +27,37 @@ const BusinessCard = () => {
     const windowHeight = Dimensions.get('window').height;
 
     const _id = useSelector(
-        (state: State) => state.application.application.BusinessData?._id
+        (state: State) => state.application.application.CardData?._id
     )
     const description = useSelector(
-        (state: State) => state.application.application.BusinessData?.description
+        (state: State) => state.application.application.CardData?.description
     )
     const phone = useSelector(
-        (state: State) => state.application.application.BusinessData?.phone
+        (state: State) => state.application.application.CardData?.phone
     )
 
     const industry = useSelector(
-        (state: State) => state.application.application.BusinessData?.industry
+        (state: State) => state.application.application.CardData?.industry
     )
 
     const logo = useSelector(
-        (state: State) => state.application.application.BusinessData?.logo
+        (state: State) => state.application.application.CardData?.logo
     )
 
-    const businessHandles = useSelector(
-        (state: State) => state.application.application.BusinessData?.businessHandles
-    )
-
-    const contact = useSelector(
-        (state: State) => state.application.application.BusinessData?.contact
+    const socials = useSelector(
+        (state: State) => state.application.application.CardData?.socialsData
     )
 
     const name = useSelector(
-        (state: State) => state.application.application.BusinessData?.name
+        (state: State) => state.application.application.CardData?.name
     )
 
     const address = useSelector(
-        (state: State) => state.application.application.BusinessData?.address
+        (state: State) => state.application.application.CardData?.address
     )
 
     const email = useSelector(
-        (state: State) => state.application.application.BusinessData?.contactEmail
+        (state: State) => state.application.application.CardData?.contactEmail
     )
 
     const styles = StyleSheet.create({
@@ -121,28 +117,28 @@ const BusinessCard = () => {
             // marginTop: -16
         }
     });
-
     useEffect(() => {
-        console.log("Retrieving business data")
-        services
-            .getBusiness(cardId)
-            .then((res) => {
-                if (res) {
-                    dispatch(setBusinessDetails(res))
-                    setLoadingComplete(true)
-                    console.log("Business Data retrieved successfully");
-                } else if (!res) {
-                    setLoadingComplete(false)
-                    setErrorPage(true)
-                    console.log('No network data retrieved')
+        const fetchData = async () => {
+            try {
+                console.log("Retrieving card data");
+                const cardData = await services.getCardData(userId);
+                if (cardData) {
+                    dispatch(setCardDetails(cardData[0]));
+                    setLoadingComplete(true);
+                    console.log("Card Data retrieved successfully");
+                } else {
+                    setLoadingComplete(false);
+                    setErrorPage(true);
+                    console.log('No network data retrieved');
                 }
-            })
-            .catch((err) => {
-                console.log(err)
-            })
+            } catch (err) {
+                console.log(err);
+            }
+        };
 
-        console.log("Retrieving user data")
-    }, [])
+        fetchData();
+    }, []);
+
 
     useEffect(() => {
         // @ts-ignore
@@ -160,11 +156,10 @@ const BusinessCard = () => {
                         phone={phone}
                         industry={industry}
                         description={description}
-                        contact={contact}
                         address={address}
-                        pointOfContact={'placeholder'}
                         contactEmail={email}
-                        businessHandles={businessHandles}
+                        socialsData={socials}
+                        // userId={userId}
                     />
                 );
             case 'template-2':
@@ -176,11 +171,10 @@ const BusinessCard = () => {
                         industry={industry}
                         name={name}
                         description={description}
-                        contact={contact}
                         address={address}
-                        pointOfContact={'placeholder'}
                         contactEmail={email}
-                        businessHandles={businessHandles}
+                        socials={socials}
+                        userId={userId}
                     />
                 );
             default:
@@ -190,11 +184,9 @@ const BusinessCard = () => {
                     name={name}
                     phone={phone}
                     industry={industry}
-                    description={description}
-                    contact={contact} address={address}
-                    pointOfContact={'placeholder'} contactEmail={email}
-                    businessHandles={businessHandles}
-                />;
+                    description={description} address={address} contactEmail={email}
+                    socials={socials}
+                    userId={userId}/>;
         }
     };
 
@@ -228,11 +220,10 @@ const BusinessCard = () => {
                                 phone={phone}
                                 industry={industry}
                                 description={description}
-                                contact={contact}
                                 address={address}
-                                pointOfContact={'placeholder'}
                                 contactEmail={email}
-                                businessHandles={businessHandles}
+                                socials={socials}
+                                userId={userId}
                             />
                         )
                     }

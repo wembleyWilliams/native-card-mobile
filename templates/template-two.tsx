@@ -9,7 +9,7 @@ import Button from "../components/common/Button";
 import iconLoader from "../common/icon-loader";
 import services from "../services";
 
-const TemplateTwo = (businessData: BusinessData) => {
+const TemplateTwo = (businessData: any) => {
 
 
     const handleClick = async () => {

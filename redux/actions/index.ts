@@ -1,13 +1,8 @@
-import {BusinessData, UserData} from "../../common/types";
+import {CardData} from "../../common/types";
 
-export const setBusinessDetails = (businessDetails: BusinessData) => ({
-    type: 'SET_BUSINESS_DETAILS',
-    payload: {BusinessData: businessDetails}
-})
-
-export const setUserDetails = (userDetails: UserData) => ({
-    type: 'SET_USER_DETAILS',
-    payload: {UserData: userDetails}
+export const setCardDetails = (cardDetails: any) => ({
+    type: 'SET_CARD_DETAILS',
+    payload: {CardData: cardDetails}
 })
 
 

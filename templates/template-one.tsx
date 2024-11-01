@@ -4,7 +4,6 @@ import {Avatar, IconButton} from "react-native-paper";
 import {COLORS, SIZES} from "../constants/theme";
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {faMapMarkerAlt, faShareAlt} from '@fortawesome/free-solid-svg-icons'; // Import Share icon
-import {BusinessData} from "../common/types";
 import iconLoader from "../common/icon-loader";
 import Button from "../components/common/Button";
 import * as WebBrowser from "expo-web-browser";
@@ -12,13 +11,12 @@ import services from "../services";
 
 const windowWidth = Dimensions.get('window').width;
 
-const TemplateOne = (businessData: BusinessData) => {
+const TemplateOne = (cardData: any) => {
 
     const handleClick = async () => {
 
-        await services.generateVCard(businessData._id)
+        await services.generateVCard(cardData._id)
             .then((res)=>{
-                console.log(res)
                 console.log('VCard Returned')
             })
     }
@@ -162,26 +160,28 @@ const TemplateOne = (businessData: BusinessData) => {
             <ScrollView contentContainerStyle={styles.container}>
                 <View style={styles.profileSection}>
                     <View style={styles.avatarContainer}>
-                        {businessData.logo ? (
+                        {cardData.logo ? (
                             <Avatar.Image
+                                style={{backgroundColor: 'transparent'}}
                                 size={100}
-                                source={{uri: `data:${businessData.logo?.mime};base64,${businessData.logo?.data}`}}
+                                source={{uri: `data:${cardData.logo?.mime};base64,${cardData.logo?.data}`}}
                             />
                         ) : (
                             <Avatar.Image
+                                style={{backgroundColor: 'transparent'}}
                                 size={100}
                                 source={require('../assets/placeholders/avatar.png')}
                             />
                         )}
                     </View>
                     <View style={styles.textContainer}>
-                        <Text style={styles.nameText}>Wembley Williams</Text>
-                        <Text style={styles.contactText}>{businessData.phone}</Text>
-                        <Text style={styles.contactText}>{businessData.contactEmail}</Text>
+                        <Text style={styles.nameText}>{cardData.name}</Text>
+                        <Text style={styles.contactText}>{cardData.phone}</Text>
+                        <Text style={styles.contactText}>{cardData.contactEmail}</Text>
                         <View style={styles.addressTextContainer}>
                             <FontAwesomeIcon icon={faMapMarkerAlt} size="1x" color="#fff"/>
                             <Text style={styles.addressText}>
-                                {businessData.address.city}, {businessData.address.state}, {businessData.address.country}, {businessData.address.postalCode}
+                                {cardData.address?.city? cardData.address?.city: 'City' }, {cardData.address?.state?cardData.address?.state: 'State'}, {cardData.address?.country}, {cardData.address?.postalCode?cardData.address?.postalCode:'Postal Code'}
                             </Text>
                         </View>
                     </View>
@@ -198,7 +198,7 @@ const TemplateOne = (businessData: BusinessData) => {
                                 fontSize: SIZES.medium,
                                 fontWeight: 'bold',
                                 textAlign: 'center'
-                            }}>{businessData.name}</Text>
+                            }}>{cardData.name}</Text>
                             <View style={styles.shareButtonContainer}>
                                 <TouchableOpacity style={styles.shareButtonIcon}
                                                   onPress={handleClick}>
@@ -211,10 +211,10 @@ const TemplateOne = (businessData: BusinessData) => {
                     </View>
                     <View style={styles.sectionTitle}>
                         <Text style={{color: '#FFF', fontWeight: 'bold'}}>About US</Text>
-                        <Text style={{color: '#FFF'}}>Influencer</Text>
+                        <Text style={{color: '#FFF'}}>{cardData.industry}</Text>
                     </View>
                     <Text style={styles.sectionText}>
-                        {businessData.description}
+                        {cardData.description}
                     </Text>
                 </View>
 
@@ -224,7 +224,8 @@ const TemplateOne = (businessData: BusinessData) => {
                         <Text style={{color: '#FFF'}}>Links</Text>
                     </View>
                     <View style={styles.socialContainer}>
-                        {businessData.businessHandles.map((item, index) => (
+                        {cardData.socialsData? cardData.socialsData.map((item: any, index: any) => (
+
                             <View
                                 key={index}
                                 style={styles.item}>
@@ -237,7 +238,7 @@ const TemplateOne = (businessData: BusinessData) => {
 
                                     <IconButton
                                         style={styles.icon}
-                                        icon={() => iconLoader(item.socialMedia)}
+                                        icon={() => iconLoader(item.socialMediaPlatform)}
                                         size={24}
                                         iconColor={"#FFF"}
                                         containerColor={"#FFF"}
@@ -248,10 +249,10 @@ const TemplateOne = (businessData: BusinessData) => {
                                 </View>
 
                                 <Button
-                                    onClick={() => WebBrowser.openBrowserAsync(item.profileUrL as string)}
+                                    onClick={() => WebBrowser.openBrowserAsync(item.profileUrl as string)}
                                     buttonColor={'#F5F7FA'} text={'Visit'} textColor={'#7E848C'}/>
                             </View>
-                        ))}
+                        )):null}
                     </View>
                 </View>
             </ScrollView>

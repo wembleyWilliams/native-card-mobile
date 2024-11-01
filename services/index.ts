@@ -1,7 +1,7 @@
 import axios from 'axios';
 // @ts-ignore
 import {REACT_APP_API} from '@env';
-
+// const REACT_APP_API = "http://localhost:8080"
 const services = {
     generateVCard: async (cardId: string) => {
 
@@ -89,8 +89,8 @@ const services = {
                 console.log('Error downloading VCF file:', err);
             });
     },
-    getContactCard: async (ownerId: any) => {
-      return axios.post(`${ REACT_APP_API }/util/vcard/download`,{ownerId:ownerId})
+    getContactCard: async (userId: any) => {
+      return axios.post(`${ REACT_APP_API }/util/vcard/download`,{ownerId:userId})
           .then((res)=>{
               return res.data
           })
@@ -99,40 +99,15 @@ const services = {
               return null
           })
     },
-    // getUser: async () => {
-    //   //local
-    //   return axios.get(`${url}/user/63d1f602022d42b7cc4aa558`)
-    //       .then((res)=>{
-    //           return res.data
-    //       })
-    //       .catch((err) => {
-    //           console.log(err)
-    //           return null
-    //       })
-    // },
-    getBusiness: async (cardId?: string) => {
-
-        if (!cardId) {
-            //Local - For Testing only
-            return axios.get(`${REACT_APP_API}/business/6691e4a5acd809745e822caa`)
-                .then((res) => {
-                    return res.data;
-                })
-                .catch((err) => {
-                    console.log(err)
-                    return null
-                })
-        } else {
-            // Hosted
-            return axios.get(`${REACT_APP_API}/business/${cardId}`)
-                .then((res) => {
-                    return res.data;
-                })
-                .catch((err) => {
-                    console.log(err)
-                    return null
-                })
-        }
+    getCardData: async (userId: string) => {
+        return axios.get(`${REACT_APP_API}/util/vcard/info/${userId}`)
+            .then((res) => {
+                return res.data;
+            })
+            .catch((err) => {
+                console.log(err)
+                return null
+            })
     }
 }
 

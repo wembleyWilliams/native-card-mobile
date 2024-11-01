@@ -2,52 +2,10 @@ import {ApplicationState} from "../../common/types";
 
 const initialState: ApplicationState = {
     application: {
-        UserData: {
+        CardData: {
             _id: '',
-            firstname: '',
-            lastname: '',
-            email: '',
-            businessId: [''],
-            password: '',
-            profilePicture: {data: '', mime: ''},
-            createdAt: '',
-            updatedAt:''
-        },
-        BusinessData: {
-            industry: '',
-            phone: '',
-            _id: '',
-            logo: {
-                data: '',
-                mime: '',
-            },
             name: '',
-            description: '',
-            contact: {
-                firstname: '',
-                lastname: '',
-                company: '',
-                phoneNumbers: [{
-                    countryCode: '',
-                    digits: '',
-                    label: '',
-                    number: ''
-                }],
-                emails: [{
-                    email: '',
-                    label: ''
-                }],
-                addresses: [{
-                    city: '',
-                    country: '',
-                    isoCountryCode: '',
-                    label: '',
-                    postalCode: '',
-                    region: '',
-                    street: ''
-                }],
-                contactType: ''
-            },
+            industry: '',
             address: {
                 street: '',
                 city: '',
@@ -55,36 +13,106 @@ const initialState: ApplicationState = {
                 postalCode: '',
                 country: ''
             },
-            pointOfContact: '',
+            website: '',
             contactEmail: '',
-            businessHandles: [{
-                socialMedia: '',
-                profileName: '',
-                profileUrL: ''
-            }]
+            phone: '',
+            description: '',
+            logo: {
+                mime: '',
+                data: ''
+            },
+            socialsData: [
+                {
+                    userId: '',
+                    businessId: '',
+                    platform: '',
+                    profileName: '',
+                    profileUrl: '',
+                    created_at: '',
+                    updated_at: ''
+                }
+            ],
+            roleData: {
+                _id: '',
+                userId: '',
+                businessId: '',
+                role: ''
+            },
+            vcardData: {
+                _id: '',
+                birthday: '',
+                cellPhone: '',
+                pagerPhone: '',
+                email: '',
+                workEmail: '',
+                firstName: '',
+                formattedName: '',
+                gender: '',
+                homeAddress: {
+                    label: '',
+                    street: '',
+                    city: '',
+                    stateProvince: '',
+                    postalCode: '',
+                    countryRegion: ''
+                },
+                homePhone: '',
+                homeFax: '',
+                lastName: '',
+                logo: {
+                    url: '',
+                    mediaType: '',
+                    base64: false
+                },
+                middleName: '',
+                namePrefix: '',
+                nameSuffix: '',
+                nickname: '',
+                note: '',
+                organization: '',
+                photo: {
+                    url: '',
+                    mediaType: '',
+                    base64: false
+                },
+                role: '',
+                socialUrls: {
+                    instagram: ''
+                },
+                source: '',
+                title: '',
+                url: '',
+                workUrl: '',
+                workAddress: {
+                    label: '',
+                    street: '',
+                    city: '',
+                    stateProvince: '',
+                    postalCode: '',
+                    countryRegion: ''
+                },
+                workPhone: '',
+                workFax: '',
+                version: '',
+                ownerId: ''
+            }
         }
     }
 }
 
 
-export const applicationReducer = (state = initialState, action: any) => {
-    switch (action.type) {
-        case "SET_BUSINESS_DETAILS":
-            const business = action.payload
-            return {
-                ...state,
-                application: business
-            };
-        case "SET_USER_DETAILS":
-            const user = action.payload
-            return {
-                ...state,
-                application: user
-            };
+    export const applicationReducer = (state = initialState, action: any) => {
+        switch (action.type) {
+            case "SET_CARD_DETAILS":
+                const card = action.payload
+                return {
+                    ...state,
+                    application: card
+                }
 
-        default:
-            return state;
+            default:
+                return state;
+        }
     }
-}
 
-export default applicationReducer;
+    export default applicationReducer;
