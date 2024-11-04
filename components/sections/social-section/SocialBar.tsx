@@ -1,9 +1,7 @@
 import React from "react"
-import {View, StyleSheet, Text, Alert, Button, TouchableOpacity} from "react-native";
-import {FONTS, SIZES, COLORS, SHADOWS, MARGINS, CARD_HEIGHT, PADDING} from "../../../constants/theme";
-import create = StyleSheet.create;
-import Card from "../../common/Card";
-import {IconButton, } from "react-native-paper";
+import {StyleSheet, Text, TouchableOpacity, View} from "react-native";
+import {COLORS, PADDING} from "../../../constants/theme";
+import {IconButton,} from "react-native-paper";
 import * as WebBrowser from 'expo-web-browser';
 import iconLoader from "../../../common/icon-loader";
 
@@ -14,12 +12,14 @@ interface Props {
 }
 
 const SocialBar = (props: Props) => {
+    console.log(props)
     return (
         <>
             <View style={styles.wrapper}>
                 <View style={styles.container}>
                     <IconButton
-                        icon={iconLoader(props.profileURL as string)}
+                        style={styles.icon}
+                        icon={():any=> {console.log(props.profileURL as string); iconLoader(props.profileURL as string)}}
                         size={15}
                         iconColor={"#FFF"}
                         containerColor={"#FFF"}
@@ -48,12 +48,17 @@ const styles = StyleSheet.create({
     container: {
         flexDirection: 'row',
         alignItems: 'center',
-        justifyContent: 'space-around',
-        // width: '100%',
+        justifyContent: 'space-between',
         borderRadius: 60,
     },
+    icon: {
+        maxWidth: 32
+    },
     handle: {
-        color: '#FFF'
+        color: '#FFF',
+        textWrap:'none',
+        textOverflow: "ellipsis",
+        maxWidth: 190
     },
     linkButtonText: {
         color: '#FFF',
@@ -65,7 +70,8 @@ const styles = StyleSheet.create({
         borderRadius: 10,
         alignContent: "center",
         paddingHorizontal: PADDING.button,
-        paddingVertical: PADDING.button
+        paddingVertical: PADDING.button,
+        maxWidth: 75
     }
 })
 

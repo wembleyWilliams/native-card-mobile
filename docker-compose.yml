@@ -1,0 +1,15 @@
+services:
+  card-mobile-app:
+    image: card:latest
+    ports:
+      - "19006:19006"
+      - "19001:19001"
+      - "19002:19002"
+      - "19000:19000"
+    volumes:
+      - .:/usr/src/app
+      - /usr/src/app/node_modules
+    environment:
+      NODE_ENV: development
+    entrypoint: ["npm", "run"]
+    command: ["web"]

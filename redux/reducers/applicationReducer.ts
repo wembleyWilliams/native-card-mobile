@@ -2,50 +2,117 @@ import {ApplicationState} from "../../common/types";
 
 const initialState: ApplicationState = {
     application: {
-        UserData: {
-            _id: '',
-            firstname: '',
-            lastname: '',
-            email: '',
-            businessId: [''],
-            password: '',
-            profilePicture: { data: '', mime: '' }
-        },
-        BusinessData: {
+        CardData: {
             _id: '',
             name: '',
+            industry: '',
+            address: {
+                street: '',
+                city: '',
+                state: '',
+                postalCode: '',
+                country: ''
+            },
+            website: '',
+            contactEmail: '',
+            phone: '',
             description: '',
-            contact: '',
-            address: '',
-            pointOfContact: '',
-            email: '',
-            socialMedia: [{
-                profileName: '',
-                profileURL: '',
-            }]
+            logo: {
+                mime: '',
+                data: ''
+            },
+            socialsData: [
+                {
+                    userId: '',
+                    businessId: '',
+                    platform: '',
+                    profileName: '',
+                    profileUrl: '',
+                    created_at: '',
+                    updated_at: ''
+                }
+            ],
+            roleData: {
+                _id: '',
+                userId: '',
+                businessId: '',
+                role: ''
+            },
+            vcardData: {
+                _id: '',
+                birthday: '',
+                cellPhone: '',
+                pagerPhone: '',
+                email: '',
+                workEmail: '',
+                firstName: '',
+                formattedName: '',
+                gender: '',
+                homeAddress: {
+                    label: '',
+                    street: '',
+                    city: '',
+                    stateProvince: '',
+                    postalCode: '',
+                    countryRegion: ''
+                },
+                homePhone: '',
+                homeFax: '',
+                lastName: '',
+                logo: {
+                    url: '',
+                    mediaType: '',
+                    base64: false
+                },
+                middleName: '',
+                namePrefix: '',
+                nameSuffix: '',
+                nickname: '',
+                note: '',
+                organization: '',
+                photo: {
+                    url: '',
+                    mediaType: '',
+                    base64: false
+                },
+                role: '',
+                socialUrls: {
+                    instagram: ''
+                },
+                source: '',
+                title: '',
+                url: '',
+                workUrl: '',
+                workAddress: {
+                    label: '',
+                    street: '',
+                    city: '',
+                    stateProvince: '',
+                    postalCode: '',
+                    countryRegion: ''
+                },
+                workPhone: '',
+                workFax: '',
+                version: '',
+                ownerId: ''
+            }
+        }
+    }
+}
+
+
+    export const applicationReducer = (state = initialState, action: any) => {
+        switch (action.type) {
+            case "SET_CARD_DETAILS":
+                const card = action.payload
+                return {
+                    ...state,
+                    application: card
+                }
+
+            default:
+                return state;
         }
     }
 
-}
-
-export const applicationReducer = (state = initialState, action: any) => {
-    switch (action.type) {
-        case "SET_BUSINESS_DETAILS":
-            const business = action.payload
-            return {
-                ...state,
-                application: business
-            };
-        case "SET_USER_DETAILS":
-            const user = action.payload
-            return {
-                ...state,
-                application: user
-            };
-
-        default:
-            return state;
-    }
-}
-
-export default applicationReducer;
+    export default applicationReducer;

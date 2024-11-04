@@ -1,13 +1,12 @@
 import React from "react"
-import {View, Text, StyleSheet, TouchableOpacity} from "react-native";
-import {FONTS, SIZES, COLORS, SHADOWS, MARGINS, CARD_HEIGHT, CARD_MAX_WIDTH, CARD_MIN_WIDTH} from "../../../constants/theme";
-import create = StyleSheet.create;
+import {Dimensions, StyleSheet, Text, View} from "react-native";
+import {CARD_MIN_WIDTH, COLORS, SIZES} from "../../../constants/theme";
 import Card from "../../common/Card";
-import {Dimensions} from 'react-native';
 
 interface Props {
     description?: string
 }
+
 const windowWidth = Dimensions.get('window').width;
 
 const DescriptionSection = (props: Props) => {
@@ -15,25 +14,30 @@ const DescriptionSection = (props: Props) => {
     return (
         <Card
             color={COLORS.secondary}
-            minWidth={CARD_MIN_WIDTH.toString()}
-            maxWidth={CARD_MAX_WIDTH.toString()}
+            // minWidth={CARD_MIN_WIDTH.toString()}
+            // maxWidth={CARD_MAX_WIDTH.toString()}
         >
             <View style={styles.wrapper}>
-                <Text style={styles.title}>
-                    Description
-                </Text>
-                <Text style={styles.description}>
-                    {props.description}
-                </Text>
+                <View style={styles.container}>
+                    <Text style={styles.title}>
+                        Description
+                    </Text>
+                    <Text style={styles.description}>
+                        {props.description}
+                    </Text>
+                </View>
             </View>
-
         </Card>
     )
 }
 
 const styles = StyleSheet.create({
     wrapper: {
-        width: windowWidth - windowWidth*(0.30),
+        // width: windowWidth - windowWidth*(0.30),
+        width: CARD_MIN_WIDTH
+    },
+    container: {
+        height: 300
     },
     title: {
         color: '#FFF',
@@ -44,8 +48,8 @@ const styles = StyleSheet.create({
         paddingTop: 20,
         color: '#FFF',
         fontSize: SIZES.font,
-        alignItems:'center',
-        alignContent:'flex-start',
+        alignItems: 'center',
+        alignContent: 'flex-start',
         textAlign: 'left'
     }
 });

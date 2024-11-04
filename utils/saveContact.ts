@@ -1,5 +1,4 @@
 import * as Contacts from 'react-native-contacts';
-import {Contact} from '../common/types'
 
 const saveContact = async (contactToSave?: { emails: {}[]; addresses: {}[]; firstname: string; company: string; contactType: string; phoneNumbers: {}[]; lastname: string }) => {
 
