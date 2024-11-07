@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from "react"
-import {Dimensions, StyleSheet, TouchableOpacity, View} from "react-native";
+import {Dimensions, StyleSheet, View} from "react-native";
 import ErrorPage from "../../pages/404NotFound";
 import {State} from "../../redux/reducers"
 import services from "../../services";
@@ -10,15 +10,13 @@ import LottieView from "react-native-web-lottie";
 import {useParams} from "react-router-dom";
 import TemplateOne from "../../templates/template-one";
 import TemplateTwo from "../../templates/template-two";
-import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {faSyncAlt} from "@fortawesome/free-solid-svg-icons";
 
 //TODO: Upgrade logs to a better industry standard log system, winston maybe?
 const BusinessCard = () => {
     const {userId} = useParams();
     const [loadingComplete, setLoadingComplete] = useState(false)
     const [errorPage, setErrorPage] = useState(false)
-    const [isOpenSaveContactModal, setIsOpenSaveContactModal] = useState(false)
+    // const [isOpenSaveContactModal, setIsOpenSaveContactModal] = useState(false)
     const [template, setTemplate] = useState('template-1')
     let animRef = null;
 
@@ -150,7 +148,7 @@ const BusinessCard = () => {
             case 'template-1':
                 return (
                     <TemplateOne
-                        _id={_id}
+                        _id={userId}
                         logo={logo}
                         name={name}
                         phone={phone}
@@ -165,7 +163,7 @@ const BusinessCard = () => {
             case 'template-2':
                 return (
                     <TemplateTwo
-                        _id={_id}
+                        _id={userId}
                         logo={logo}
                         phone={phone}
                         industry={industry}
@@ -190,9 +188,9 @@ const BusinessCard = () => {
         }
     };
 
-    const toggleTemplate = () => {
-        setTemplate(prevTemplate => prevTemplate === 'template-1' ? 'template-2' : 'template-1');
-    };
+    // const toggleTemplate = () => {
+    //     setTemplate(prevTemplate => prevTemplate === 'template-1' ? 'template-2' : 'template-1');
+    // };
 
     return (
         <View style={styles.wrapper}>
