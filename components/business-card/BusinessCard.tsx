@@ -118,16 +118,13 @@ const BusinessCard = () => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                console.log("Retrieving card data");
                 const cardData = await services.getCardData(userId);
                 if (cardData) {
                     dispatch(setCardDetails(cardData[0]));
                     setLoadingComplete(true);
-                    console.log("Card Data retrieved successfully");
                 } else {
                     setLoadingComplete(false);
                     setErrorPage(true);
-                    console.log('No network data retrieved');
                 }
             } catch (err) {
                 console.log(err);

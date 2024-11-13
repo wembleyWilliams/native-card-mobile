@@ -1,8 +1,8 @@
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {faQuestionCircle} from '@fortawesome/free-solid-svg-icons';
 
-const iconLoader = (platformName: string) => {
-    const lowerCasePlatformName = platformName.toLowerCase();
+const iconLoader = (platform: string) => {
+    const lowerCasePlatformName = platform.toLowerCase();
 
     switch (lowerCasePlatformName) {
         case 'twitter':

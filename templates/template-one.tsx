@@ -238,7 +238,7 @@ const TemplateOne = (cardData: any) => {
 
                                     <IconButton
                                         style={styles.icon}
-                                        icon={() => iconLoader(item.socialMediaPlatform)}
+                                        icon={() => iconLoader(item.platform)}
                                         size={24}
                                         iconColor={"#FFF"}
                                         containerColor={"#FFF"}

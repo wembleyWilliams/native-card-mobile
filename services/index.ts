@@ -1,7 +1,7 @@
 import axios from 'axios';
 // @ts-ignore
-import {REACT_APP_API} from '@env';
-// const REACT_APP_API = "http://localhost:8080"
+// import {REACT_APP_API} from '@env';
+const REACT_APP_API = "http://localhost:8080"
 const services = {
     generateVCard: async (cardId: string) => {
 
@@ -99,8 +99,8 @@ const services = {
               return null
           })
     },
-    getCardData: async (userId: string) => {
-        return axios.get(`${REACT_APP_API}/util/vcard/info/${userId}`)
+    getCardData: async (cardId: string) => {
+        return axios.get(`${REACT_APP_API}/card/info/${cardId}`)
             .then((res) => {
                 return res.data;
             })

@@ -12,7 +12,6 @@ interface Props {
 }
 
 const SocialBar = (props: Props) => {
-    console.log(props)
     return (
         <>
             <View style={styles.wrapper}>
