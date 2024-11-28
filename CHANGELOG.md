@@ -1,3 +1,10 @@
+# [0.5.0](https://github.com/wembleyWilliams/native-card-mobile/compare/v0.4.1...v0.5.0) (2024-11-28)
+
+
+### Features
+
+* Added to new services and replaced the card data fetch logic to include tap increments on each load ([30f3a57](https://github.com/wembleyWilliams/native-card-mobile/commit/30f3a576a137858c71a6f82c0744f482760d39ad))
+
 ## [0.4.1](https://github.com/wembleyWilliams/native-card-mobile/compare/v0.4.0...v0.4.1) (2024-09-21)
 
 
