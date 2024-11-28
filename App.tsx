@@ -21,7 +21,7 @@ export default function App() {
                 <Router>
                     <Routes>
                         <Route
-                            path={':userId'}
+                            path={':cardId'}
                             element={
                                 <View style={styles.container}>
                                     <BusinessCard />

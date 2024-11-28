@@ -203,91 +203,129 @@ export interface VCardData {
 
 
 export interface ApplicationState {
-    application: { CardData: CardData }
+    application: { cardData: CardData }
 }
-
 export interface CardData {
-    _id: string
-    name: string
-    industry: string
-    address: {
-        street: string
-        city: string
-        state: string
-        postalCode: string
-        country: string
-    }
-    website: string
-    contactEmail: string
-    phone: string
-    description: string
-    logo: {
-        mime: string
-        data: string
-    }
-    socialsData: Social[]
+    _id: string;
+    userId: string;
+    businessId: string;
+    tapCount: number;
+    lastTap: string;
+    taps: {
+        timestamp: string;
+        location: string;
+        deviceInfo: string;
+    }[];
+    createdAt: string;
+    deactivatedAt: string;
+    status: boolean;
+    socialsData: {
+        platform: string;
+        profileName: string;
+        profileUrl: string;
+    }[];
     roleData: {
-        _id: string
-        userId: string
-        businessId: string
-        role: string
-    },
+        _id: string;
+        userId: string;
+        businessId: string;
+        role: string;
+    };
     vcardData: {
-            _id: string,
-            birthday: string
-            cellPhone: string
-            pagerPhone: string
-            email: string
-            workEmail: string
-            firstName: string
-            formattedName: string
-            gender: string
-            homeAddress: {
-                label: string
-                street: string
-                city: string
-                stateProvince: string
-                postalCode: string
-                countryRegion: string
-            },
-            homePhone: string
-            homeFax: string
-            lastName: string
-            logo: {
-                url: string
-                mediaType: string
-                base64: boolean
-            },
-            middleName: string
-            namePrefix: string
-            nameSuffix: string
-            nickname: string
-            note: string
-            organization: string,
-            photo: {
-                url: string
-                mediaType: string
-                base64: boolean
-            },
-            role: string,
-            socialUrls: {
-                instagram: string
-            },
-            source: string
-            title: string
-            url: string
-            workUrl: string
-            workAddress: {
-                label: string
-                street: string
-                city: string
-                stateProvince: string
-                postalCode: string
-                countryRegion: string
-            },
-            workPhone: string
-            workFax: string
-            version: string
-            ownerId: string
-        }
+        _id: string;
+        birthday: string;
+        cellPhone: string;
+        pagerPhone: string;
+        email: string;
+        workEmail: string;
+        firstName: string;
+        formattedName: string;
+        gender: string;
+        homeAddress: {
+            label: string;
+            street: string;
+            city: string;
+            stateProvince: string;
+            postalCode: string;
+            countryRegion: string;
+        };
+        homePhone: string;
+        homeFax: string;
+        lastName: string;
+        logo: {
+            url: string;
+            mediaType: string;
+            base64: boolean;
+        };
+        middleName: string;
+        namePrefix: string;
+        nameSuffix: string;
+        nickname: string;
+        note: string;
+        organization: string;
+        photo: {
+            url: string;
+            mediaType: string;
+            base64: boolean;
+        };
+        role: string;
+        socialUrls: {
+            instagram: string;
+        };
+        source: string;
+        title: string;
+        url: string;
+        workUrl: string;
+        workAddress: {
+            label: string;
+            street: string;
+            city: string;
+            stateProvince: string;
+            postalCode: string;
+            countryRegion: string;
+        };
+        workPhone: string;
+        workFax: string;
+        version: string;
+        ownerId: string;
+    };
+    userData: {
+        _id: string;
+        firstName: string;
+        lastName: string;
+        age: number;
+        email: string;
+        address: {
+            street: string;
+            city: string;
+            state: string;
+            postalCode: string;
+            country: string;
+        };
+        phone: string;
+    };
+    businessData: {
+        _id: string;
+        name: string;
+        industry: string;
+        address: {
+            street: string;
+            city: string;
+            state: string;
+            postalCode: string;
+            country: string;
+        };
+        website: string;
+        contactEmail: string;
+        phone: string;
+        socials: {
+            platform: string;
+            profileName: string;
+            profileUrl: string;
+        }[];
+        description: string;
+        logo: {
+            mime: string;
+            data: string;
+        };
+    };
 }

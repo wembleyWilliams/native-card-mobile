@@ -2,6 +2,8 @@ import axios from 'axios';
 // @ts-ignore
 // import {REACT_APP_API} from '@env';
 const REACT_APP_API = "http://localhost:8080"
+
+//todo: reduce number of functions to only get the singular card data
 const services = {
     generateVCard: async (cardId: string) => {
 
@@ -101,6 +103,17 @@ const services = {
     },
     getCardData: async (cardId: string) => {
         return axios.get(`${REACT_APP_API}/card/info/${cardId}`)
+            .then((res) => {
+                console.log(res.data)
+                return res.data;
+            })
+            .catch((err) => {
+                console.log(err)
+                return null
+            })
+    },
+    submitMetricData: async (cardId: string) => {
+        return axios.put(`${REACT_APP_API}/card/incrementTap/${cardId}`)
             .then((res) => {
                 return res.data;
             })

@@ -3,7 +3,7 @@ import {Dimensions, ScrollView, StyleSheet, Text, TouchableOpacity, View} from "
 import {Avatar, IconButton} from "react-native-paper";
 import {COLORS, SIZES} from "../constants/theme";
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
-import {faMapMarkerAlt, faShareAlt} from '@fortawesome/free-solid-svg-icons'; // Import Share icon
+import {faMapMarkerAlt, faShareAlt} from '@fortawesome/free-solid-svg-icons';
 import iconLoader from "../common/icon-loader";
 import Button from "../components/common/Button";
 import * as WebBrowser from "expo-web-browser";

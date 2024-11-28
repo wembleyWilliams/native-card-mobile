@@ -13,8 +13,9 @@ import TemplateTwo from "../../templates/template-two";
 
 //TODO: Upgrade logs to a better industry standard log system, winston maybe?
 const BusinessCard = () => {
-    const {userId} = useParams();
+    const {cardId} = useParams();
     const [loadingComplete, setLoadingComplete] = useState(false)
+    const [didSubmit, setDidSubmit] = useState(false)
     const [errorPage, setErrorPage] = useState(false)
     // const [isOpenSaveContactModal, setIsOpenSaveContactModal] = useState(false)
     const [template, setTemplate] = useState('template-1')
@@ -25,37 +26,45 @@ const BusinessCard = () => {
     const windowHeight = Dimensions.get('window').height;
 
     const _id = useSelector(
-        (state: State) => state.application.application.CardData?._id
+        (state: State) => state.application.application.cardData?.businessData?._id
     )
     const description = useSelector(
-        (state: State) => state.application.application.CardData?.description
+        (state: State) => state.application.application.cardData?.businessData?.description
     )
     const phone = useSelector(
-        (state: State) => state.application.application.CardData?.phone
+        (state: State) => state.application.application.cardData?.businessData?.phone
     )
 
     const industry = useSelector(
-        (state: State) => state.application.application.CardData?.industry
+        (state: State) => state.application.application.cardData?.businessData?.industry
     )
 
     const logo = useSelector(
-        (state: State) => state.application.application.CardData?.logo
+        (state: State) => state.application.application.cardData?.businessData?.logo
     )
 
     const socials = useSelector(
-        (state: State) => state.application.application.CardData?.socialsData
+        (state: State) => state.application.application.cardData?.socialsData
     )
 
     const name = useSelector(
-        (state: State) => state.application.application.CardData?.name
+        (state: State) => state.application.application.cardData?.businessData?.name
     )
 
     const address = useSelector(
-        (state: State) => state.application.application.CardData?.address
+        (state: State) => state.application.application.cardData?.businessData?.address
     )
 
     const email = useSelector(
-        (state: State) => state.application.application.CardData?.contactEmail
+        (state: State) => state.application.application.cardData?.businessData?.contactEmail
+    )
+
+    const firstName = useSelector(
+        (state: State) => state.application.application.cardData?.userData?.firstName
+    )
+
+    const lastName = useSelector(
+        (state: State) => state.application.application.cardData?.userData?.lastName
     )
 
     const styles = StyleSheet.create({
@@ -118,9 +127,14 @@ const BusinessCard = () => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const cardData = await services.getCardData(userId);
+                const cardData = await services.getCardData(cardId);
+                !didSubmit?
+                    (
+                       await services.submitMetricData(cardId)
+                    ): setDidSubmit(false)
+                let flatData = cardData[0]
                 if (cardData) {
-                    dispatch(setCardDetails(cardData[0]));
+                    dispatch(setCardDetails(flatData));
                     setLoadingComplete(true);
                 } else {
                     setLoadingComplete(false);
@@ -145,7 +159,7 @@ const BusinessCard = () => {
             case 'template-1':
                 return (
                     <TemplateOne
-                        _id={userId}
+                        _id={cardId}
                         logo={logo}
                         name={name}
                         phone={phone}
@@ -160,7 +174,7 @@ const BusinessCard = () => {
             case 'template-2':
                 return (
                     <TemplateTwo
-                        _id={userId}
+                        _id={cardId}
                         logo={logo}
                         phone={phone}
                         industry={industry}
@@ -169,7 +183,7 @@ const BusinessCard = () => {
                         address={address}
                         contactEmail={email}
                         socials={socials}
-                        userId={userId}
+                        // userId={userId}
                     />
                 );
             default:
@@ -181,7 +195,8 @@ const BusinessCard = () => {
                     industry={industry}
                     description={description} address={address} contactEmail={email}
                     socials={socials}
-                    userId={userId}/>;
+                    // userId={cardId}
+                />;
         }
     };
 
@@ -218,7 +233,7 @@ const BusinessCard = () => {
                                 address={address}
                                 contactEmail={email}
                                 socials={socials}
-                                userId={userId}
+                                // userId={userId}
                             />
                         )
                     }
