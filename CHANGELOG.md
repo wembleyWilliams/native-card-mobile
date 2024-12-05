@@ -1,3 +1,10 @@
+# [0.7.0](https://github.com/wembleyWilliams/native-card-mobile/compare/v0.6.0...v0.7.0) (2024-12-05)
+
+
+### Features
+
+* Generate VCard now uses businessId instead of card ID ([e5f6a0b](https://github.com/wembleyWilliams/native-card-mobile/commit/e5f6a0bebefecb6013029c3b2ca390740cbcd78f))
+
 # [0.6.0](https://github.com/wembleyWilliams/native-card-mobile/compare/v0.5.0...v0.6.0) (2024-12-05)
 
 
