@@ -220,9 +220,13 @@ export interface CardData {
     deactivatedAt: string;
     status: boolean;
     socialsData: {
+        userId: string | null;
+        businessId: string | null;
         platform: string;
         profileName: string;
         profileUrl: string;
+        created_at: string;
+        updated_at: string;
     }[];
     roleData: {
         _id: string;

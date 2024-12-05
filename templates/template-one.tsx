@@ -175,7 +175,7 @@ const TemplateOne = (cardData: any) => {
                         )}
                     </View>
                     <View style={styles.textContainer}>
-                        <Text style={styles.nameText}>{cardData.name}</Text>
+                        <Text style={styles.nameText}>{cardData.userName}</Text>
                         <Text style={styles.contactText}>{cardData.phone}</Text>
                         <Text style={styles.contactText}>{cardData.contactEmail}</Text>
                         <View style={styles.addressTextContainer}>

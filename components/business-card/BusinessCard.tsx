@@ -133,6 +133,7 @@ const BusinessCard = () => {
                        await services.submitMetricData(cardId)
                     ): setDidSubmit(false)
                 let flatData = cardData[0]
+
                 if (cardData) {
                     dispatch(setCardDetails(flatData));
                     setLoadingComplete(true);
@@ -159,6 +160,7 @@ const BusinessCard = () => {
             case 'template-1':
                 return (
                     <TemplateOne
+                        userName={`${firstName} ${lastName}`}
                         _id={cardId}
                         logo={logo}
                         name={name}
@@ -168,7 +170,6 @@ const BusinessCard = () => {
                         address={address}
                         contactEmail={email}
                         socialsData={socials}
-                        // userId={userId}
                     />
                 );
             case 'template-2':
@@ -183,7 +184,6 @@ const BusinessCard = () => {
                         address={address}
                         contactEmail={email}
                         socials={socials}
-                        // userId={userId}
                     />
                 );
             default:
@@ -195,7 +195,6 @@ const BusinessCard = () => {
                     industry={industry}
                     description={description} address={address} contactEmail={email}
                     socials={socials}
-                    // userId={cardId}
                 />;
         }
     };
