@@ -5,7 +5,7 @@ import {REACT_APP_API} from '@env';
 
 //todo: reduce number of functions to only get the singular card data
 const services = {
-    generateVCard: async (cardId: string) => {
+    generateVCard: async (businessId: string) => {
 
         // const vCard: VCardData = {
         //     uid: data.uid,
@@ -68,7 +68,7 @@ const services = {
         //     version: data.version,
         // };
 
-        await services.getContactCard(cardId)
+        await services.getContactCard(businessId)
             .then((res) => {
                 // Create a Blob object for the vCard data
                 const blob = new Blob([res], { type: 'text/vcard' });
@@ -91,8 +91,8 @@ const services = {
                 console.log('Error downloading VCF file:', err);
             });
     },
-    getContactCard: async (userId: any) => {
-      return axios.post(`${ REACT_APP_API }/util/vcard/download`,{ownerId:userId})
+    getContactCard: async (businessId: any) => {
+      return axios.post(`${ REACT_APP_API }/util/vcard/download`,{businessId:businessId})
           .then((res)=>{
               return res.data
           })
