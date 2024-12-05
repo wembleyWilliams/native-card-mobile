@@ -104,7 +104,6 @@ const services = {
     getCardData: async (cardId: string) => {
         return axios.get(`${REACT_APP_API}/card/info/${cardId}`)
             .then((res) => {
-                console.log(res.data)
                 return res.data;
             })
             .catch((err) => {
