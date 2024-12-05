@@ -1,3 +1,18 @@
+# [0.7.0](https://github.com/wembleyWilliams/native-card-mobile/compare/v0.6.0...v0.7.0) (2024-12-05)
+
+
+### Features
+
+* Generate VCard now uses businessId instead of card ID ([e5f6a0b](https://github.com/wembleyWilliams/native-card-mobile/commit/e5f6a0bebefecb6013029c3b2ca390740cbcd78f))
+
+# [0.6.0](https://github.com/wembleyWilliams/native-card-mobile/compare/v0.5.0...v0.6.0) (2024-12-05)
+
+
+### Features
+
+* Added to new services and replaced the card data fetch logic to include tap increments on each load ([0d02b0d](https://github.com/wembleyWilliams/native-card-mobile/commit/0d02b0dfecc678eb1c2eec0b0371de3bdda7db6d))
+* Added to new services and replaced the card data fetch logic to include tap increments on each load ([84f7612](https://github.com/wembleyWilliams/native-card-mobile/commit/84f7612a101a860b77c7af5d3976978fdb81c0c0))
+
 # [0.5.0](https://github.com/wembleyWilliams/native-card-mobile/compare/v0.4.1...v0.5.0) (2024-11-28)
 
 

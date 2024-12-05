@@ -15,7 +15,7 @@ const TemplateOne = (cardData: any) => {
 
     const handleClick = async () => {
 
-        await services.generateVCard(cardData._id)
+        await services.generateVCard(cardData?.businessData?._id)
             .then((res)=>{
                 console.log('VCard Returned')
             })
