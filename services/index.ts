@@ -1,7 +1,7 @@
 import axios from 'axios';
 // @ts-ignore
-import {REACT_APP_API} from '@env';
-// const REACT_APP_API = "http://localhost:8080"
+// import {REACT_APP_API} from '@env';
+const REACT_APP_API = "http://localhost:8080"
 
 //todo: reduce number of functions to only get the singular card data
 const services = {
