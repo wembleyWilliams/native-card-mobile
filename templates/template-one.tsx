@@ -14,10 +14,9 @@ const windowWidth = Dimensions.get('window').width;
 const TemplateOne = (cardData: any) => {
 
     const handleClick = async () => {
-
-        await services.generateVCard(cardData?.businessData?._id)
+        const generatedCard = await services.generateVCard(cardData?._id)
             .then((res)=>{
-                console.log('VCard Returned')
+                return res
             })
     }
     const styles = StyleSheet.create({
