@@ -2,7 +2,6 @@ FROM node:18.17
 LABEL authors="Wembley"
 # set our node environment, either development or production
 # defaults to production, compose overrides this to development on build and run
-ARG NODE_ENV=development
 ENV NODE_ENV $NODE_ENV
 
 # default to port 19006 for node, and 19001 and 19002 (tests) for debug
