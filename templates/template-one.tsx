@@ -14,7 +14,7 @@ const windowWidth = Dimensions.get('window').width;
 const TemplateOne = (cardData: any) => {
 
     const handleClick = async () => {
-        const generatedCard = await services.generateVCard(cardData?._id)
+        await services.generateVCard(cardData?._id)
             .then((res)=>{
                 return res
             })
@@ -180,7 +180,8 @@ const TemplateOne = (cardData: any) => {
                         <View style={styles.addressTextContainer}>
                             <FontAwesomeIcon icon={faMapMarkerAlt} size="1x" color="#fff"/>
                             <Text style={styles.addressText}>
-                                {cardData.address?.city? cardData.address?.city: 'City' }, {cardData.address?.state?cardData.address?.state: 'State'}, {cardData.address?.country}, {cardData.address?.postalCode?cardData.address?.postalCode:'Postal Code'}
+                                {cardData.address?.city? cardData.address?.city: 'City' }, {cardData.address?.state?cardData.address?.state: 'State'}, {cardData.address?.country}
+                                {/*, {cardData.address?.postalCode?cardData.address?.postalCode:''}*/}
                             </Text>
                         </View>
                     </View>
@@ -194,9 +195,9 @@ const TemplateOne = (cardData: any) => {
                         {/* New Share button */}
                         <View style={styles.shareButtonWrapper}>
                             <Text style={{
-                                fontSize: SIZES.medium,
+                                fontSize: 20,
                                 fontWeight: 'bold',
-                                textAlign: 'center'
+                                textAlign: 'left'
                             }}>{cardData.name}</Text>
                             <View style={styles.shareButtonContainer}>
                                 <TouchableOpacity style={styles.shareButtonIcon}
