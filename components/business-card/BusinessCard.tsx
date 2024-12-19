@@ -67,6 +67,10 @@ const BusinessCard = () => {
         (state: State) => state.application.application.cardData?.userData?.lastName
     )
 
+    const businessServices = useSelector(
+        (state: State) => state.application.application.cardData?.businessData?.services
+    )
+
     const styles = StyleSheet.create({
         lottie: {
             width: 400,
@@ -170,6 +174,7 @@ const BusinessCard = () => {
                         address={address}
                         contactEmail={email}
                         socialsData={socials}
+                        businessServices={businessServices}
                     />
                 );
             case 'template-2':

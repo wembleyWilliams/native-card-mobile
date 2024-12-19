@@ -129,6 +129,7 @@ const initialState: ApplicationState = {
                         profileUrl: ""
                     }
                 ],
+                services: [],
                 description: "",
                 logo: {
                     mime: "",

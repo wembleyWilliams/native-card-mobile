@@ -5,7 +5,8 @@ import {COLORS, SIZES} from "../constants/theme";
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {faMapMarkerAlt, faShareAlt} from '@fortawesome/free-solid-svg-icons';
 import iconLoader from "../common/icon-loader";
-import Button from "../components/common/Button";
+import {Button} from "react-native-paper";
+import CustomButton from "../components/common/Button"
 import * as WebBrowser from "expo-web-browser";
 import services from "../services";
 
@@ -104,6 +105,18 @@ const TemplateOne = (cardData: any) => {
             padding: 14,
             justifyContent: 'space-between',
         },
+        sectionBody:{
+            flexDirection: 'row',
+            // flexShrink: 2,
+            width: 200,
+            flexWrap: "wrap",
+            maxHeight: 200
+            // backgroundColor: COLORS.secondary
+        },
+        services : {
+          flexDirection: 'row',
+          width: "auto"
+        },
         icon: {},
         socialContainer: {
             width: "100%",
@@ -185,7 +198,9 @@ const TemplateOne = (cardData: any) => {
                             </Text>
                         </View>
                     </View>
+
                 </View>
+
 
                 {/* Other sections */}
                 <View style={[styles.section, styles.sectionBorder]}>
@@ -217,6 +232,28 @@ const TemplateOne = (cardData: any) => {
                         {cardData.description}
                     </Text>
                 </View>
+                <View style={[styles.section, styles.sectionBorder]}>
+                    <View style={styles.sectionTitle}>
+                        <Text style={{color: '#FFF', fontWeight: 'bold'}}>Services</Text>
+                        <Text style={{color: '#FFF'}}>Scroll to see more</Text>
+                    </View>
+                    <View style={styles.services}>
+                        <ScrollView
+                            horizontal={true}
+                            showsHorizontalScrollIndicator={true}
+                            style={styles.sectionBody}>
+                            {cardData.businessServices? cardData.businessServices.map((item: any, index: any) => (
+                                <View style={{paddingRight: 5}}>
+                                    <CustomButton
+                                        buttonColor={'#fff'} text={item} textColor={'#3c3c3c'}/>
+                                </View>
+                            )): null}
+                        </ScrollView>
+                    </View>
+
+                </View>
+
+
 
                 <View style={styles.section}>
                     <View style={styles.sectionTitle}>
@@ -225,7 +262,6 @@ const TemplateOne = (cardData: any) => {
                     </View>
                     <View style={styles.socialContainer}>
                         {cardData.socialsData? cardData.socialsData.map((item: any, index: any) => (
-
                             <View
                                 key={index}
                                 style={styles.item}>
@@ -248,7 +284,7 @@ const TemplateOne = (cardData: any) => {
 
                                 </View>
 
-                                <Button
+                                <CustomButton
                                     onClick={() => WebBrowser.openBrowserAsync(item.profileUrl as string)}
                                     buttonColor={'#F5F7FA'} text={'Visit'} textColor={'#7E848C'}/>
                             </View>

@@ -318,6 +318,7 @@ export interface CardData {
             postalCode: string;
             country: string;
         };
+        services: [],
         website: string;
         contactEmail: string;
         phone: string;
