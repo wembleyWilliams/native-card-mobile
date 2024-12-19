@@ -5,7 +5,6 @@ import {COLORS, SIZES} from "../constants/theme";
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {faMapMarkerAlt, faShareAlt} from '@fortawesome/free-solid-svg-icons';
 import iconLoader from "../common/icon-loader";
-import {Button} from "react-native-paper";
 import CustomButton from "../components/common/Button"
 import * as WebBrowser from "expo-web-browser";
 import services from "../services";
@@ -242,8 +241,10 @@ const TemplateOne = (cardData: any) => {
                             horizontal={true}
                             showsHorizontalScrollIndicator={true}
                             style={styles.sectionBody}>
-                            {cardData.businessServices? cardData.businessServices.map((item: any, index: any) => (
-                                <View style={{paddingRight: 5}}>
+                            {cardData.businessServices? cardData.businessServices.map((item: any, index: any, key: any) => (
+                                <View style={{paddingRight: 5}}
+                                    key={index}
+                                >
                                     <CustomButton
                                         buttonColor={'#fff'} text={item} textColor={'#3c3c3c'}/>
                                 </View>

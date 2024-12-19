@@ -29,12 +29,12 @@ export interface Social {
     profileUrl: string;
 }
 
-interface SocialUrls {
-    facebook?: string;
-    linkedIn?: string;
-    twitter?: string;
-    flickr?: string;
-}
+// interface SocialUrls {
+//     facebook?: string;
+//     linkedIn?: string;
+//     twitter?: string;
+//     flickr?: string;
+// }
 //
 // export interface BusinessData {
 //     industry: string;
