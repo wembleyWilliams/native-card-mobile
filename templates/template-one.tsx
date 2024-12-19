@@ -231,6 +231,8 @@ const TemplateOne = (cardData: any) => {
                         {cardData.description}
                     </Text>
                 </View>
+
+                {cardData.businessServices?
                 <View style={[styles.section, styles.sectionBorder]}>
                     <View style={styles.sectionTitle}>
                         <Text style={{color: '#FFF', fontWeight: 'bold'}}>Services</Text>
@@ -254,7 +256,7 @@ const TemplateOne = (cardData: any) => {
 
                 </View>
 
-
+                :null}
 
                 <View style={styles.section}>
                     <View style={styles.sectionTitle}>
