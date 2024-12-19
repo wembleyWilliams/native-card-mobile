@@ -1,3 +1,11 @@
+# [0.8.0](https://github.com/wembleyWilliams/native-card-mobile/compare/v0.7.0...v0.8.0) (2024-12-19)
+
+
+### Features
+
+* Added services section to show all business services offered ([8735d29](https://github.com/wembleyWilliams/native-card-mobile/commit/8735d29e4248554afe250cf4c7d5eb4412b72647))
+* Added services section to show all business services offered ([a7c3f5c](https://github.com/wembleyWilliams/native-card-mobile/commit/a7c3f5c3d9d310df8bc62fe1df522f8fdb0f42b1))
+
 # [0.7.0](https://github.com/wembleyWilliams/native-card-mobile/compare/v0.6.0...v0.7.0) (2024-12-05)
 
 
