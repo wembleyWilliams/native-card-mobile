@@ -15,7 +15,7 @@ const TemplateOne = (cardData: any) => {
 
     const handleClick = async () => {
         await services.generateVCard(cardData?._id)
-            .then((res)=>{
+            .then((res) => {
                 return res
             })
     }
@@ -104,7 +104,7 @@ const TemplateOne = (cardData: any) => {
             padding: 14,
             justifyContent: 'space-between',
         },
-        sectionBody:{
+        sectionBody: {
             flexDirection: 'row',
             // flexShrink: 2,
             width: 200,
@@ -112,9 +112,9 @@ const TemplateOne = (cardData: any) => {
             maxHeight: 200
             // backgroundColor: COLORS.secondary
         },
-        services : {
-          flexDirection: 'row',
-          width: "auto"
+        services: {
+            flexDirection: 'row',
+            width: "auto"
         },
         icon: {},
         socialContainer: {
@@ -192,14 +192,13 @@ const TemplateOne = (cardData: any) => {
                         <View style={styles.addressTextContainer}>
                             <FontAwesomeIcon icon={faMapMarkerAlt} size="1x" color="#fff"/>
                             <Text style={styles.addressText}>
-                                {cardData.address?.city? cardData.address?.city: 'City' }, {cardData.address?.state?cardData.address?.state: 'State'}, {cardData.address?.country}
+                                {cardData.address?.city ? cardData.address?.city : 'City'}, {cardData.address?.state ? cardData.address?.state : 'State'}, {cardData.address?.country}
                                 {/*, {cardData.address?.postalCode?cardData.address?.postalCode:''}*/}
                             </Text>
                         </View>
                     </View>
 
                 </View>
-
 
                 {/* Other sections */}
                 <View style={[styles.section, styles.sectionBorder]}>
@@ -232,31 +231,31 @@ const TemplateOne = (cardData: any) => {
                     </Text>
                 </View>
 
-                {cardData.businessServices?
-                <View style={[styles.section, styles.sectionBorder]}>
-                    <View style={styles.sectionTitle}>
-                        <Text style={{color: '#FFF', fontWeight: 'bold'}}>Services</Text>
-                        <Text style={{color: '#FFF'}}>Scroll to see more</Text>
-                    </View>
-                    <View style={styles.services}>
-                        <ScrollView
-                            horizontal={true}
-                            showsHorizontalScrollIndicator={true}
-                            style={styles.sectionBody}>
-                            {cardData.businessServices? cardData.businessServices.map((item: any, index: any) => (
-                                <View style={{paddingRight: 5}}
-                                    key={index}
-                                >
-                                    <CustomButton
-                                        buttonColor={'#fff'} text={item} textColor={'#3c3c3c'}/>
-                                </View>
-                            )): null}
-                        </ScrollView>
-                    </View>
+                {cardData.businessServices && cardData.businessServices.length > 0 ? (
+                    <View style={[styles.section, styles.sectionBorder]}>
+                        <View style={styles.sectionTitle}>
+                            <Text style={{color: '#FFF', fontWeight: 'bold'}}>Services</Text>
+                            <Text style={{color: '#FFF'}}>Scroll to see more</Text>
+                        </View>
 
-                </View>
+                        <View style={styles.services}>
+                            <ScrollView
+                                horizontal={true}
+                                showsHorizontalScrollIndicator={true}
+                                style={styles.sectionBody}>
+                                {cardData.businessServices ? cardData.businessServices.map((item: any, index: any) => (
+                                    <View style={{paddingRight: 5}}
+                                          key={index}
+                                    >
+                                        <CustomButton
+                                            buttonColor={'#fff'} text={item} textColor={'#3c3c3c'}/>
+                                    </View>
+                                )) : null}
+                            </ScrollView>
+                        </View>
 
-                :null}
+                    </View>
+                ) : null}
 
                 <View style={styles.section}>
                     <View style={styles.sectionTitle}>
@@ -264,7 +263,7 @@ const TemplateOne = (cardData: any) => {
                         <Text style={{color: '#FFF'}}>Links</Text>
                     </View>
                     <View style={styles.socialContainer}>
-                        {cardData.socialsData? cardData.socialsData.map((item: any, index: any) => (
+                        {cardData.socialsData ? cardData.socialsData.map((item: any, index: any) => (
                             <View
                                 key={index}
                                 style={styles.item}>
@@ -291,7 +290,7 @@ const TemplateOne = (cardData: any) => {
                                     onClick={() => WebBrowser.openBrowserAsync(item.profileUrl as string)}
                                     buttonColor={'#F5F7FA'} text={'Visit'} textColor={'#7E848C'}/>
                             </View>
-                        )):null}
+                        )) : null}
                     </View>
                 </View>
             </ScrollView>
