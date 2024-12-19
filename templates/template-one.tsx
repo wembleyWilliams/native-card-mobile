@@ -241,7 +241,7 @@ const TemplateOne = (cardData: any) => {
                             horizontal={true}
                             showsHorizontalScrollIndicator={true}
                             style={styles.sectionBody}>
-                            {cardData.businessServices? cardData.businessServices.map((item: any, index: any, key: any) => (
+                            {cardData.businessServices? cardData.businessServices.map((item: any, index: any) => (
                                 <View style={{paddingRight: 5}}
                                     key={index}
                                 >
