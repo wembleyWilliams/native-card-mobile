@@ -204,7 +204,6 @@ const TemplateOne = (cardData: any) => {
                 <View style={[styles.section, styles.sectionBorder]}>
                     <View style={[styles.section, {paddingBottom: 20}]}>
 
-
                         {/* New Share button */}
                         <View style={styles.shareButtonWrapper}>
                             <Text style={{
@@ -256,43 +255,45 @@ const TemplateOne = (cardData: any) => {
 
                     </View>
                 ) : null}
+                {cardData.socialsData && cardData.socialsData.length > 0 ? (
+                    <View style={styles.section}>
+                        <View style={styles.sectionTitle}>
+                            <Text style={{color: '#FFF', fontWeight: 'bold'}}>Platforms</Text>
+                            <Text style={{color: '#FFF'}}>Links</Text>
+                        </View>
+                        <View style={styles.socialContainer}>
+                            {cardData.socialsData ? cardData.socialsData.map((item: any, index: any) => (
+                                <View
+                                    key={index}
+                                    style={styles.item}>
 
-                <View style={styles.section}>
-                    <View style={styles.sectionTitle}>
-                        <Text style={{color: '#FFF', fontWeight: 'bold'}}>Platforms</Text>
-                        <Text style={{color: '#FFF'}}>Links</Text>
-                    </View>
-                    <View style={styles.socialContainer}>
-                        {cardData.socialsData ? cardData.socialsData.map((item: any, index: any) => (
-                            <View
-                                key={index}
-                                style={styles.item}>
+                                    <View style={{
+                                        flexDirection: 'row',
+                                        alignItems: 'center',
+                                        gap: 15
+                                    }}>
 
-                                <View style={{
-                                    flexDirection: 'row',
-                                    alignItems: 'center',
-                                    gap: 15
-                                }}>
+                                        <IconButton
+                                            style={styles.icon}
+                                            icon={() => iconLoader(item.platform)}
+                                            size={24}
+                                            iconColor={"#FFF"}
+                                            containerColor={"#FFF"}
+                                            disabled={true}
+                                        />
+                                        <Text style={styles.text}>{item.profileName}</Text>
 
-                                    <IconButton
-                                        style={styles.icon}
-                                        icon={() => iconLoader(item.platform)}
-                                        size={24}
-                                        iconColor={"#FFF"}
-                                        containerColor={"#FFF"}
-                                        disabled={true}
-                                    />
-                                    <Text style={styles.text}>{item.profileName}</Text>
+                                    </View>
 
+                                    <CustomButton
+                                        onClick={() => WebBrowser.openBrowserAsync(item.profileUrl as string)}
+                                        buttonColor={'#F5F7FA'} text={'Visit'} textColor={'#7E848C'}/>
                                 </View>
-
-                                <CustomButton
-                                    onClick={() => WebBrowser.openBrowserAsync(item.profileUrl as string)}
-                                    buttonColor={'#F5F7FA'} text={'Visit'} textColor={'#7E848C'}/>
-                            </View>
-                        )) : null}
+                            )) : null}
+                        </View>
                     </View>
-                </View>
+                ) : null}
+
             </ScrollView>
         </View>
     );
