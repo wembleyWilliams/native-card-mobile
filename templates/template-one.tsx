@@ -1,17 +1,19 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {Dimensions, ScrollView, StyleSheet, Text, TouchableOpacity, View} from "react-native";
 import {Avatar, IconButton} from "react-native-paper";
 import {COLORS, SIZES} from "../constants/theme";
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
-import {faMapMarkerAlt, faShareAlt} from '@fortawesome/free-solid-svg-icons';
+import {faMapMarkerAlt, faShareAlt, faQrcode} from '@fortawesome/free-solid-svg-icons';
 import iconLoader from "../common/icon-loader";
 import CustomButton from "../components/common/Button"
 import * as WebBrowser from "expo-web-browser";
 import services from "../services";
+import QRModal from "../common/modals/QRModal/QRModal";
 
 const windowWidth = Dimensions.get('window').width;
 
 const TemplateOne = (cardData: any) => {
+    const [openQRModal, setOpenQRModal] = useState(false)
 
     const handleClick = async () => {
         await services.generateVCard(cardData?._id)
@@ -19,6 +21,11 @@ const TemplateOne = (cardData: any) => {
                 return res
             })
     }
+
+    const handleQRClick = async () => {
+        setOpenQRModal(!openQRModal)
+    }
+
     const styles = StyleSheet.create({
         wrapper: {
             flex: 1,
@@ -63,6 +70,7 @@ const TemplateOne = (cardData: any) => {
             borderRadius: 10,
             backgroundColor: COLORS.secondary,
             maxWidth: windowWidth * 0.8,
+            minWidth: windowWidth * 0.2
         },
         addressText: {
             color: '#fff',
@@ -167,136 +175,189 @@ const TemplateOne = (cardData: any) => {
     });
 
     return (
-        <View style={styles.wrapper}>
-            <ScrollView contentContainerStyle={styles.container}>
-                <View style={styles.profileSection}>
-                    <View style={styles.avatarContainer}>
-                        {cardData.logo ? (
-                            <Avatar.Image
-                                style={{backgroundColor: 'transparent'}}
-                                size={100}
-                                source={{uri: `data:${cardData.logo?.mime};base64,${cardData.logo?.data}`}}
-                            />
-                        ) : (
-                            <Avatar.Image
-                                style={{backgroundColor: 'transparent'}}
-                                size={100}
-                                source={require('../assets/placeholders/avatar.png')}
-                            />
-                        )}
-                    </View>
-                    <View style={styles.textContainer}>
-                        <Text style={styles.nameText}>{cardData.userName}</Text>
-                        <Text style={styles.contactText}>{cardData.phone}</Text>
-                        <Text style={styles.contactText}>{cardData.contactEmail}</Text>
-                        <View style={styles.addressTextContainer}>
-                            <FontAwesomeIcon icon={faMapMarkerAlt} size="1x" color="#fff"/>
-                            <Text style={styles.addressText}>
-                                {cardData.address?.city ? cardData.address?.city : 'City'}, {cardData.address?.state ? cardData.address?.state : 'State'}, {cardData.address?.country}
-                                {/*, {cardData.address?.postalCode?cardData.address?.postalCode:''}*/}
-                            </Text>
+        <>
+            <View style={styles.wrapper}>
+                <ScrollView contentContainerStyle={styles.container}>
+                    <View style={styles.profileSection}>
+                        <View style={styles.avatarContainer}>
+                            {cardData.logo ? (
+                                <Avatar.Image
+                                    style={{backgroundColor: 'transparent'}}
+                                    size={100}
+                                    source={{uri: `data:${cardData.logo?.mime};base64,${cardData.logo?.data}`}}
+                                />
+                            ) : (
+                                <Avatar.Image
+                                    style={{backgroundColor: 'transparent'}}
+                                    size={100}
+                                    source={require('../assets/placeholders/avatar.png')}
+                                />
+                            )}
                         </View>
-                    </View>
-
-                </View>
-
-                {/* Other sections */}
-                <View style={[styles.section, styles.sectionBorder]}>
-                    <View style={[styles.section, {paddingBottom: 20}]}>
-
-                        {/* New Share button */}
-                        <View style={styles.shareButtonWrapper}>
-                            <Text style={{
-                                fontSize: 20,
-                                fontWeight: 'bold',
-                                textAlign: 'left'
-                            }}>{cardData.name}</Text>
-                            <View style={styles.shareButtonContainer}>
-                                <TouchableOpacity style={styles.shareButtonIcon}
-                                                  onPress={handleClick}>
-                                    <FontAwesomeIcon icon={faShareAlt} size={"1x"} color="#fff"/>
-                                </TouchableOpacity>
-                                <Text style={styles.shareButtonText}>Save Contact</Text>
+                        <View style={styles.textContainer}>
+                            <Text style={styles.nameText}>{cardData.userName}</Text>
+                            <Text style={styles.contactText}>{cardData.phone}</Text>
+                            <Text style={styles.contactText}>{cardData.contactEmail}</Text>
+                            <View style={styles.addressTextContainer}>
+                                <FontAwesomeIcon icon={faMapMarkerAlt} size="1x" color="#fff"/>
+                                <Text style={styles.addressText}>
+                                    {cardData.address?.city ? cardData.address?.city : 'City'}, {cardData.address?.state ? cardData.address?.state : 'State'}, {cardData.address?.country}
+                                    {/*, {cardData.address?.postalCode?cardData.address?.postalCode:''}*/}
+                                </Text>
                             </View>
                         </View>
 
                     </View>
-                    <View style={styles.sectionTitle}>
-                        <Text style={{color: '#FFF', fontWeight: 'bold'}}>About US</Text>
-                        <Text style={{color: '#FFF'}}>{cardData.industry}</Text>
-                    </View>
-                    <Text style={styles.sectionText}>
-                        {cardData.description}
-                    </Text>
-                </View>
 
-                {cardData.businessServices && cardData.businessServices.length > 0 ? (
+                    {/* Other sections */}
                     <View style={[styles.section, styles.sectionBorder]}>
-                        <View style={styles.sectionTitle}>
-                            <Text style={{color: '#FFF', fontWeight: 'bold'}}>Services</Text>
-                            <Text style={{color: '#FFF'}}>Scroll to see more</Text>
-                        </View>
+                        <View style={[styles.section, {paddingBottom: 20}]}>
 
-                        <View style={styles.services}>
-                            <ScrollView
-                                horizontal={true}
-                                showsHorizontalScrollIndicator={true}
-                                style={styles.sectionBody}>
-                                {cardData.businessServices ? cardData.businessServices.map((item: any, index: any) => (
-                                    <View style={{paddingRight: 5}}
-                                          key={index}
-                                    >
+                            {/* Name, Share and QR Section */}
+                            <View style={styles.shareButtonWrapper}>
+                                {cardData.name.length < 15 ? (
+                                    <>
+                                        <Text style={{
+                                            fontSize: 20,
+                                            fontWeight: 'bold',
+                                            textAlign: 'left',
+                                        }}
+                                              numberOfLines={1}
+                                            // ellipsizeMode="tail"
+                                        >{cardData.name}</Text>
+                                        <View style={styles.shareButtonContainer}>
+                                            <TouchableOpacity style={styles.shareButtonIcon}
+                                                              onPress={handleClick}>
+                                                <FontAwesomeIcon icon={faShareAlt} size={"1x"} color="#fff"/>
+                                            </TouchableOpacity>
+                                            <Text style={styles.shareButtonText}>Save</Text>
+                                        </View>
+                                        <View style={styles.shareButtonContainer}>
+                                            <TouchableOpacity style={styles.shareButtonIcon}
+                                                              onPress={handleQRClick}>
+                                                <FontAwesomeIcon icon={faQrcode} size={"1x"} color="#fff"/>
+                                            </TouchableOpacity>
+                                            <Text style={styles.shareButtonText}>QR</Text>
+                                        </View>
+                                    </>
+                                ) : (
+                                    <>
+                                        <View
+                                            style={{
+                                                flexDirection:"column",
+                                                maxWidth: "100%"
+                                            }}
+                                        >
+                                            <Text style={{
+                                                fontSize: 20,
+                                                fontWeight: 'bold',
+                                                textAlign: 'center',
+                                            }}
+                                                  numberOfLines={3}
+                                                // ellipsizeMode="tail"
+                                            >this a it {cardData.name}</Text>
+                                            <View style={styles.shareButtonContainer}>
+                                                <TouchableOpacity style={styles.shareButtonIcon}
+                                                                  onPress={handleClick}>
+                                                    <FontAwesomeIcon icon={faShareAlt} size={"1x"} color="#fff"/>
+                                                </TouchableOpacity>
+                                                <Text style={styles.shareButtonText}>Save Contact</Text>
+                                                {/*</View>*/}
+                                                {/*<View style={styles.shareButtonContainer}>*/}
+                                                <TouchableOpacity style={styles.shareButtonIcon}
+                                                                  onPress={handleQRClick}>
+                                                    <FontAwesomeIcon icon={faQrcode} size={"1x"} color="#fff"/>
+                                                </TouchableOpacity>
+                                                <Text style={styles.shareButtonText}>Show QR Code</Text>
+                                            </View>
+                                        </View>
+                                    </>
+                                )}
+                            </View>
+
+                        </View>
+                        <View style={styles.sectionTitle}>
+                            <Text style={{color: '#FFF', fontWeight: 'bold'}}>About US</Text>
+                            <Text style={{color: '#FFF'}}>{cardData.industry}</Text>
+                        </View>
+                        <Text style={styles.sectionText}>
+                            {cardData.description}
+                        </Text>
+                    </View>
+
+                    {cardData.businessServices && cardData.businessServices.length > 0 ? (
+                        <View style={[styles.section, styles.sectionBorder]}>
+                            <View style={styles.sectionTitle}>
+                                <Text style={{color: '#FFF', fontWeight: 'bold'}}>Services</Text>
+                                <Text style={{color: '#FFF'}}>Scroll to see more</Text>
+                            </View>
+
+                            <View style={styles.services}>
+                                <ScrollView
+                                    horizontal={true}
+                                    showsHorizontalScrollIndicator={true}
+                                    style={styles.sectionBody}>
+                                    {cardData.businessServices ? cardData.businessServices.map((item: any, index: any) => (
+                                        <View style={{paddingRight: 5}}
+                                              key={index}
+                                        >
+                                            <CustomButton
+                                                buttonColor={'#fff'} text={item} textColor={'#3c3c3c'}/>
+                                        </View>
+                                    )) : null}
+                                </ScrollView>
+                            </View>
+
+                        </View>
+                    ) : null}
+                    {cardData.socialsData && cardData.socialsData.length > 0 ? (
+                        <View style={styles.section}>
+                            <View style={styles.sectionTitle}>
+                                <Text style={{color: '#FFF', fontWeight: 'bold'}}>Platforms</Text>
+                                <Text style={{color: '#FFF'}}>Links</Text>
+                            </View>
+                            <View style={styles.socialContainer}>
+                                {cardData.socialsData ? cardData.socialsData.map((item: any, index: any) => (
+                                    <View
+                                        key={index}
+                                        style={styles.item}>
+
+                                        <View style={{
+                                            flexDirection: 'row',
+                                            alignItems: 'center',
+                                            gap: 15
+                                        }}>
+
+                                            <IconButton
+                                                style={styles.icon}
+                                                icon={() => iconLoader(item.platform)}
+                                                size={24}
+                                                iconColor={"#FFF"}
+                                                containerColor={"#FFF"}
+                                                disabled={true}
+                                            />
+                                            <Text style={styles.text}>{item.profileName}</Text>
+
+                                        </View>
+
                                         <CustomButton
-                                            buttonColor={'#fff'} text={item} textColor={'#3c3c3c'}/>
+                                            onClick={() => WebBrowser.openBrowserAsync(item.profileUrl as string)}
+                                            buttonColor={'#F5F7FA'} text={'Visit'} textColor={'#7E848C'}/>
                                     </View>
                                 )) : null}
-                            </ScrollView>
+                            </View>
                         </View>
+                    ) : null}
 
-                    </View>
-                ) : null}
-                {cardData.socialsData && cardData.socialsData.length > 0 ? (
-                    <View style={styles.section}>
-                        <View style={styles.sectionTitle}>
-                            <Text style={{color: '#FFF', fontWeight: 'bold'}}>Platforms</Text>
-                            <Text style={{color: '#FFF'}}>Links</Text>
-                        </View>
-                        <View style={styles.socialContainer}>
-                            {cardData.socialsData ? cardData.socialsData.map((item: any, index: any) => (
-                                <View
-                                    key={index}
-                                    style={styles.item}>
+                </ScrollView>
+            </View>
 
-                                    <View style={{
-                                        flexDirection: 'row',
-                                        alignItems: 'center',
-                                        gap: 15
-                                    }}>
 
-                                        <IconButton
-                                            style={styles.icon}
-                                            icon={() => iconLoader(item.platform)}
-                                            size={24}
-                                            iconColor={"#FFF"}
-                                            containerColor={"#FFF"}
-                                            disabled={true}
-                                        />
-                                        <Text style={styles.text}>{item.profileName}</Text>
+            <QRModal isVisible={openQRModal} onClose={() => setOpenQRModal(!openQRModal)}/>
 
-                                    </View>
-
-                                    <CustomButton
-                                        onClick={() => WebBrowser.openBrowserAsync(item.profileUrl as string)}
-                                        buttonColor={'#F5F7FA'} text={'Visit'} textColor={'#7E848C'}/>
-                                </View>
-                            )) : null}
-                        </View>
-                    </View>
-                ) : null}
-
-            </ScrollView>
-        </View>
-    );
+        </>
+    )
+        ;
 };
 
 export default TemplateOne;
