@@ -154,6 +154,7 @@ const TemplateOne = (cardData: any) => {
             flexDirection: 'row',
             alignItems: 'center',
             justifyContent: 'center',
+            width:'100%',
             gap: 8,
             marginTop: 10,
         },
@@ -201,7 +202,7 @@ const TemplateOne = (cardData: any) => {
                             <View style={styles.addressTextContainer}>
                                 <FontAwesomeIcon icon={faMapMarkerAlt} size="1x" color="#fff"/>
                                 <Text style={styles.addressText}>
-                                    {cardData.address?.city ? cardData.address?.city : 'City'}, {cardData.address?.state ? cardData.address?.state : 'State'}, {cardData.address?.country}
+                                    {cardData.address?.city ? `${cardData.address?.city},` : ''} {cardData.address?.state ? `${cardData.address?.state},` : ''} {cardData.address?.country}
                                     {/*, {cardData.address?.postalCode?cardData.address?.postalCode:''}*/}
                                 </Text>
                             </View>
@@ -245,7 +246,7 @@ const TemplateOne = (cardData: any) => {
                                         <View
                                             style={{
                                                 flexDirection:"column",
-                                                maxWidth: "100%"
+                                                width: "100%"
                                             }}
                                         >
                                             <Text style={{
@@ -255,7 +256,7 @@ const TemplateOne = (cardData: any) => {
                                             }}
                                                   numberOfLines={3}
                                                 // ellipsizeMode="tail"
-                                            >this a it {cardData.name}</Text>
+                                            >{cardData.name}</Text>
                                             <View style={styles.shareButtonContainer}>
                                                 <TouchableOpacity style={styles.shareButtonIcon}
                                                                   onPress={handleClick}>
