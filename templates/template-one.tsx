@@ -154,6 +154,14 @@ const TemplateOne = (cardData: any) => {
             flexDirection: 'row',
             alignItems: 'center',
             justifyContent: 'center',
+            // width:'100%',
+            gap: 8,
+            marginTop: 10,
+        },
+        shareButtonContainerAlt: {
+            flexDirection: 'row',
+            alignItems: 'center',
+            justifyContent: 'center',
             width:'100%',
             gap: 8,
             marginTop: 10,
@@ -257,7 +265,7 @@ const TemplateOne = (cardData: any) => {
                                                   numberOfLines={3}
                                                 // ellipsizeMode="tail"
                                             >{cardData.name}</Text>
-                                            <View style={styles.shareButtonContainer}>
+                                            <View style={styles.shareButtonContainerAlt}>
                                                 <TouchableOpacity style={styles.shareButtonIcon}
                                                                   onPress={handleClick}>
                                                     <FontAwesomeIcon icon={faShareAlt} size={"1x"} color="#fff"/>
